@@ -64,7 +64,7 @@
                 href="https://twitter.com/usgs"
                 target="_blank"
               >
-                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'twitter-square' }" class="social-icon"><span class="only">Twitter</span></font-awesome-icon>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'twitter-square' }"><span class="only">Twitter</span></font-awesome-icon>
               </a>
             </li>
             <li class="facebook">
@@ -72,7 +72,7 @@
                 href="https://facebook.com/usgeologicalsurvey"
                 target="_blank"
               >
-                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" class="social-icon"><span class="only">Facebook</span></font-awesome-icon>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }"><span class="only">Facebook</span></font-awesome-icon>
                 </a>
             </li>
             <li class="github">
@@ -80,7 +80,7 @@
                 href="https://github.com/usgs"
                 target="_blank"
               >
-                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }" class="social-icon"><span class="only">GitHub</span></font-awesome-icon>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }"><span class="only">GitHub</span></font-awesome-icon>
               </a>
             </li>
             <li class="flickr">
@@ -88,7 +88,7 @@
                 href="https://flickr.com/usgeologicalsurvey"
                 target="_blank"
               >
-                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'flickr' }"  class="social-icon"><span class="only">Flickr</span></font-awesome-icon>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'flickr' }"><span class="only">Flickr</span></font-awesome-icon>
               </a>
             </li>
             <li class="youtube">
@@ -96,7 +96,7 @@
                 href="http://youtube.com/usgs"
                 target="_blank"
               >
-                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'youtube-square' }" class="social-icon"><span class="only">YouTube</span></font-awesome-icon>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'youtube-square' }"><span class="only">YouTube</span></font-awesome-icon>
               </a>
             </li>
             <li class="instagram">
@@ -104,7 +104,7 @@
                 href="https://instagram.com/usgs"
                 target="_blank"
               >
-                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }" class="social-icon"><span class="only">Instagram</span></font-awesome-icon>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"><span class="only">Instagram</span></font-awesome-icon>
               </a>
             </li>
           </ul>
@@ -125,10 +125,86 @@
 <style scoped lang="scss">
   @import"../style/usgsHeaderFooter/combinedLoad.css";
 
-  .social-icon {
+  .svg-inline--fa {
     color: white;
+    text-decoration: none;
     height: 24px;
     width: 21px;
   }
+  /* Font Awesome Social Media icons */
+  /*!
+   *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+   *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+   */
+  /* FONT PATH
+   * -------------------------- */
+  @font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/usgsHeaderFooter/fontawesome-webfont.eot');
+    src: url('../fonts/usgsHeaderFooter/fontawesome-webfont.eot') format('embedded-opentype'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.woff2') format('woff2'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.woff') format('woff'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.ttf') format('truetype'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .fa-wrapper {
+    position: relative
+  }
+  .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .fa-ul {
+    padding-left: 0;
+    margin-left: 2.14285714em;
+    list-style-type: none;
+  }
+  .fa-ul > li {
+    position: relative;
+  }
+  .fa-li {
+    position: absolute;
+    left: -2.14285714em;
+    width: 2.14285714em;
+    top: 0.14285714em;
+    text-align: center;
+  }
+  .fa-search:before {
+    content: "\f002";
+  }
+  .fa-twitter-square:before {
+    Content: "\f081";
+  }
+  .fa-facebook-square:before {
+    Content: "\f082";
+  }
+  .fa-github:before {
+    content: "\f09b";
+  }
+  .fa-google-plus-square:before {
+    content:"\f0d4";
+  }
+  .fa-flickr:before {
+    content: "\f16e";
+  }
+  .fa-youtube-play:before {
+    content: "\f16a";
+  }
+  .fa-instagram:before {
+    content: "\f16d";
+  }
+  .only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  [role="button"]{cursor:pointer}
   
 </style>
