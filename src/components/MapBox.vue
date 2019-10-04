@@ -136,7 +136,8 @@ export default {
   methods: {
     onMapLoaded(event) {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
-
+  console.log('env var? ' + process.env.VUE_APP_TEST)
+        console.log('title ' + process.env.APP_VUE_TITLE)
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
 

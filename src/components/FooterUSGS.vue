@@ -73,7 +73,7 @@
                 target="_blank"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }"><span class="only">Facebook</span></font-awesome-icon>
-                </a>
+              </a>
             </li>
             <li class="github">
               <a

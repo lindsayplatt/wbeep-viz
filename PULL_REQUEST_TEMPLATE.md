@@ -1,6 +1,6 @@
 Before making a pull request
 ----------------------------
-
+- [ ] Clean the code the way Vue likes it - run 'npm run lint --fix'
 - [ ] Make sure all tests run
 - [ ] Update the changelog appropriately
 
