@@ -17,6 +17,7 @@
     "mapbox-gl": "^1.4.0",
     "uswds": "^2.2.1",
     "vue": "^2.6.10",
+    "vue-analytics": "^5.17.2",
     "vue-mapbox": "^0.4.1"
   },
   "devDependencies": {
