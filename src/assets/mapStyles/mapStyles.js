@@ -78,9 +78,14 @@ export default {
                     },
                     'fill-opacity': ['case',
                         ['boolean', ['feature-state', 'hover'], false],
-                        0.1,
+                        0.7,
                         1
-                    ]
+                    ],
+                    'fill-outline-color': ['case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 0.0)'
+                    ],
                 },
                 'showButtonLayerToggle': false,
                 'legendText': {
@@ -301,21 +306,8 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'stream_order_1',
-                'type': 'line',
-                'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_order_1',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true,
-            },
-            {
-                'id': 'stream_order_6',
+                'id': 'large rivers',
+                'nhdOrder': 'stream_order_6',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'nhdplus_order_6',
@@ -328,6 +320,52 @@ export default {
                 'showButtonLayerToggle': false,
                 'showButtonStreamToggle': true
             },
+            {
+                'id': 'rivers',
+                'nhdOrder': 'nhdplus_orders_4_5',
+                'type': 'line',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'nhdplus_orders_4_5',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
+            },
+            {
+                'id': 'streams',
+                'nhdOrder': 'nhdplus_orders_2_3',
+                'type': 'line',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'nhdplus_orders_2_3',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
+            },
+            {
+                'id': 'small tributaries',
+                'nhdOrder': 'stream_order_1',
+                'type': 'line',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'nhdplus_order_1',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true,
+            },
+
             {
                 'id': 'Neighboring Countries',
                 'type': 'fill',
