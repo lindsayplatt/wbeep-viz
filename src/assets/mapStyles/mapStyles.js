@@ -70,7 +70,7 @@ export default {
                         'stops': [
                             ['very high','#144873'],
                             ['high','#A7B9D7'],
-                            ['medium','#FED98E'],
+                            ['average','#FED98E'],
                             ['low', '#EDAA5F'],
                             ['very low','#CC4C02'],
                             ['','#000000'],
@@ -86,7 +86,7 @@ export default {
                 'legendText': {
                     'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
                     'high': ['',''],
-                    'medium': ['Common',' \- today is normal for this region'],
+                    'average': ['Common',' \- today is normal for this region'],
                     'low': ['',''],
                     'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
                     'no data': ['','No Data']
