@@ -70,7 +70,7 @@ export default {
                         'stops': [
                             ['very high','#144873'],
                             ['high','#A7B9D7'],
-                            ['medium','#FED98E'],
+                            ['average','#FED98E'],
                             ['low', '#EDAA5F'],
                             ['very low','#CC4C02'],
                             ['','#000000'],
