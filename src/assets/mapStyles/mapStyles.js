@@ -17,7 +17,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf?fresh=true']
+                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf?fresh=true']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -86,7 +86,7 @@ export default {
                 'legendText': {
                     'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
                     'high': ['',''],
-                    'medium': ['Common',' \- today is normal for this region'],
+                    'average': ['Common',' \- today is normal for this region'],
                     'low': ['',''],
                     'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
                     'no data': ['','No Data']
