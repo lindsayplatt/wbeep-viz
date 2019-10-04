@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Changed to use grouped stream orders
 - Changed footer icons to Vue components
 - New Map Layers Toggle Functionality
 - Water layer above neighboring countires
