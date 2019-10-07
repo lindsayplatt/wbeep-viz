@@ -1,3 +1,4 @@
+console.log('test')
 export default {
     style: {
         version: 8,
