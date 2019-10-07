@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import uswds from 'uswds'
+import VueAnalytics from 'vue-analytics'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -14,6 +15,13 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faWater } from '@fortawesome/free-solid-svg-icons'
 
+// social icons
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faFlickr } from '@fortawesome/free-brands-svg-icons'
+import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -26,8 +34,20 @@ library.add(faMinus)
 library.add(faPlus)
 library.add(faWater)
 
+// social icons
+library.add(faTwitterSquare)
+library.add(faFacebookSquare)
+library.add(faGithub)
+library.add(faFlickr)
+library.add(faYoutubeSquare)
+library.add(faInstagram)
+
 Vue.config.productionTip = false
 Vue.use(uswds)
+
+Vue.use(VueAnalytics, {
+  id: 'UA-149352326-1'
+})
 
 new Vue({
   render: h => h(App),

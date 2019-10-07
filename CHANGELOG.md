@@ -3,8 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 - Map Layers Toggle Button
+- Added Google Analytics plugin
+- Changed to use grouped stream orders
+- Changed footer icons to Vue components
 - New Map Layers Toggle Functionality
-- Water layer above neighboring countires
+- Water layer above neighboring counties
 - Restricted user ability to zoom out past the continental United States
 - Added sub-subtitle with date of last available data
 - Adjusted mapStyles to have HRU's solid colors
