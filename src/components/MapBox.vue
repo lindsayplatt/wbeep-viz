@@ -76,12 +76,9 @@
         <MglFullscreenControl position="top-right" />
       </MglMap>
     </div>
-    <!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
-    <!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
-    <!--    <div>-->
-    <!--      Current Zoom Level (listed for development purposes):-->
-    <!--      <span id="zoomlevel" />-->
-    <!--    </div>-->
+    <!--The next div contains information to show the current zoom level of the map. This will only show on the
+        development version of the application. To find the code controlling this, search for 'zoom level display' -->
+    <div id="zoom-level-div" />
   </div>
 </template>
 <script>
@@ -134,10 +131,13 @@ export default {
     };
   },
   methods: {
+    // Set up the track method for Google Analytics
+    track () {
+        this.$ga.page('/')
+    },
     onMapLoaded(event) {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
-  console.log('env var? ' + process.env.VUE_APP_TEST)
-        console.log('title ' + process.env.VUE_APP_TITLE)
+
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
 
@@ -326,14 +326,15 @@ export default {
         }
       };
 
-      // To see the current ZOOM LEVEL of the map during development, uncomment the next section.
-      // This section adds a indicator so that we can see the current zoom level
-      // This is for development and should be removed before sending to production
-      // function onZoomend() {
-      //   let currentZoom = map.getZoom();
-      //   document.getElementById("zoomlevel").innerHTML = currentZoom;
-      // }
-      // map.on("zoomend", onZoomend);
+      // Next section adds the current zoom level display to the map for development purposes.
+      // The zoom level display should only show in 'development' versions of the application
+      if (process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY && process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true') {
+          function onZoomend() {
+              let currentZoom = map.getZoom();
+              document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + currentZoom ;
+          }
+          map.on("zoomend", onZoomend);
+      }
     }
   }
 };

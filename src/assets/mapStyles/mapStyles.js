@@ -24,9 +24,9 @@ export default {
                 // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
                 // url: 'http://localhost:8085/data/new2.json'
             },
-            nhd_streams: {
+            nhd_streams_grouped: {
                 type: 'vector',
-                'tiles':['http://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams/{z}/{x}/{y}.pbf'],
+                'tiles':['http://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams_grouped/{z}/{x}/{y}.pbf'],
                 'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
                 'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 10
             },
@@ -70,7 +70,7 @@ export default {
                         'stops': [
                             ['very high','#144873'],
                             ['high','#A7B9D7'],
-                            ['medium','#FED98E'],
+                            ['average','#FED98E'],
                             ['low', '#EDAA5F'],
                             ['very low','#CC4C02'],
                             ['','#000000'],
@@ -78,15 +78,20 @@ export default {
                     },
                     'fill-opacity': ['case',
                         ['boolean', ['feature-state', 'hover'], false],
-                        0.1,
+                        0.7,
                         1
-                    ]
+                    ],
+                    'fill-outline-color': ['case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 0.0)'
+                    ],
                 },
                 'showButtonLayerToggle': false,
                 'legendText': {
                     'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
                     'high': ['',''],
-                    'medium': ['Common',' \- today is normal for this region'],
+                    'average': ['Common',' \- today is normal for this region'],
                     'low': ['',''],
                     'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
                     'no data': ['','No Data']
@@ -301,79 +306,10 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'stream_order_1',
+                'id': 'large rivers',
+                'nhdOrder': 'stream_order_6',
                 'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_1',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true,
-            },
-            {
-                'id': 'stream_order_2',
-                'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_2',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
-            },
-            {
-                'id': 'stream_order_3',
-                'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_3',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
-            },
-            {
-                'id': 'stream_order_4',
-                'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_4',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
-            },
-            {
-                'id': 'stream_order_5',
-                'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_5',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
-            },
-            {
-                'id': 'stream_order_6',
-                'type': 'line',
-                'source': 'nhd_streams',
+                'source': 'nhd_streams_grouped',
                 'source-layer': 'nhdplus_order_6',
                 'layout': {
                     'visibility': 'none'
@@ -385,10 +321,11 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'stream_order_7',
+                'id': 'rivers',
+                'nhdOrder': 'nhdplus_orders_4_5',
                 'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_7',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'nhdplus_orders_4_5',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -399,10 +336,11 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'stream_order_8',
+                'id': 'streams',
+                'nhdOrder': 'nhdplus_orders_2_3',
                 'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_8',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'nhdplus_orders_2_3',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -413,10 +351,11 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'stream_order_9',
+                'id': 'small tributaries',
+                'nhdOrder': 'stream_order_1',
                 'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_9',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'nhdplus_order_1',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -424,22 +363,9 @@ export default {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
                 'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
+                'showButtonStreamToggle': true,
             },
-            {
-                'id': 'stream_order_minus_9',
-                'type': 'line',
-                'source': 'nhd_streams',
-                'source-layer': 'nhdplus_order_minus_9',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
-            },
+
             {
                 'id': 'Neighboring Countries',
                 'type': 'fill',
