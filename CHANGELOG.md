@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Map Layers Toggle Button
 - Added Google Analytics plugin
 - Changed to use grouped stream orders
 - Changed footer icons to Vue components

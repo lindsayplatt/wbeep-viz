@@ -6,45 +6,13 @@
           {{ title }}
         </h2>
       </div>
-      <div
-        id="mapbox_component-layer-toggle"
-        class="mapbox_component-topnav"
-      >
-        <div id="topNavText">
-          <a
-            id="map-layers-label"
-            href="#"
-            class="active"
-          >Map Options</a>
-        </div>
-        <div id="ToggleOptions">
-          <div id="layers" />
-          <div id="streams" />
-        </div>
-        <div id="iconToggleContainer">
-          <a
-            id="layersIcon"
-            href="javascript:void(0);"
-            class="icon"
-          >
-            <font-awesome-icon icon="layer-group" />
-          </a>
-          <a
-            id="streamsIcon"
-            href="javascript:void(0);"
-            class="icon"
-          >
-            <font-awesome-icon icon="water" />
-          </a>
-        </div>
-      </div>
     </div>
     <div id="mapContainer">
       <MapSubtitle />
       <MapAvailableDataDate />
       <MapLegend :legend-title="legendTitle" />
       <MglMap
-        id="map"
+        id="mapgl"
         :container="container"
         :map-style="mapStyle"
         :zoom="zoom"
@@ -74,6 +42,7 @@
         />
         <MglGeolocateControl position="top-right" />
         <MglFullscreenControl position="top-right" />
+        <MapLayers />
       </MglMap>
     </div>
     <!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
@@ -88,6 +57,8 @@
 import MapSubtitle from "./MapSubtitle";
 import MapAvailableDataDate from "./MapAvailableDataDate";
 import MapLegend from "./MapLegend";
+import MapLayers from "./MapLayers";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
 import {
   MglMap,
@@ -110,7 +81,8 @@ export default {
     MglFullscreenControl,
     MglScaleControl,
     MglAttributionControl,
-    MapLegend
+    MapLegend,
+    MapLayers
   },
   props: {
     title: {
@@ -144,7 +116,64 @@ export default {
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
 
-      // For now, I am going to duplicate this code section for each set of toggles (currently layers and streams), ideally this would be
+      //Create elements and give them specific ids
+      //Div that the map uses to dispaly things fullscreen
+      let correctDiv = document.getElementById("map");
+      let mapLayersToggleContainer = document.createElement("div");
+      let toggleOptions = document.createElement("div");
+      let toggleTitleContainer = document.createElement("div");
+      let toggleTitle = document.createElement("div");
+      let toggleExit = document.createElement("div");
+      let exitIcon = document.createElement("span");
+      exitIcon.innerHTML = icon({ prefix: "fas", iconName: "times" }).html;
+      let mapLayers = document.createElement("div");
+      let streams = document.createElement("div");
+      //Add ids
+      mapLayersToggleContainer.id = "mapLayersToggleContainer";
+      toggleTitleContainer.id = "toggleTitleContainer";
+      toggleTitle.id = "toggleTitle";
+      toggleExit.id = "toggleExit";
+      toggleOptions.id = "toggleOptions";
+      mapLayers.id = "mapLayers";
+      mapLayers.className = "options";
+      streams.id = "streams";
+      streams.className = "options";
+
+      toggleTitle.innerHTML = "Map Options";
+      mapLayersToggleContainer.style.display = "none";
+
+      //Append elements
+      toggleExit.appendChild(exitIcon);
+      toggleTitleContainer.appendChild(toggleTitle);
+      toggleTitleContainer.appendChild(toggleExit);
+      toggleOptions.appendChild(mapLayers);
+      toggleOptions.appendChild(streams);
+      mapLayersToggleContainer.appendChild(toggleTitleContainer);
+      mapLayersToggleContainer.appendChild(toggleOptions);
+      correctDiv.appendChild(mapLayersToggleContainer);
+
+      mapLayersToggleContainer.onclick = function(e){
+        e.stopPropagation();
+      }
+      exitIcon.onclick = function(e){
+        e.stopPropagation();
+        toggle();
+      }
+      document.body.onclick = function(){
+        if(mapLayersToggleContainer.style.display === "block"){
+          toggle();
+        }
+      }
+
+      let toggle = function(){
+        if(mapLayersToggleContainer.style.display === "block"){
+          mapLayersToggleContainer.style.display = "none";
+        }else{
+          mapLayersToggleContainer.style.display = "block";
+        }
+      }
+
+       // For now, I am going to duplicate this code section for each set of toggles (currently layers and streams), ideally this would be
       // in separate components, but for prototyping purposes this is fine for now.
       // Next section gives us names for the layer toggle buttons
       let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
@@ -181,84 +210,48 @@ export default {
       assembledOffAtStartSets.push(layersTurnedOffAtStart);
       assembledOffAtStartSets.push(streamsTurnedOffAtStart);
 
-      let elementTargets = ['layers', 'streams'];
+      let elementTargets = ["mapLayers", "streams"];
       let countup = 0;
       assembledIdSets.forEach(function(idSet) {
         // Go through each layer id that is in the array and make a button element for it
         for (let index = 0; index < idSet.length; index++) {
-            let id = idSet[index];
-            let link = document.createElement('a');
-            link.href = '#';
-            // If the layer is not set to visible when first loaded, then do not mark it as active.
-            // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
-            if (assembledOffAtStartSets[countup].includes(id)) {
-                link.className = '';
+          let id = idSet[index];
+          let link = document.createElement("a");
+          link.href = "#";
+          // If the layer is not set to visible when first loaded, then do not mark it as active.
+          // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
+          if (assembledOffAtStartSets[countup].includes(id)) {
+            link.className = "";
+          } else {
+            link.className = "active";
+          }
+          // Set the wording (label) for the layer toggle button to match the 'id' listed in the style sheet
+          link.textContent = id;
+          // Creates a click event for each button so that when clicked by the user, the visibility property
+          // is changed as is the class (color) of the button
+          link.onclick = function(e) {
+            let clickedLayer = this.textContent;
+            e.preventDefault();
+            e.stopPropagation();
+            let visibility = map.getLayoutProperty(
+              clickedLayer,
+              "visibility"
+            );
+            if (visibility === "visible") {
+              map.setLayoutProperty(clickedLayer, "visibility", "none");
+              this.className = "";
             } else {
-                link.className = 'active';
+              this.className = "active";
+              map.setLayoutProperty(clickedLayer, "visibility", "visible");
             }
-            // Set the wording (label) for the layer toggle button to match the 'id' listed in the style sheet
-            link.textContent = id;
-            // Creates a click event for each button so that when clicked by the user, the visibility property
-            // is changed as is the class (color) of the button
-            link.onclick = function (e) {
-                let clickedLayer = this.textContent;
-                e.preventDefault();
-                e.stopPropagation();
-                let visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-                if (visibility === 'visible') {
-                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                    this.className = '';
-                } else {
-                    this.className = 'active';
-                    map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-                }
-            };
-            let layerToggleList = document.getElementById(elementTargets[countup]);
-            layerToggleList.appendChild(link);
+          };
+          let layerToggleList = document.getElementById(
+            elementTargets[countup]
+          );
+          layerToggleList.appendChild(link);
         }
         countup++;
       });
-
-      let layersIcon = document.getElementById("layersIcon");
-      let streamsIcon = document.getElementById("streamsIcon");
-
-      //Toggle which options are shown based on what icon is clicked
-      let toggle = function(clicked, show){
-        let toggleOptions = document.getElementById("ToggleOptions");
-        let option = document.getElementById(show);
-        let icons = document.getElementById("iconToggleContainer").childNodes;
-        if(toggleOptions.classList.contains("active") && clicked.classList.contains("active")){
-          toggleOptions.classList.remove("active");
-          clicked.classList.remove("active");
-          option.style.display = "none";
-        }else if(toggleOptions.classList.contains("active")){
-          //Check toggle options to see if any options are currently showing
-          for(let i = 0; i < toggleOptions.childNodes.length; i++){
-            if(toggleOptions.childNodes[i].style.display === "flex"){
-              toggleOptions.childNodes[i].style.display = "none";
-            }
-          }
-          //Check to see if any icons are active and deactivate them
-          for(let j = 0; j < icons.length; j++){
-            if(icons[j].classList.contains("active")){
-              icons[j].classList.remove("active");
-            }
-          }
-          clicked.classList.add("active");
-          option.style.display = "flex";
-        }else{
-          toggleOptions.classList.add("active");
-          clicked.classList.add("active");
-          option.style.display = "flex";
-        }
-      }
-
-      layersIcon.onclick = function(){
-        toggle(this, "layers");
-      }
-      streamsIcon.onclick = function(){
-        toggle(this, "streams");
-      }
 
       // next section controls the HRU hover effect
       let hoveredHRUId = this.hoveredHRUId;
@@ -433,52 +426,82 @@ $border: 1px solid #fff;
 <style lang="scss">
 $color: #fff;
 $blue: #4574a3;
-$border: 1px solid #fff;
-#mapbox_component-layer-toggle a {
-  text-decoration: none;
-  padding: 5px 10px;
-  display: block;
-  height: 30px;
-  background: #00264c;
-  outline: none;
-  text-align: center;
+$border: 1px solid rgb(200, 200, 200);
+$background: rgba(255, 255, 255, 0.9);
+#mapLayersToggleContainer {
+  background: $background;
+  border-right: $border;
+  width: 90%;
+  height: 100%;
+  position: absolute;
+  z-index: 9000;
+
+  a{
+    outline: none;
+  }
 }
 
-#ToggleOptions {
+#toggleTitleContainer {
   display: flex;
-  flex: 8;
-  flex-wrap: wrap;
+  border-bottom: $border;
+}
+
+#toggleTitle {
+  flex: 1;
+  line-height: 27px;
+  font-size: 1.2em;
+  padding: 0 0 0 10px;
+}
+
+#toggleExit {
+  width: 30px;
   height: 30px;
-  div {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 90000;
-      a{
-        width: 100%;
-        font-size: 0.8em;
-        color: $color;
-        text-decoration: line-through;
-        &:hover {
-          text-decoration: none;
-          background:#00bf26;
-        }
-      }
+  text-align: center;
+  border-left: $border;
+  cursor: pointer;
+
+  &:hover{
+    background: #00264c;
+    color: #fff;
   }
-  .active {
-    text-decoration: none;
-    background: $blue;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin: 5px 0 0 0;
   }
 }
-@media screen and (min-width:960px) {
-  #ToggleOptions {
-    div{
-      a{
-        flex-grow: 1;
-        width: auto;
-      }
+
+#toggleOptions {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.options {
+  background: orange;
+  display: flex;
+  flex-direction: column;
+  a {
+    padding: 10px;
+    border-bottom: $border;
+    text-decoration: none;
+    font-size: 1em;
+    color: #000;
+    background: rgb(220, 220, 220);
+    &:hover {
+      background: #00bf26;
+      color: #fff;
     }
+  }
+  .active {
+    background: #00264c;
+    color: #fff;
+  }
+}
+@media screen and (min-width: 960px){
+  #mapLayersToggleContainer{
+    width: 25%;
   }
 }
 </style>
