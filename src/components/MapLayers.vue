@@ -1,4 +1,3 @@
-<template></template>
 <script>
 import { MglMap, MglPopup } from "vue-mapbox";
 import { icon } from "@fortawesome/fontawesome-svg-core";
@@ -6,9 +5,6 @@ import mapStyles from "../assets/mapStyles/mapStyles";
 export default {
   name: "MapLayers",
   inject: ["mapbox", "map", "actions"],
-  components: {
-    MglPopup
-  },
   data() {
     return {
       control: null
