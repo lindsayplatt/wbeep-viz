@@ -28,7 +28,8 @@ ENV E_VUE_BUILD_MODE=$VUE_BUILD_MODE
 
 # Build the Vue app.
 RUN npm install
-RUN if ["$E_BUILDTARGET" = "test"] then \
+RUN if ["$E_BUILDTARGET" = "test"] \
+then \
 npm run build-test \
 else \
 npm run build \
