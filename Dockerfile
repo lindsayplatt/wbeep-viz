@@ -31,7 +31,8 @@ RUN npm install
 RUN if ["$E_BUILDTARGET" = "test"] then \
 npm run build-test \
 else \
-npm run build
+npm run build \
+fi
 
 
 #RUN npm run build
