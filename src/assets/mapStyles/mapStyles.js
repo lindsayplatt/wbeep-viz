@@ -362,7 +362,20 @@ export default {
                 'showButtonLayerToggle': false,
                 'showButtonStreamToggle': true,
             },
-
+            {
+                'id': 'Hydrological Response Unit',
+                'type': 'line',
+                'source': 'HRU',
+                'source-layer': 'hrus',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(57, 79, 87, 1)'
+                },
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false
+            },
             {
                 'id': 'Neighboring Countries',
                 'type': 'fill',
@@ -424,20 +437,6 @@ export default {
                     'line-color': 'rgb(0,0,0)'
                 }
 
-            },
-            {
-                'id': 'Hydrological Response Unit',
-                'type': 'line',
-                'source': 'HRU',
-                'source-layer': 'hrus',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(57, 79, 87, 1)'
-                },
-                'showButtonLayerToggle': true,
-                'showButtonStreamToggle': false
             },
             {
                 'filter': ['all', ['==', '$type', 'Point'],
