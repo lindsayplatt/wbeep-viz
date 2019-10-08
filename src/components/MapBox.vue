@@ -2,9 +2,9 @@
   <div id="viz_container">
     <div class="header-container">
       <div class="usa-prose">
-        <h2 class="title-text">
-          {{ title }}
-        </h2>
+        <h3 class="title-text">
+          {{ title }} {{ developmentTier }}
+        </h3>
       </div>
     </div>
     <div id="mapContainer">
@@ -45,12 +45,9 @@
         <MapLayers />
       </MglMap>
     </div>
-    <!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
-    <!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
-    <!--    <div>-->
-    <!--      Current Zoom Level (listed for development purposes):-->
-    <!--      <span id="zoomlevel" />-->
-    <!--    </div>-->
+    <!--The next div contains information to show the current zoom level of the map. This will only show on the
+        development version of the application. To find the code controlling this, search for 'zoom level display' -->
+    <div id="zoom-level-div" />
   </div>
 </template>
 <script>
@@ -102,7 +99,8 @@ export default {
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
       maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
-      legendTitle: "Latest Available Water Status"
+      legendTitle: "Latest Available Water Status",
+      developmentTier: process.env.VUE_APP_TIER
     };
   },
   methods: {
@@ -322,14 +320,15 @@ export default {
         }
       };
 
-      // To see the current ZOOM LEVEL of the map during development, uncomment the next section.
-      // This section adds a indicator so that we can see the current zoom level
-      // This is for development and should be removed before sending to production
-      // function onZoomend() {
-      //   let currentZoom = map.getZoom();
-      //   document.getElementById("zoomlevel").innerHTML = currentZoom;
-      // }
-      // map.on("zoomend", onZoomend);
+      // Next section adds the current zoom level display to the map for development purposes.
+      // The zoom level display should only show in 'development' versions of the application
+      if (process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY && process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true') {
+          function onZoomend() {
+              let currentZoom = map.getZoom();
+              document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + currentZoom ;
+          }
+          map.on("zoomend", onZoomend);
+      }
     }
   }
 };
