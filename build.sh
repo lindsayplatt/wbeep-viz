@@ -1,4 +1,4 @@
-if [ "$E_BUILDTARGET" == "test" ]
+if [ "$E_VUE_BUILD_MODE" == "development" ]
 then npm run build-test
 else npm run build
 fi
