@@ -23,6 +23,12 @@
             MapBox,
             FooterEmail,
             FooterUSGS
+        },
+        methods: {
+            // Set up the track method for Google Analytics
+            track () {
+                this.$ga.page('/')
+            },
         }
     }
 </script>
