@@ -1,4 +1,10 @@
-console.log('test')
+console.log('this is the env stuff ', process.env)
+
+// Since the Mapbox gl wants the tile request to have an array containing the URL for the tiles, we need to
+// grab the URL for the correct tier from the environment variables and prepackage the result as an array
+const hruTileUrl = [];
+    hruTileUrl.push(process.env.VUE_APP_HRU_TILE_URL);
+
 export default {
     style: {
         version: 8,
@@ -11,19 +17,9 @@ export default {
             },
             HRU: {
                 type: 'vector',
-                // The following line is used as a reference point for automated builds
-                // to insert the correct HRU tile location - do not modify:
-                // HRU SOURCE INSERT
-
-                // If you are setting up a local build, you can uncomment the following
-                // URL assignment to pull the HRU tiles from S3 so that no local tile
-                // server is required:
-                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf?fresh=true']
-                //
-                // The following URL is an example of using a local mbtiles file and a
-                // tile server.  See the readme for more information:
-                // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
-                // url: 'http://localhost:8085/data/new2.json'
+                'tiles': hruTileUrl,
+                'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
+                'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 11
             },
             nhd_streams_grouped: {
                 type: 'vector',
