@@ -171,13 +171,11 @@ export default {
         }
       }
 
-       // For now, I am going to duplicate this code section for each set of toggles (currently layers and streams), ideally this would be
-      // in separate components, but for prototyping purposes this is fine for now.
       // Next section gives us names for the layer toggle buttons
       let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
+
       let toggleableLayerIds = [];
       let layersTurnedOffAtStart = [];
-      // Next section gives us names for the streams toggle buttons
       let toggleableStreamsIds = [];
       let streamsTurnedOffAtStart = [];
 
@@ -185,28 +183,28 @@ export default {
       let assembledOffAtStartSets = [];
 
       for (let index = 0; index < styleLayers.length; index++) {
-        if (styleLayers[index].showButtonLayerToggle === true) {
-          // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
-          toggleableLayerIds.push(styleLayers[index].id);
+          if (styleLayers[index].showButtonLayerToggle === true) {
+              // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
+              toggleableLayerIds.push(styleLayers[index].id);
 
-          // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
-          // These layers that are off by default have a visibility of 'none' in the style sheet.
-          if (styleLayers[index].layout.visibility === "none") {
-            layersTurnedOffAtStart.push(styleLayers[index].id);
+              // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
+              // These layers that are off by default have a visibility of 'none' in the style sheet.
+              if (styleLayers[index].layout.visibility === "none") {
+                  layersTurnedOffAtStart.push(styleLayers[index].id);
+              }
           }
-        } else if (styleLayers[index].showButtonStreamToggle === true) {
-          toggleableStreamsIds.push(styleLayers[index].id);
-          // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
-          // These layers that are off by default have a visibility of 'none' in the style sheet.
-          if (styleLayers[index].layout.visibility === "none") {
-            streamsTurnedOffAtStart.push(styleLayers[index].id);
+          if (styleLayers[index].showButtonStreamToggle === true) {
+              toggleableStreamsIds.push(styleLayers[index].id);
+              if (styleLayers[index].layout.visibility === 'none') {
+                  streamsTurnedOffAtStart.push(styleLayers[index].id);
+              }
           }
-        }
+          assembledIdSets.push(toggleableLayerIds);
+          assembledIdSets.push(toggleableStreamsIds);
+
+          assembledOffAtStartSets.push(layersTurnedOffAtStart);
+          assembledOffAtStartSets.push(streamsTurnedOffAtStart);
       }
-      assembledIdSets.push(toggleableLayerIds);
-      assembledIdSets.push(toggleableStreamsIds);
-      assembledOffAtStartSets.push(layersTurnedOffAtStart);
-      assembledOffAtStartSets.push(streamsTurnedOffAtStart);
 
       let elementTargets = ["mapLayers", "streams"];
       let countup = 0;
