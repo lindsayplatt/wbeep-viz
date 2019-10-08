@@ -25,7 +25,6 @@ ARG BUILDTARGET="test"
 ARG VUE_BUILD_MODE="development"
 ENV E_BUILDTARGET=$BUILDTARGET
 ENV E_VUE_BUILD_MODE=$VUE_BUILD_MODE
-RUN chmod +x ./config.sh && ./config.sh
 
 # Build the Vue app.
 RUN npm install
