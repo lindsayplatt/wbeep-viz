@@ -195,15 +195,17 @@ export default {
                   streamsTurnedOffAtStart.push(styleLayers[index].id);
               }
           }
-          assembledIdSets.push(toggleableLayerIds);
-          assembledIdSets.push(toggleableStreamsIds);
-
-          assembledOffAtStartSets.push(layersTurnedOffAtStart);
-          assembledOffAtStartSets.push(streamsTurnedOffAtStart);
       }
+      assembledIdSets.push(toggleableLayerIds);
+      assembledIdSets.push(toggleableStreamsIds);
+
+      assembledOffAtStartSets.push(layersTurnedOffAtStart);
+      assembledOffAtStartSets.push(streamsTurnedOffAtStart);
+
 
       let elementTargets = ["mapLayers", "streams"];
       let countup = 0;
+
       assembledIdSets.forEach(function(idSet) {
         // Go through each layer id that is in the array and make a button element for it
         for (let index = 0; index < idSet.length; index++) {
@@ -237,9 +239,7 @@ export default {
               map.setLayoutProperty(clickedLayer, "visibility", "visible");
             }
           };
-          let layerToggleList = document.getElementById(
-            elementTargets[countup]
-          );
+          let layerToggleList = document.getElementById(elementTargets[countup]);
           layerToggleList.appendChild(link);
         }
         countup++;
