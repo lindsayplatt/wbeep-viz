@@ -1,3 +1,6 @@
+<template>
+  <div/>
+</template>
 <script>
 import { MglMap, MglPopup } from "vue-mapbox";
 import { icon } from "@fortawesome/fontawesome-svg-core";
