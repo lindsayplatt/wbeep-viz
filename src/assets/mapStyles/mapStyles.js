@@ -1,5 +1,3 @@
-console.log('this is the env stuff ', process.env)
-
 // Since the Mapbox gl wants the tile request to have an array containing the URL for the tiles, we need to
 // grab the URL for the correct tier from the environment variables and prepackage the result as an array
 const hruTileUrl = [];
@@ -95,7 +93,7 @@ export default {
                 }
             },
             {
-                'id': 'hill shade',
+                'id': 'Terrain',
                 'type': 'raster',
                 'source': 'hillshade',
                 'layout': {
@@ -303,22 +301,7 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'large rivers',
-                'nhdOrder': 'stream_order_6',
-                'type': 'line',
-                'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_order_6',
-                'layout': {
-                    'visibility': 'none'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButtonLayerToggle': false,
-                'showButtonStreamToggle': true
-            },
-            {
-                'id': 'rivers',
+                'id': 'Medium-sized streams',
                 'nhdOrder': 'nhdplus_orders_4_5',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -333,7 +316,7 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'streams',
+                'id': 'Medium-sized headwaters',
                 'nhdOrder': 'nhdplus_orders_2_3',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -348,7 +331,7 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'small tributaries',
+                'id': 'Small headwaters',
                 'nhdOrder': 'stream_order_1',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -363,7 +346,7 @@ export default {
                 'showButtonStreamToggle': true,
             },
             {
-                'id': 'Hydrological Response Unit',
+                'id': 'Hydrologic Response Unit',
                 'type': 'line',
                 'source': 'HRU',
                 'source-layer': 'hrus',
