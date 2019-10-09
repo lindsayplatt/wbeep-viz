@@ -151,19 +151,11 @@ export default {
       }
       exitIcon.onclick = function(e){
         e.stopPropagation();
-        toggle();
+        contentToggle(mapLayersToggleContainer);
       }
       document.body.onclick = function(){
         if(mapLayersToggleContainer.style.display === "block"){
-          toggle();
-        }
-      }
-
-      let toggle = function(){
-        if(mapLayersToggleContainer.style.display === "block"){
-          mapLayersToggleContainer.style.display = "none";
-        }else{
-          mapLayersToggleContainer.style.display = "block";
+          contentToggle(mapLayersToggleContainer);
         }
       }
 
@@ -272,7 +264,7 @@ export default {
         }
         hoveredHRUId = null;
       });
-      //Subtitle information Modal functionality
+      //Subtitle and legend information Modal functionality
       let infoButton = document.getElementById("subtitleInfoButton");
       let modal = document.getElementById("subtitleInfoModal");
       let legendInfoButton = document.getElementById("legendInfoButton");
@@ -285,14 +277,14 @@ export default {
 
       //Info Button Click Function
       infoButton.onclick = function() {
-        legendToggle(modal);
+        contentToggle(modal);
       };
       //Legend Modal functionality
       legendInfoButton.onclick = function() {
-        legendToggle(legendModal);
+        contentToggle(legendModal);
       };
       legendExit.onclick = function() {
-        legendToggle(legendModal);
+        contentToggle(legendModal);
       };
 
       legendCollapseButton.onclick = function(){
@@ -301,6 +293,14 @@ export default {
 
       legendExpandButton.onclick = function(){
         legendToggle(collapsedLegend, legend)
+      };
+
+      let contentToggle = function(name) {
+        if (name.style.display === "block") {
+          name.style.display = "none";
+        } else {
+          name.style.display = "block";
+        }
       };
 
       //legendModalToggle function
@@ -495,6 +495,10 @@ $background: rgba(255, 255, 255, 0.9);
 @media screen and (min-width: 960px){
   #mapLayersToggleContainer{
     width: 25%;
+    max-width: 500px;
+    height: auto;
+    max-height: 100%;
+    overflow-y: auto;
   }
 }
 </style>
