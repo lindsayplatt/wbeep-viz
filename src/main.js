@@ -42,11 +42,17 @@ library.add(faFlickr)
 library.add(faYoutubeSquare)
 library.add(faInstagram)
 
+const isProd = process.env.NODE_ENV === 'production'
+
 Vue.config.productionTip = false
 Vue.use(uswds)
 
 Vue.use(VueAnalytics, {
-  id: 'UA-149352326-1'
+  id: 'UA-149352326-1',
+  debug: {
+    enabled: !isProd,
+    sendHitTask: isProd
+  }
 })
 
 new Vue({

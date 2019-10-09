@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-LABEL maintainer="tworr@usgs.gov"
+LABEL maintainer="makerspace-team@usgs.gov"
 
 # Run updates and install curl
 RUN apt-get update && \
@@ -28,6 +28,5 @@ ENV E_VUE_BUILD_MODE=$VUE_BUILD_MODE
 
 # Build the Vue app.
 RUN npm install
-#RUN if ["$E_BUILDTARGET" = "test"] then npm run build-test else npm run build fi
 RUN chmod +x ./build.sh && ./build.sh
 

@@ -104,10 +104,6 @@ export default {
     };
   },
   methods: {
-    // Set up the track method for Google Analytics
-    track () {
-        this.$ga.page('/')
-    },
     onMapLoaded(event) {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
