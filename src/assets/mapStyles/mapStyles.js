@@ -65,11 +65,11 @@ export default {
                         'property': 'value',
                         'type': 'categorical',
                         'stops': [
-                            ['very high','#32598C'],
-                            ['high','#4679A6'],
-                            ['average','#8BBBD9'],
-                            ['low', '#A6977B'],
-                            ['very low','#D9CAAD'],
+                            ['very high','#1C2040'],
+                            ['high','#337598'],
+                            ['average','#C8D3BA'],
+                            ['low', '#BDAD9D'],
+                            ['very low','#967a4a'],
                             ['','#000000'],
                         ]
                     },
