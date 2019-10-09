@@ -1,5 +1,5 @@
 <template>
-  <div/>
+  <div />
 </template>
 <script>
 import { MglMap, MglPopup } from "vue-mapbox";

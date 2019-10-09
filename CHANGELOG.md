@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Layers box adjustment and Function refactor
 - Map Layers Toggle Button
 - Added Google Analytics plugin
 - Changed to use grouped stream orders
