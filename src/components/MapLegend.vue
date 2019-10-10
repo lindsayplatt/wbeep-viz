@@ -81,7 +81,7 @@
                 <div
                   class="interpretationText"
                 >
-                  Florida is usually wetter than it is today, whereas Arizona is usually drier than it is today.
+                  Florida is usually more wet than it is today, whereas Arizona is usually drier than it is today.
                 </div>
               </div>
             </div>
@@ -161,8 +161,8 @@ export default {
       legend = document.getElementById("map_legend_container");
       let florida = document.getElementById("floridaSVG");
       let arizona = document.getElementById("arizonaSVG");
-      florida.style.fill = legendColorValues[0];
-      arizona.style.fill = legendColorValues[4];
+      florida.style.fill = legendColorValues[4];
+      arizona.style.fill = legendColorValues[0];
 
       for (let index = 0; index < styleSheetCategories.length; index++) {
         let legendMainText = styleSheetCategories[index];
