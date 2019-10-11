@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-LABEL maintainer="tworr@usgs.gov"
+LABEL maintainer="makerspace-team@usgs.gov"
 
 # Run updates and install curl
 RUN apt-get update && \
@@ -22,11 +22,11 @@ COPY . .
 # Set environment variables for build target and tile source and then run config.sh
 # to insert the correct S3 tile source URLs in the Mapbox configuration file.
 ARG BUILDTARGET="test"
-ARG TILESOURCE="default"
+ARG VUE_BUILD_MODE="development"
 ENV E_BUILDTARGET=$BUILDTARGET
-ENV E_TILESOURCE=$TILESOURCE
-RUN chmod +x ./config.sh && ./config.sh
+ENV E_VUE_BUILD_MODE=$VUE_BUILD_MODE
 
 # Build the Vue app.
 RUN npm install
-RUN npm run build
+RUN chmod +x ./build.sh && ./build.sh
+

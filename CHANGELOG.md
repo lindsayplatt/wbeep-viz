@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Layers box adjustment and Function refactor
+- Map Layers Toggle Button
+- Added Google Analytics plugin
+- Changed to use grouped stream orders
+- Changed footer icons to Vue components
+- New Map Layers Toggle Functionality
+- Water layer above neighboring counties
+- Restricted user ability to zoom out past the continental United States
+- Added sub-subtitle with date of last available data
+- Adjusted mapStyles to have HRU's solid colors
+- Legend Toggle functionality
+- Min-height for map
+- Added footer email
+- topNavToggle icon adjustment and mobile adjustment
+- Changed URLs to use new tile server
+- Map Options layers dynamic toggle functionality first added
 - Made Subtitle more mobile friendly
 - Edited Legend modal to better fit a mobile experience
 - Added vue-svg-loader package
