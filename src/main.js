@@ -1,5 +1,8 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import App from './App.vue'
+import About from './components/About.vue'
+import MapBox from './components/MapBox.vue'
 import uswds from 'uswds'
 import VueAnalytics from 'vue-analytics'
 
@@ -55,6 +58,45 @@ Vue.use(VueAnalytics, {
   }
 })
 
-new Vue({
-  render: h => h(App),
+// Set up routing
+Vue.use(VueRouter)
+
+/*
+const routes = [
+  { path: '/', component: App },
+  { path: '/about', component: About }
+]
+*/
+
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/',
+      name: 'MapBox',
+      component: MapBox,
+      meta: {
+        title: 'National Integrated Water Availability Assessments'
+      }
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About,
+      meta: {
+        title: 'About the National Integrated Water Availability Assessments'
+      }
+    }
+  ],
+  mode: 'history'
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
+
+
+const app = new Vue({
+  router,
+  render: h => h(App)
 }).$mount('#app')

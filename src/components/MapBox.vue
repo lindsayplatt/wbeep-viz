@@ -3,7 +3,7 @@
     <div class="header-container">
       <div class="usa-prose">
         <h3 class="title-text">
-          {{ title }} {{ developmentTier }}
+          {{ $route.meta.title }} {{ developmentTier }}
         </h3>
       </div>
     </div>

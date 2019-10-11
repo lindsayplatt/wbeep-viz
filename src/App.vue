@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <MapBox title="National Integrated Water Availability Assessments" />
+    <router-view></router-view>
     <FooterEmail />
     <FooterUSGS />
   </div>
@@ -11,16 +11,18 @@
 <script>
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
-    import MapBox from './components/MapBox'
+//    import MapBox from './components/MapBox'
+//    import About from './components/About'
     import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
 
+//            MapBox,
+//            About,
     export default {
         name: 'App',
         components: {
             HeaderUSWDSBanner,
             HeaderUSGS,
-            MapBox,
             FooterEmail,
             FooterUSGS
         },
