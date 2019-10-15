@@ -85,6 +85,10 @@ export default {
     title: {
       type: String,
       default: "Add your title in App.vue or make this blank"
+    },
+    developmentTier: {
+        type: String,
+        default: process.env.VUE_APP_TIER
     }
   },
   data() {
@@ -99,8 +103,7 @@ export default {
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
       maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
-      legendTitle: "Latest Available Water Status",
-      developmentTier: process.env.VUE_APP_TIER
+      legendTitle: "Latest Available Water Status"
     };
   },
   methods: {

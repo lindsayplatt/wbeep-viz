@@ -49,24 +49,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 Vue.config.productionTip = false
 Vue.use(uswds)
-
-Vue.use(VueAnalytics, {
-  id: 'UA-149352326-1',
-  debug: {
-    enabled: !isProd,
-    sendHitTask: isProd
-  }
-})
-
-// Set up routing
 Vue.use(VueRouter)
-
-/*
-const routes = [
-  { path: '/', component: App },
-  { path: '/about', component: About }
-]
-*/
 
 const router = new VueRouter({
   routes: [
@@ -95,6 +78,14 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
+Vue.use(VueAnalytics, {
+  id: 'UA-149352326-1',
+  router,
+  debug: {
+    enabled: !isProd,
+    sendHitTask: isProd
+  }
+})
 
 const app = new Vue({
   router,

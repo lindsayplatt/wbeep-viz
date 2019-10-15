@@ -65,13 +65,19 @@
     <a href="https://water.usgs.gov/watercensus/index.html">National Water Census</a> as established through the SECURE Water Act.
     </p>
 
-    <p><router-link to="/"><button>Return to map</button></router-link></p>
+    <p><router-link to="/"><button class=map-return>Return to map</button></router-link></p>
   </div>
 </template>
 
 <script>
     export default {
-        name: 'About'
+        name: 'About',
+        props: {
+            developmentTier: {
+                type: String,
+                default: process.env.VUE_APP_TIER
+            }
+        },
     }
 </script>
 
@@ -80,7 +86,7 @@
     margin: 1em auto;
     width: 85%;
   }
-  button{
+  button.map-return{
     margin: 0 0 10px 0;
     background: #003366;
     color: #ffffff;

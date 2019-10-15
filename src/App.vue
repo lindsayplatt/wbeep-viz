@@ -11,13 +11,9 @@
 <script>
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
-//    import MapBox from './components/MapBox'
-//    import About from './components/About'
     import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
 
-//            MapBox,
-//            About,
     export default {
         name: 'App',
         components: {
@@ -25,12 +21,6 @@
             HeaderUSGS,
             FooterEmail,
             FooterUSGS
-        },
-        methods: {
-            // Set up the track method for Google Analytics
-            track () {
-                this.$ga.page('/')
-            },
         }
     }
 </script>
