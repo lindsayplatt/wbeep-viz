@@ -9,7 +9,7 @@
     </div>
 
     <p>
-    <a href="/">The National Integrated Water Availability Assessments map</a> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.
+    <router-link to="/">The National Integrated Water Availability Assessments map</router-link> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.
     Map shading indicates the current natural water storage relative to historical conditions for this time of year.
     </p>
 
@@ -65,7 +65,7 @@
     <a href="https://water.usgs.gov/watercensus/index.html">National Water Census</a> as established through the SECURE Water Act.
     </p>
 
-    <p><a href="/"><button>Return to map</button></a></p>
+    <p><router-link to="/"><button>Return to map</button></router-link></p>
   </div>
 </template>
 
