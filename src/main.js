@@ -60,7 +60,7 @@ const router = new VueRouter({
       path: '/about',
       name: 'About',
       component: About
-      }
+    }
   ],
   mode: 'history'
 })
