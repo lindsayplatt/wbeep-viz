@@ -45,8 +45,6 @@ library.add(faFlickr)
 library.add(faYoutubeSquare)
 library.add(faInstagram)
 
-const isProd = process.env.NODE_ENV === 'production'
-
 Vue.config.productionTip = false
 Vue.use(uswds)
 Vue.use(VueRouter)
@@ -66,7 +64,6 @@ const router = new VueRouter({
   ],
   mode: 'history'
 })
-
 
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
