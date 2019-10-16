@@ -62,18 +62,15 @@ const router = new VueRouter({
       path: '/about',
       name: 'About',
       component: About
-    }
+      }
   ],
   mode: 'history'
 })
 
+
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
-  router,
-  debug: {
-    enabled: !isProd,
-    sendHitTask: isProd
-  }
+  router
 })
 
 const app = new Vue({
