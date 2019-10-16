@@ -3,7 +3,7 @@
     <div class="header-container">
       <div class="usa-prose">
         <h3 class="title-text">
-          {{ $route.meta.title }} {{ developmentTier }}
+          {{ title }} {{ developmentTier }}
         </h3>
       </div>
     </div>
@@ -84,7 +84,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Add your title in App.vue or make this blank"
+      default: process.env.VUE_APP_TITLE
     },
     developmentTier: {
         type: String,

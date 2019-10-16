@@ -56,26 +56,15 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'MapBox',
-      component: MapBox,
-      meta: {
-        title: 'National Integrated Water Availability Assessments'
-      }
+      component: MapBox
     },
     {
       path: '/about',
       name: 'About',
-      component: About,
-      meta: {
-        title: 'About the National Integrated Water Availability Assessments'
-      }
+      component: About
     }
   ],
   mode: 'history'
-})
-
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
-  next()
 })
 
 Vue.use(VueAnalytics, {
