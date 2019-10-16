@@ -114,7 +114,7 @@ export default {
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
 
       //Create elements and give them specific ids
-      //Div that the map uses to dispaly things fullscreen
+      //Div that the map uses to display things fullscreen
       let correctDiv = document.getElementById("map");
       let mapLayersToggleContainer = document.createElement("div");
       let toggleOptions = document.createElement("div");

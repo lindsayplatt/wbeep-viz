@@ -69,7 +69,7 @@
 
     <p>
       <router-link to="/">
-        <button class="map-return">
+        <button>
           Return to map
         </button>
       </router-link>
@@ -98,12 +98,12 @@
     }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   #about {
     margin: 1em auto;
     width: 85%;
   }
-  button.map-return{
+  button{
     margin: 0 0 10px 0;
     background: #003366;
     color: #ffffff;
