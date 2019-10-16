@@ -3,7 +3,7 @@
     <div class="header-container">
       <div class="usa-prose">
         <h3 class="title-text">
-          {{ $route.meta.title }} {{ developmentTier }}
+          {{ pageTitle }} {{ title }} {{ developmentTier }}
         </h3>
       </div>
     </div>
@@ -81,11 +81,20 @@
     export default {
         name: 'About',
         props: {
+            title: {
+                type: String,
+                default: process.env.VUE_APP_TITLE
+            },
             developmentTier: {
                 type: String,
                 default: process.env.VUE_APP_TIER
             }
         },
+        data() {
+            return {
+                pageTitle: 'About'
+            };
+        }
     }
 </script>
 
