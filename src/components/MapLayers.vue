@@ -1,5 +1,5 @@
 <template>
-  <div />
+  <div><a href="#" @click="runtest">test</a></div>
 </template>
 <script>
 import { icon } from "@fortawesome/fontawesome-svg-core";
@@ -9,16 +9,29 @@ export default {
   inject: ["mapbox", "map", "actions"],
   data() {
     return {
-      control: null
+      control: null,
+      googleAnalyticsTracker: this.$ga
     };
+  },
+  created: function() {
+      this.recordForGoogleAnalytics();
   },
   mounted() {
     this.createCustomControl();
   },
   methods: {
+    recordForGoogleAnalytics: function(nameOfTrackedElement, actionTypeRecorded, moreDetailedActionType, clickCount)  {
+        return this.$ga.event(nameOfTrackedElement, actionTypeRecorded, moreDetailedActionType, clickCount);
+    },
+    runtest() {console.log('test dun run')},
+    getTracker() {
+        return this.$ga
+    },
+
     createCustomControl() {
       class customControl {
         onAdd(map) {
+            console.log('maybe ', this.googleAnalyticsTracker)
           let control = this.control;
           this.map = map;
           this.control = document.createElement("div");
@@ -56,7 +69,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 .mapboxgl-ctrl .maplayersIcon svg {
   width: 18px;
   height: 18px;
