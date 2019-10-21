@@ -29,7 +29,9 @@
               Map shading indicates the current natural water storage relative to historical conditions for this time of year.
             </p>
             <router-link to="/about">
-              <button @click="runGoogleAnalytics('subtitle', 'click', 'user went to about page')">Learn More</button>
+              <button @click="runGoogleAnalytics('subtitle', 'click', 'user went to about page')">
+                Learn More
+              </button>
             </router-link>
           </div>
         </div>

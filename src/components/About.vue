@@ -17,7 +17,10 @@
 
     <p>
       Estimates of natural water storage are calculated using the National Hydrologic Model (NHM) Infrastructure (Regan et al. 2019)
-      configured with the <a href="https://www.usgs.gov/software/precipitation-runoff-modeling-system-prms" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for precipitation-runoff-modeling-system-prms')">Precipitation Runoff Modeling
+      configured with the <a
+        href="https://www.usgs.gov/software/precipitation-runoff-modeling-system-prms"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for precipitation-runoff-modeling-system-prms')"
+      >Precipitation Runoff Modeling
         System</a> (PRMS; Markstrom et al., 2015). The PRMS is a modular, deterministic, distributed-parameter, physical process-based
       hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on
       hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to
@@ -48,7 +51,10 @@
     <h3>About IWAAs</h3>
 
     <p>
-      The <a href="https://www.usgs.gov/mission-areas/water-resources/science/integrated-water-availability-assessments-iwaas" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for IWAAs')">USGS Integrated Water Availability Assessments (IWAAs)</a>
+      The <a
+        href="https://www.usgs.gov/mission-areas/water-resources/science/integrated-water-availability-assessments-iwaas"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for IWAAs')"
+      >USGS Integrated Water Availability Assessments (IWAAs)</a>
       are a multi-extent, stakeholder driven, near real-time census and seasonal
       prediction of water availability for both human and ecological uses at
       regional and national extents.
@@ -56,15 +62,36 @@
 
     <p>
       The USGS IWAAs combine resources and knowledge gained from previous and
-      ongoing USGS efforts such as <a href="https://water.usgs.gov/watercensus/focusarea.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Focus Area Studies')">Focus Area Studies</a>,
-      <a href="https://water.usgs.gov/watercensus/groundwater.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Regional Groundwater Availability Studies')">Regional Groundwater Availability Studies</a>,
-      <a href="https://water.usgs.gov/watercensus/water-use.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Water Use Estimation')">Water Use estimation</a>,
-      <a href="https://water.usgs.gov/watercensus/ecowater.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Ecological Water Needs')">Ecological Water Needs</a>,
-      and <a href="https://water.usgs.gov/watercensus/streamflow.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Streamflow estimation')">Streamflow estimation</a>,
+      ongoing USGS efforts such as <a
+        href="https://water.usgs.gov/watercensus/focusarea.html"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Focus Area Studies')"
+      >Focus Area Studies</a>,
+      <a
+        href="https://water.usgs.gov/watercensus/groundwater.html"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Regional Groundwater Availability Studies')"
+      >Regional Groundwater Availability Studies</a>,
+      <a
+        href="https://water.usgs.gov/watercensus/water-use.html"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Water Use Estimation')"
+      >Water Use estimation</a>,
+      <a
+        href="https://water.usgs.gov/watercensus/ecowater.html"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Ecological Water Needs')"
+      >Ecological Water Needs</a>,
+      and <a
+        href="https://water.usgs.gov/watercensus/streamflow.html"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for Streamflow estimation')"
+      >Streamflow estimation</a>,
       in addition to utilizing and providing feedback to the
-      <a href="http://water.noaa.gov/about/nwm" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for National Water Model')">National Water Model</a>. The IWAAs
+      <a
+        href="http://water.noaa.gov/about/nwm"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for National Water Model')"
+      >National Water Model</a>. The IWAAs
       are designed to provide information to meet the goals of the
-      <a href="https://water.usgs.gov/watercensus/index.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for National Water Census')">National Water Census</a> as established through the SECURE Water Act.
+      <a
+        href="https://water.usgs.gov/watercensus/index.html"
+        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for National Water Census')"
+      >National Water Census</a> as established through the SECURE Water Act.
     </p>
 
     <p>

@@ -107,7 +107,14 @@ export default {
     };
   },
   methods: {
+    runGoogleAnalytics(eventName, action, label) {
+        this.$ga.event(eventName, action, label)
+    },
     onMapLoaded(event) {
+      // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make
+      // a local variable and assign our GA event tracking method to that.
+      let googleAnalytics = this.runGoogleAnalytics;        
+
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
@@ -218,7 +225,8 @@ export default {
           link.textContent = id;
           // Creates a click event for each button so that when clicked by the user, the visibility property
           // is changed as is the class (color) of the button
-          link.onclick = function(e) {
+            link.onclick = function(e) {
+              googleAnalytics('layers-menu', 'click', 'user clicked ' + id);
             let clickedLayer = this.textContent;
             e.preventDefault();
             e.stopPropagation();
