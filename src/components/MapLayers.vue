@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     runGoogleAnalytics(eventName, action, label) {
-        console.log('ran the ga')
       this.$ga.event(eventName, action, label)
     },
     createCustomControl(googleAnalytics) {
