@@ -10,12 +10,14 @@
           <a
             id="legendInfoButton"
             class="legendIcon"
+            @click="runGoogleAnalytics('legend', 'click', 'user clicked info icon')"
           >
             <font-awesome-icon icon="info" />
           </a>
           <a
             id="legendMinus"
             class="legendIcon"
+            @click="runGoogleAnalytics('legend', 'click', 'user reduced legend')"
           >
             <font-awesome-icon icon="minus" />
           </a>
@@ -95,6 +97,7 @@
         <a
           id="legendPlus"
           class="legendIcon"
+          @click="runGoogleAnalytics('legend', 'click', 'user expanded legend')"
         >
           <font-awesome-icon icon="plus" />
         </a>
@@ -129,6 +132,9 @@ export default {
     this.createLegend();
   },
   methods: {
+      runGoogleAnalytics(eventName, action, label) {
+          this.$ga.event(eventName, action, label)
+      },
     createLegend() {
       // get the style layers from the map styles object
       let styleLayers = mapStyles.style.layers;
