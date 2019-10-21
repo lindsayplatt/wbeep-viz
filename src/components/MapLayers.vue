@@ -13,13 +13,16 @@ export default {
     };
   },
   mounted() {
-    this.createCustomControl();
+    this.createCustomControl(this.runGoogleAnalytics);
   },
   methods: {
-    createCustomControl() {
+    runGoogleAnalytics(eventName, action, label) {
+        console.log('ran the ga')
+      this.$ga.event(eventName, action, label)
+    },
+    createCustomControl(googleAnalytics) {
       class customControl {
         onAdd(map) {
-          let control = this.control;
           this.map = map;
           this.control = document.createElement("div");
           this.control.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
@@ -27,6 +30,7 @@ export default {
           this.button.id = "layersIcon";
           this.button.className = "mapboxgl-ctrl-icon maplayersIcon";
           this.button.onclick = function(e) {
+              googleAnalytics('layers-icon', 'click', 'user opened layers menu');
             e.preventDefault();
             e.stopPropagation();
             let toggleDiv = document.getElementById("mapLayersToggleContainer");
@@ -56,7 +60,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 .mapboxgl-ctrl .maplayersIcon svg {
   width: 18px;
   height: 18px;

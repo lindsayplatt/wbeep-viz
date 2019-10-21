@@ -9,6 +9,7 @@
           id="subtitleIcon"
           href="javascript:void(0);"
           class="icon"
+          @click="runGoogleAnalytics('subtitle', 'click', 'user opened about text box')"
         >
           <font-awesome-icon icon="info" />
         </a>
@@ -28,7 +29,9 @@
               Map shading indicates the current natural water storage relative to historical conditions for this time of year.
             </p>
             <router-link to="/about">
-              <button>Learn More</button>
+              <button @click="runGoogleAnalytics('subtitle', 'click', 'user went to about page')">
+                Learn More
+              </button>
             </router-link>
           </div>
         </div>
@@ -40,7 +43,12 @@
 
 <script>
   export default {
-    name: "MapSubtitle"
+    name: "MapSubtitle",
+    methods: {
+        runGoogleAnalytics(eventName, action, label) {
+            this.$ga.event(eventName, action, label)
+        }
+    }
   };
 </script>
 

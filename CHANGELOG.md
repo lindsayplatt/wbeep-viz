@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added Google Analytics event tracking for most user click actions
 - Fixed changelog typos
 
 ## [0.0.2] - 2019-10-18
