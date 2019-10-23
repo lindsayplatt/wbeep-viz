@@ -301,7 +301,7 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'Medium-sized streams',
+                'id': 'Least Detail',
                 'nhdOrder': 'nhdplus_orders_4_5',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -316,7 +316,7 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'Medium-sized headwaters',
+                'id': 'Medium Detail',
                 'nhdOrder': 'nhdplus_orders_2_3',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -331,7 +331,7 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'Small headwaters',
+                'id': 'Most Detail',
                 'nhdOrder': 'stream_order_1',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
