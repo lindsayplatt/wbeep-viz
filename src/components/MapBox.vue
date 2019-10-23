@@ -457,11 +457,11 @@ $background: rgba(255, 255, 255, 0.9);
 }
 
 .layersTitle{
-  height: 30px;
-  padding: 0 0 0 10px;
-  line-height: 29px;
+  height: 35px;
+  padding: 00 0 0 10px;
+  line-height: 35px;
   font-size: 1.4em;
-  background: rgb(130,130,130);
+  background: #003366;
   color: #fff;
 }
 
@@ -470,21 +470,21 @@ $background: rgba(255, 255, 255, 0.9);
 }
 
 #toggleExit {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   text-align: center;
   border-left: $border;
   cursor: pointer;
 
   &:hover{
-    background: #00264c;
+    background: #00bf26;
     color: #fff;
   }
 
   svg {
     width: 20px;
     height: 20px;
-    margin: 4px 0 0 0;
+    margin: 6px 0 0 0;
   }
 }
 
@@ -495,7 +495,6 @@ $background: rgba(255, 255, 255, 0.9);
   overflow-y: auto;
 }
 .options {
-  background: orange;
   display: flex;
   flex-direction: column;
   a {
@@ -504,14 +503,16 @@ $background: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-size: 1em;
     color: #000;
-    background: rgb(220, 220, 220);
+    background: #f5f7fb;
     &:hover {
       background: #00bf26;
       color: #fff;
+      opacity: 1;
     }
   }
   .active {
-    background: #00264c;
+    background: #003366;
+    opacity: .7;
     color: #fff;
   }
 }
