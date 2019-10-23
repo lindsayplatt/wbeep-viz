@@ -2,7 +2,7 @@
   <div id="HeaderUSWDSBanner">
     <a
       class="usa-skipnav"
-      href="#main-content"
+      href="#mapgl"
     >Skip to main content</a>
 
     <section class="usa-banner">

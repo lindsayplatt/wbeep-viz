@@ -28,6 +28,7 @@
               <font-awesome-icon
                 id="legendExit"
                 icon="times"
+                aria-label="legend exit"
               />
             </div>
             <p class="example">
@@ -97,6 +98,7 @@
         <a
           id="legendPlus"
           class="legendIcon"
+          aria-label="close extended legend box"
           @click="runGoogleAnalytics('legend', 'click', 'user expanded legend')"
         >
           <font-awesome-icon icon="plus" />

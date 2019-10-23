@@ -8,6 +8,7 @@
         <a
           id="subtitleIcon"
           href="javascript:void(0);"
+          aria-label="more information link"
           class="icon"
           @click="runGoogleAnalytics('subtitle', 'click', 'user opened about text box')"
         >
@@ -20,7 +21,10 @@
               href="javascript:void(0);"
               class="icon"
             >
-              <font-awesome-icon icon="times" />
+              <font-awesome-icon
+                icon="times"
+                aria-label="information close box"
+              />
             </a>
 
             <h3>About This Map</h3>
