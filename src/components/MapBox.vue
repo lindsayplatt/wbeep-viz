@@ -131,19 +131,24 @@ export default {
       let exitIcon = document.createElement("span");
       exitIcon.innerHTML = icon({ prefix: "fas", iconName: "times" }).html;
       let mapLayers = document.createElement("div");
+      let flowDetail = document.createElement("div");
       let streams = document.createElement("div");
-      //Add ids
+      //Add ids and classes
       mapLayersToggleContainer.id = "mapLayersToggleContainer";
       toggleTitleContainer.id = "toggleTitleContainer";
+      toggleTitleContainer.className = "layersTitle";
       toggleTitle.id = "toggleTitle";
       toggleExit.id = "toggleExit";
       toggleOptions.id = "toggleOptions";
       mapLayers.id = "mapLayers";
+      flowDetail.id = "flowDetail";
+      flowDetail.className = "layersTitle";
       mapLayers.className = "options";
       streams.id = "streams";
       streams.className = "options";
 
       toggleTitle.innerHTML = "Map Options";
+      flowDetail.innerHTML = "Flow Detail";
       mapLayersToggleContainer.style.display = "none";
 
       //Append elements
@@ -151,6 +156,7 @@ export default {
       toggleTitleContainer.appendChild(toggleTitle);
       toggleTitleContainer.appendChild(toggleExit);
       toggleOptions.appendChild(mapLayers);
+      toggleOptions.appendChild(flowDetail);
       toggleOptions.appendChild(streams);
       mapLayersToggleContainer.appendChild(toggleTitleContainer);
       mapLayersToggleContainer.appendChild(toggleOptions);
@@ -450,11 +456,17 @@ $background: rgba(255, 255, 255, 0.9);
   border-bottom: $border;
 }
 
+.layersTitle{
+  height: 30px;
+  padding: 0 0 0 10px;
+  line-height: 29px;
+  font-size: 1.4em;
+  background: rgb(130,130,130);
+  color: #fff;
+}
+
 #toggleTitle {
   flex: 1;
-  line-height: 27px;
-  font-size: 1.2em;
-  padding: 0 0 0 10px;
 }
 
 #toggleExit {
@@ -472,7 +484,7 @@ $background: rgba(255, 255, 255, 0.9);
   svg {
     width: 20px;
     height: 20px;
-    margin: 5px 0 0 0;
+    margin: 4px 0 0 0;
   }
 }
 
