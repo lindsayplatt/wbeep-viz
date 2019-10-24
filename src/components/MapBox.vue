@@ -234,6 +234,8 @@ export default {
             link.onclick = function(e) {
               googleAnalytics('layers-menu', 'click', 'user clicked ' + id);
             let clickedLayer = this.textContent;
+            let parent = this.parentElement;
+            let kids = parent.children;
             e.preventDefault();
             e.stopPropagation();
             let visibility = map.getLayoutProperty(
@@ -244,6 +246,12 @@ export default {
               map.setLayoutProperty(clickedLayer, "visibility", "none");
               this.className = "";
             } else {
+              if(parent.id === "streams"){
+                for(var i = 0; i < kids.length; i++){
+                  kids[i].className = "";
+                  map.setLayoutProperty(kids[i].textContent, "visibility", "none");
+                }
+              }
               this.className = "active";
               map.setLayoutProperty(clickedLayer, "visibility", "visible");
             }
