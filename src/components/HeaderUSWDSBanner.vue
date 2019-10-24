@@ -1,10 +1,5 @@
 <template>
   <div id="HeaderUSWDSBanner">
-    <a
-      class="usa-skipnav"
-      href="#mapgl"
-    >Skip to main content</a>
-
     <section class="usa-banner">
       <div class="usa-accordion">
         <header class="usa-banner__header">
