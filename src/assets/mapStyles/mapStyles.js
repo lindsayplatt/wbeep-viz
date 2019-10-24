@@ -93,16 +93,6 @@ export default {
                 }
             },
             {
-                'id': 'Terrain',
-                'type': 'raster',
-                'source': 'hillshade',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'showButtonLayerToggle': true,
-                'showButtonStreamToggle': false,
-            },
-            {
                 'filter': ['all', ['==', '$type', 'LineString'],
                     ['in', 'class', 'minor', 'service']
                 ],
@@ -389,6 +379,16 @@ export default {
                     'visibility': 'visible'
                 },
                 'showButtonLayerToggle': false
+            },
+            {
+                'id': 'Terrain',
+                'type': 'raster',
+                'source': 'hillshade',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false,
             },
             {
                 'id': 'Counties',
