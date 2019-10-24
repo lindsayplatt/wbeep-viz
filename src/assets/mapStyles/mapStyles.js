@@ -94,12 +94,13 @@ export default {
             },
             {
                 'filter': ['all', ['==', '$type', 'LineString'],
-                    ['in', 'class', 'minor', 'service']
+                    ['in', 'class', 'minor', 'service', 'trunk', 'primary', 'secondary', 'tertiary', 'motorway']
                 ],
-                'id': 'road_minor',
+                'id': 'Roads',
                 'layout': {
                     'line-cap': 'round',
-                    'line-join': 'round'
+                    'line-join': 'round',
+                    'visibility': 'visible'
                 },
                 'paint': {
                     'line-color': 'hsl(0, 0%, 97%)',
@@ -114,82 +115,8 @@ export default {
                 'source': 'openmaptiles',
                 'source-layer': 'transportation',
                 'type': 'line',
-                'minzoom': 13,
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'LineString'],
-                    ['in', 'class', 'trunk', 'primary']
-                ],
-                'id': 'road_trunk_primary',
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': '#fff',
-                    'line-width': {
-                        'base': 1.4,
-                        'stops': [
-                            [6, 0.5],
-                            [20, 30]
-                        ]
-                    }
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'transportation',
-                'type': 'line',
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'LineString'],
-                    ['in', 'class', 'secondary', 'tertiary']
-                ],
-                'id': 'road_secondary_tertiary',
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': '#fff',
-                    'line-width': {
-                        'base': 1.4,
-                        'stops': [
-                            [6, 0.5],
-                            [20, 20]
-                        ]
-                    }
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'transportation',
-                'type': 'line',
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'LineString'],
-                    ['==', 'class', 'motorway']
-                ],
-                'id': 'road_major_motorway',
                 'minzoom': 5,
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': 'hsl(0, 0%, 100%)',
-                    'line-offset': 0,
-                    'line-width': {
-                        'base': 1.4,
-                        'stops': [
-                            [8, 1],
-                            [16, 10]
-                        ]
-                    }
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'transportation',
-                'type': 'line',
-                'showButtonLayerToggle': false
+                'showButtonLayerToggle': true
             },
             {
                 'filter': ['all', ['==', '$type', 'Polygon'],
