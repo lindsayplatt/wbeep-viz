@@ -2,9 +2,9 @@
   <div id="about">
     <div class="header-container">
       <div class="usa-prose">
-        <h3 class="title-text">
+        <h1 class="title-text">
           {{ pageTitle }} {{ title }} {{ developmentTier }}
-        </h3>
+        </h1>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       Viger, R.J., and Bock, Andrew, 2014, GIS features of the geospatial fabric for national hydrologic modeling: U.S. Geological Survey data release, <a href="https://dx.doi.org/doi:10.5066/F7542KMD">https://dx.doi.org/doi:10.5066/F7542KMD</a>.
     </p>
 
-    <h3>About IWAAs</h3>
+    <h2>About IWAAs</h2>
 
     <p>
       The <a
@@ -131,6 +131,12 @@
 </script>
 
 <style scoped lang="scss">
+  h1 {
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
   #about {
     margin: 1em auto;
     width: 85%;
