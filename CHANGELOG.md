@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Flow Detail can only have one active button functionality
 - Added Flow Detail to layers toggle and renamed stream titles
 - Added Google Analytics event tracking for most user click actions
 - Fixed changelog typos
