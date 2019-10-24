@@ -67,10 +67,10 @@ const router = new VueRouter({
 
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
-  router
+  router:router
 })
 
 const app = new Vue({
-  router,
+  router:router,
   render: h => h(App)
 }).$mount('#app')
