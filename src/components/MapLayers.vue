@@ -28,6 +28,7 @@ export default {
           this.button = document.createElement("button");
           this.button.id = "layersIcon";
           this.button.className = "mapboxgl-ctrl-icon maplayersIcon";
+          this.button.setAttribute("aria-label", "layer select button" );
           this.button.onclick = function(e) {
               googleAnalytics('layers-icon', 'click', 'user opened layers menu');
             e.preventDefault();

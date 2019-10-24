@@ -8,6 +8,7 @@
         <a
           id="subtitleIcon"
           href="javascript:void(0);"
+          aria-label="more information link"
           class="icon"
           @click="runGoogleAnalytics('subtitle', 'click', 'user opened about text box')"
         >
@@ -18,12 +19,15 @@
             <a
               id="exit"
               href="javascript:void(0);"
+              aria-label="close more information box"
               class="icon"
             >
-              <font-awesome-icon icon="times" />
+              <font-awesome-icon
+                icon="times"
+              />
             </a>
 
-            <h3>About This Map</h3>
+            <h2>About This Map</h2>
             <p>
               This map shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.
               Map shading indicates the current natural water storage relative to historical conditions for this time of year.
@@ -53,6 +57,10 @@
 </script>
 
 <style scoped lang="scss">
+h2 {
+  font-size: 1.1rem;
+}
+
 #subtitle {
   background: rgb(255, 255, 255);
   background: rgba(255, 255, 255, 0.7);

@@ -2,9 +2,9 @@
   <div id="viz_container">
     <div class="header-container">
       <div class="usa-prose">
-        <h3 class="title-text">
+        <h1 class="title-text">
           {{ title }} {{ developmentTier }}
-        </h3>
+        </h1>
       </div>
     </div>
     <div id="mapContainer">
@@ -409,12 +409,16 @@ $border: 1px solid #fff;
 
 .usa-prose {
   border-bottom: 1px solid rgb(100, 100, 100);
+  h1 {
+    font-size: 1rem;
+    margin-left: 10px;
+  }
 }
 
 /* override USWDS style to prevent title from wrapping too soon */
 .title-text {
   margin-left: 1.5rem;
-  padding: 0.5rem 0;
+  padding: 0.25rem;
 }
 
 #mapContainer {
@@ -466,7 +470,7 @@ $background: rgba(255, 255, 255, 0.9);
 
 .layersTitle{
   height: 35px;
-  padding: 00 0 0 10px;
+  padding: 0 0 0 10px;
   line-height: 35px;
   font-size: 1.4em;
   background: #003366;
@@ -524,6 +528,12 @@ $background: rgba(255, 255, 255, 0.9);
     color: #fff;
   }
 }
+
+.usa-banner__inner {
+  margin-left: 10px;
+  padding-left: 5px;
+}
+
 @media screen and (min-width: 960px){
   #mapLayersToggleContainer{
     width: 25%;
