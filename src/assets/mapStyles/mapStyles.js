@@ -391,20 +391,20 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'counties',
+                'id': 'Counties',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'counties',
                 'minzoom': 6,
                 'maxzoom': 24,
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgb(0,0,0)',
                     'line-dasharray': [4, 3]
                 },
-                'showButtonLayerToggle': false
+                'showButtonLayerToggle': true
             },
             {
                 'id': 'states',
