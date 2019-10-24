@@ -60,7 +60,7 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .mapboxgl-ctrl .maplayersIcon svg {
   width: 18px;
   height: 18px;
