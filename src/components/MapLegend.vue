@@ -10,6 +10,7 @@
           <a
             id="legendInfoButton"
             class="legendIcon"
+            aria-label="open information dialog box"
             @click="runGoogleAnalytics('legend', 'click', 'user clicked info icon')"
           >
             <font-awesome-icon icon="info" />
@@ -17,6 +18,7 @@
           <a
             id="legendMinus"
             class="legendIcon"
+            aria-label="close legend dialog box"
             @click="runGoogleAnalytics('legend', 'click', 'user reduced legend')"
           >
             <font-awesome-icon icon="minus" />
