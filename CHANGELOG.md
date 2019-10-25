@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- USWDS SVG Fix Implemented
 - Road toggle and road layers combined
 - Flow Detail can only have one active button functionality
 - Added aria labels to links with no text content
