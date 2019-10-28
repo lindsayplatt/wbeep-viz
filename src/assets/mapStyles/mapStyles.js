@@ -222,7 +222,7 @@ export default {
                 'nhdOrder': 'nhdplus_orders_4-9',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_orders_4-9',
+                'source-layer': 'least_detail',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -237,7 +237,7 @@ export default {
                 'nhdOrder': 'nhdplus_orders_2-9',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_orders_2-9',
+                'source-layer': 'medium_detail',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -252,7 +252,7 @@ export default {
                 'nhdOrder': 'stream_order_0-9',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_order_0-9',
+                'source-layer': 'most_detail',
                 'layout': {
                     'visibility': 'none'
                 },
