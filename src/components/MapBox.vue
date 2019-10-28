@@ -5,6 +5,9 @@
         <h1 class="title-text">
           {{ title }} {{ developmentTier }}
         </h1>
+        <router-link to="/about">
+          <button id="aboutButton" @click="runGoogleAnalytics('About Button', 'click', 'user went to about page')">About</button>
+        </router-link>
       </div>
     </div>
     <div id="mapContainer">
@@ -358,6 +361,7 @@ export default {
 $color: #fff;
 $blue: #4574a3;
 $border: 1px solid #fff;
+$borderGray: 1px solid rgb(100, 100, 100);
 .header-container {
   background-color: #fff;
 }
@@ -408,10 +412,31 @@ $border: 1px solid #fff;
 }
 
 .usa-prose {
-  border-bottom: 1px solid rgb(100, 100, 100);
+  border-bottom: $borderGray;
+  display: flex;
   h1 {
     font-size: 1rem;
     margin-left: 10px;
+    flex: 1;
+  }
+  a{
+    margin: 0;
+    display: block;
+  }
+}
+
+#aboutButton{
+  background: none;
+  color: #003366;
+  width: 100px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  border: none;
+  border-left: $borderGray;
+  &:hover{
+    background: #00bf26;
+    color: #fff;
   }
 }
 
