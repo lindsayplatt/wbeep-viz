@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Update styles for updated nhd river tiles 
 - Secondary About Button
 - USWDS SVG Fix Implemented
 - Road toggle and road layers combined
