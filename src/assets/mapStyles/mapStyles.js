@@ -219,7 +219,7 @@ export default {
             },
             {
                 'id': 'Least Detail',
-                'nhdOrder': 'nhdplus_orders_4-9',
+                'layerDescription': 'contains stream orders 4-10',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'least_detail',
@@ -234,7 +234,7 @@ export default {
             },
             {
                 'id': 'Medium Detail',
-                'nhdOrder': 'nhdplus_orders_2-9',
+                'layerDescription': 'contains stream orders 2-10',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'medium_detail',
@@ -249,7 +249,7 @@ export default {
             },
             {
                 'id': 'Most Detail',
-                'nhdOrder': 'stream_order_0-9',
+                'layerDescription': 'contains stream orders 1-10',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'most_detail',
