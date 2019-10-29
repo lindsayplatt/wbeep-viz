@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Modify About text and layout
 - Secondary About Button
 - USWDS SVG Fix Implemented
 - Road toggle and road layers combined
