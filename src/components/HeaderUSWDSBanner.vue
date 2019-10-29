@@ -1,10 +1,5 @@
 <template>
   <div id="HeaderUSWDSBanner">
-    <a
-      class="usa-skipnav"
-      href="#main-content"
-    >Skip to main content</a>
-
     <section class="usa-banner">
       <div class="usa-accordion">
         <header class="usa-banner__header">
@@ -42,11 +37,7 @@
         >
           <div class="grid-row grid-gap-lg">
             <div class="usa-banner__guidance tablet:grid-col-6">
-              <img
-                class="usa-banner__icon usa-media-block__img"
-                src="~uswds/dist/img/icon-dot-gov.svg"
-                alt="Dot gov"
-              >
+              <iconDot class="usa-banner__icon usa-media-block__img" alt="Dot gov"/>
               <div class="usa-media-block__body">
                 <p>
                   <strong>The .gov means it’s official.</strong>
@@ -58,12 +49,7 @@
               </div>
             </div>
             <div class="usa-banner__guidance tablet:grid-col-6">
-              <img
-                class="usa-banner__icon usa-media-block__img"
-                src="~uswds/dist/img/icon-https.svg"
-                alt="Dot gov"
-              >
-
+              <iconHTTPS class="usa-banner__icon usa-media-block__img" alt="Dot gov"/>
               <div class="usa-media-block__body">
                 <p>
                   <strong>The site is secure.</strong>
@@ -83,13 +69,21 @@
 </template>
 
 <script>
+import iconDot from '../../node_modules/uswds/dist/img/icon-dot-gov.svg';
+import iconHTTPS from '../../node_modules/uswds/dist/img/icon-https.svg';
     export default {
-        name: 'HeaderUSWDSBanner'
+        name: 'HeaderUSWDSBanner',
+        components: {
+          iconDot,
+          iconHTTPS
+        }
     }
 
 </script>
 
 <style lang="scss">
     @import '~uswds/dist/css/uswds.css';
-  
+    .usa-banner__icon {
+      width: 4rem;
+    }
 </style>

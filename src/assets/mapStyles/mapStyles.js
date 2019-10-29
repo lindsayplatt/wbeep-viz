@@ -93,23 +93,14 @@ export default {
                 }
             },
             {
-                'id': 'Terrain',
-                'type': 'raster',
-                'source': 'hillshade',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'showButtonLayerToggle': true,
-                'showButtonStreamToggle': false,
-            },
-            {
                 'filter': ['all', ['==', '$type', 'LineString'],
-                    ['in', 'class', 'minor', 'service']
+                    ['in', 'class', 'minor', 'service', 'trunk', 'primary', 'secondary', 'tertiary', 'motorway']
                 ],
-                'id': 'road_minor',
+                'id': 'Roads',
                 'layout': {
                     'line-cap': 'round',
-                    'line-join': 'round'
+                    'line-join': 'round',
+                    'visibility': 'visible'
                 },
                 'paint': {
                     'line-color': 'hsl(0, 0%, 97%)',
@@ -124,82 +115,8 @@ export default {
                 'source': 'openmaptiles',
                 'source-layer': 'transportation',
                 'type': 'line',
-                'minzoom': 13,
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'LineString'],
-                    ['in', 'class', 'trunk', 'primary']
-                ],
-                'id': 'road_trunk_primary',
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': '#fff',
-                    'line-width': {
-                        'base': 1.4,
-                        'stops': [
-                            [6, 0.5],
-                            [20, 30]
-                        ]
-                    }
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'transportation',
-                'type': 'line',
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'LineString'],
-                    ['in', 'class', 'secondary', 'tertiary']
-                ],
-                'id': 'road_secondary_tertiary',
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': '#fff',
-                    'line-width': {
-                        'base': 1.4,
-                        'stops': [
-                            [6, 0.5],
-                            [20, 20]
-                        ]
-                    }
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'transportation',
-                'type': 'line',
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'LineString'],
-                    ['==', 'class', 'motorway']
-                ],
-                'id': 'road_major_motorway',
                 'minzoom': 5,
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': 'hsl(0, 0%, 100%)',
-                    'line-offset': 0,
-                    'line-width': {
-                        'base': 1.4,
-                        'stops': [
-                            [8, 1],
-                            [16, 10]
-                        ]
-                    }
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'transportation',
-                'type': 'line',
-                'showButtonLayerToggle': false
+                'showButtonLayerToggle': true
             },
             {
                 'filter': ['all', ['==', '$type', 'Polygon'],
@@ -301,7 +218,7 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'Medium-sized streams',
+                'id': 'Least Detail',
                 'nhdOrder': 'nhdplus_orders_4_5',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -316,7 +233,7 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'Medium-sized headwaters',
+                'id': 'Medium Detail',
                 'nhdOrder': 'nhdplus_orders_2_3',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -331,7 +248,7 @@ export default {
                 'showButtonStreamToggle': true
             },
             {
-                'id': 'Small headwaters',
+                'id': 'Most Detail',
                 'nhdOrder': 'stream_order_1',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
@@ -391,20 +308,30 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                'id': 'counties',
+                'id': 'Terrain',
+                'type': 'raster',
+                'source': 'hillshade',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false,
+            },
+            {
+                'id': 'Counties',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'counties',
                 'minzoom': 6,
                 'maxzoom': 24,
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgb(0,0,0)',
                     'line-dasharray': [4, 3]
                 },
-                'showButtonLayerToggle': false
+                'showButtonLayerToggle': true
             },
             {
                 'id': 'states',

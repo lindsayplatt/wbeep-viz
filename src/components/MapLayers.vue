@@ -2,9 +2,8 @@
   <div />
 </template>
 <script>
-import { MglMap, MglPopup } from "vue-mapbox";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-import mapStyles from "../assets/mapStyles/mapStyles";
+
 export default {
   name: "MapLayers",
   inject: ["mapbox", "map", "actions"],
@@ -14,20 +13,24 @@ export default {
     };
   },
   mounted() {
-    this.createCustomControl();
+    this.createCustomControl(this.runGoogleAnalytics);
   },
   methods: {
-    createCustomControl() {
+    runGoogleAnalytics(eventName, action, label) {
+      this.$ga.event(eventName, action, label)
+    },
+    createCustomControl(googleAnalytics) {
       class customControl {
         onAdd(map) {
-          let control = this.control;
           this.map = map;
           this.control = document.createElement("div");
           this.control.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
           this.button = document.createElement("button");
           this.button.id = "layersIcon";
           this.button.className = "mapboxgl-ctrl-icon maplayersIcon";
+          this.button.setAttribute("aria-label", "layer select button" );
           this.button.onclick = function(e) {
+              googleAnalytics('layers-icon', 'click', 'user opened layers menu');
             e.preventDefault();
             e.stopPropagation();
             let toggleDiv = document.getElementById("mapLayersToggleContainer");

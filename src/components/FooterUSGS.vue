@@ -63,6 +63,8 @@
               <a
                 href="https://twitter.com/usgs"
                 target="_blank"
+                aria-label="twitter link"
+                @click="runGoogleAnalytics('twitter', 'click', 'user selected twitter social link')"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'twitter-square' }"><span class="only">Twitter</span></font-awesome-icon>
               </a>
@@ -71,6 +73,8 @@
               <a
                 href="https://facebook.com/usgeologicalsurvey"
                 target="_blank"
+                aria-label="facebook link"
+                @click="runGoogleAnalytics('facebook', 'click', 'user selected facebook social link')"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }"><span class="only">Facebook</span></font-awesome-icon>
               </a>
@@ -79,6 +83,8 @@
               <a
                 href="https://github.com/usgs"
                 target="_blank"
+                aria-label="github link"
+                @click="runGoogleAnalytics('github', 'click', 'user selected github social link')"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }"><span class="only">GitHub</span></font-awesome-icon>
               </a>
@@ -87,6 +93,8 @@
               <a
                 href="https://flickr.com/usgeologicalsurvey"
                 target="_blank"
+                aria-label="flickr link"
+                @click="runGoogleAnalytics('flickr', 'click', 'user selected flickr social link')"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'flickr' }"><span class="only">Flickr</span></font-awesome-icon>
               </a>
@@ -95,6 +103,8 @@
               <a
                 href="http://youtube.com/usgs"
                 target="_blank"
+                aria-label="youtube link"
+                @click="runGoogleAnalytics('youtube', 'click', 'user selected youtube social link')"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'youtube-square' }"><span class="only">YouTube</span></font-awesome-icon>
               </a>
@@ -103,6 +113,8 @@
               <a
                 href="https://instagram.com/usgs"
                 target="_blank"
+                aria-label="instagram link"
+                @click="runGoogleAnalytics('instagram', 'click', 'user selected instagram social link')"
               >
                 <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"><span class="only">Instagram</span></font-awesome-icon>
               </a>
@@ -118,7 +130,12 @@
 
 <script>
     export default {
-        name: 'FooterUSGS'
+        name: 'FooterUSGS',
+        methods: {
+            runGoogleAnalytics(eventName, action, label) {
+                this.$ga.event(eventName, action, label)
+            }
+        }
     }
 </script>
 

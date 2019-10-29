@@ -2,10 +2,25 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Secondary About Button
+- USWDS SVG Fix Implemented
+- Road toggle and road layers combined
+- Flow Detail can only have one active button functionality
+- Added aria labels to links with no text content
+- Added Flow Detail to layers toggle and renamed stream titles
+- Added Google Analytics event tracking for most user click actions
+- Fixed changelog typos
+
+## [0.0.2] - 2019-10-18
 - Added About page and implemented routing
+- Added post build notifications to Jenkinsfile
+- Added Google Analytics plugin
+- Legend Modal coloring and text fix
+
+## [0.0.1] - 2019-10-09
+- Use jordanpalette color scheme
 - Layers box adjustment and Function refactor
 - Map Layers Toggle Button
-- Added Google Analytics plugin
 - Changed to use grouped stream orders
 - Changed footer icons to Vue components
 - New Map Layers Toggle Functionality
@@ -58,3 +73,5 @@ All notable changes to this project will be documented in this file.
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
 
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.2...master
+[0.0.2]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.1...v0.0.2

@@ -2,9 +2,12 @@
   <div id="viz_container">
     <div class="header-container">
       <div class="usa-prose">
-        <h3 class="title-text">
-          {{ $route.meta.title }} {{ developmentTier }}
-        </h3>
+        <h1 class="title-text">
+          {{ title }} {{ developmentTier }}
+        </h1>
+        <router-link to="/about">
+          <button id="aboutButton" @click="runGoogleAnalytics('About Button', 'click', 'user went to about page')">About</button>
+        </router-link>
       </div>
     </div>
     <div id="mapContainer">
@@ -84,7 +87,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Add your title in App.vue or make this blank"
+      default: process.env.VUE_APP_TITLE
+    },
+    developmentTier: {
+        type: String,
+        default: process.env.VUE_APP_TIER
     }
   },
   data() {
@@ -99,19 +106,25 @@ export default {
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
       maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
-      legendTitle: "Latest Available Water Status",
-      developmentTier: process.env.VUE_APP_TIER
+      legendTitle: "Latest Available Water Status"
     };
   },
   methods: {
+    runGoogleAnalytics(eventName, action, label) {
+        this.$ga.event(eventName, action, label)
+    },
     onMapLoaded(event) {
+      // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make
+      // a local variable and assign our GA event tracking method to that.
+      let googleAnalytics = this.runGoogleAnalytics;
+
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
 
       //Create elements and give them specific ids
-      //Div that the map uses to dispaly things fullscreen
+      //Div that the map uses to display things fullscreen
       let correctDiv = document.getElementById("map");
       let mapLayersToggleContainer = document.createElement("div");
       let toggleOptions = document.createElement("div");
@@ -121,19 +134,24 @@ export default {
       let exitIcon = document.createElement("span");
       exitIcon.innerHTML = icon({ prefix: "fas", iconName: "times" }).html;
       let mapLayers = document.createElement("div");
+      let flowDetail = document.createElement("div");
       let streams = document.createElement("div");
-      //Add ids
+      //Add ids and classes
       mapLayersToggleContainer.id = "mapLayersToggleContainer";
       toggleTitleContainer.id = "toggleTitleContainer";
+      toggleTitleContainer.className = "layersTitle";
       toggleTitle.id = "toggleTitle";
       toggleExit.id = "toggleExit";
       toggleOptions.id = "toggleOptions";
       mapLayers.id = "mapLayers";
+      flowDetail.id = "flowDetail";
+      flowDetail.className = "layersTitle";
       mapLayers.className = "options";
       streams.id = "streams";
       streams.className = "options";
 
       toggleTitle.innerHTML = "Map Options";
+      flowDetail.innerHTML = "Flow Detail";
       mapLayersToggleContainer.style.display = "none";
 
       //Append elements
@@ -141,6 +159,7 @@ export default {
       toggleTitleContainer.appendChild(toggleTitle);
       toggleTitleContainer.appendChild(toggleExit);
       toggleOptions.appendChild(mapLayers);
+      toggleOptions.appendChild(flowDetail);
       toggleOptions.appendChild(streams);
       mapLayersToggleContainer.appendChild(toggleTitleContainer);
       mapLayersToggleContainer.appendChild(toggleOptions);
@@ -215,8 +234,11 @@ export default {
           link.textContent = id;
           // Creates a click event for each button so that when clicked by the user, the visibility property
           // is changed as is the class (color) of the button
-          link.onclick = function(e) {
+            link.onclick = function(e) {
+              googleAnalytics('layers-menu', 'click', 'user clicked ' + id);
             let clickedLayer = this.textContent;
+            let clickedLayerParent = this.parentElement;
+            let clickedLayerParentKids = clickedLayerParent.children;
             e.preventDefault();
             e.stopPropagation();
             let visibility = map.getLayoutProperty(
@@ -227,6 +249,12 @@ export default {
               map.setLayoutProperty(clickedLayer, "visibility", "none");
               this.className = "";
             } else {
+              if(clickedLayerParent.id === "streams"){
+                for(let i = 0; i < clickedLayerParentKids.length; i++){
+                  clickedLayerParentKids[i].className = "";
+                  map.setLayoutProperty(clickedLayerParentKids[i].textContent, "visibility", "none");
+                }
+              }
               this.className = "active";
               map.setLayoutProperty(clickedLayer, "visibility", "visible");
             }
@@ -333,6 +361,7 @@ export default {
 $color: #fff;
 $blue: #4574a3;
 $border: 1px solid #fff;
+$borderGray: 1px solid rgb(100, 100, 100);
 .header-container {
   background-color: #fff;
 }
@@ -383,13 +412,38 @@ $border: 1px solid #fff;
 }
 
 .usa-prose {
-  border-bottom: 1px solid rgb(100, 100, 100);
+  border-bottom: $borderGray;
+  display: flex;
+  h1 {
+    font-size: 1rem;
+    margin-left: 10px;
+    flex: 1;
+  }
+  a{
+    margin: 0;
+    display: block;
+  }
+}
+
+#aboutButton{
+  background: none;
+  color: #003366;
+  width: 100px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  border: none;
+  border-left: $borderGray;
+  &:hover{
+    background: #00bf26;
+    color: #fff;
+  }
 }
 
 /* override USWDS style to prevent title from wrapping too soon */
 .title-text {
   margin-left: 1.5rem;
-  padding: 0.5rem 0;
+  padding: 0.25rem;
 }
 
 #mapContainer {
@@ -439,29 +493,35 @@ $background: rgba(255, 255, 255, 0.9);
   border-bottom: $border;
 }
 
+.layersTitle{
+  height: 35px;
+  padding: 0 0 0 10px;
+  line-height: 35px;
+  font-size: 1.4em;
+  background: #003366;
+  color: #fff;
+}
+
 #toggleTitle {
   flex: 1;
-  line-height: 27px;
-  font-size: 1.2em;
-  padding: 0 0 0 10px;
 }
 
 #toggleExit {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   text-align: center;
   border-left: $border;
   cursor: pointer;
 
   &:hover{
-    background: #00264c;
+    background: #00bf26;
     color: #fff;
   }
 
   svg {
     width: 20px;
     height: 20px;
-    margin: 5px 0 0 0;
+    margin: 6px 0 0 0;
   }
 }
 
@@ -472,7 +532,6 @@ $background: rgba(255, 255, 255, 0.9);
   overflow-y: auto;
 }
 .options {
-  background: orange;
   display: flex;
   flex-direction: column;
   a {
@@ -481,17 +540,25 @@ $background: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-size: 1em;
     color: #000;
-    background: rgb(220, 220, 220);
+    background: #f5f7fb;
     &:hover {
       background: #00bf26;
       color: #fff;
+      opacity: 1;
     }
   }
   .active {
-    background: #00264c;
+    background: #003366;
+    opacity: .7;
     color: #fff;
   }
 }
+
+.usa-banner__inner {
+  margin-left: 10px;
+  padding-left: 5px;
+}
+
 @media screen and (min-width: 960px){
   #mapLayersToggleContainer{
     width: 25%;

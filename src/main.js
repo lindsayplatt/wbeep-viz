@@ -45,56 +45,30 @@ library.add(faFlickr)
 library.add(faYoutubeSquare)
 library.add(faInstagram)
 
-const isProd = process.env.NODE_ENV === 'production'
-
 Vue.config.productionTip = false
 Vue.use(uswds)
-
-Vue.use(VueAnalytics, {
-  id: 'UA-149352326-1',
-  debug: {
-    enabled: !isProd,
-    sendHitTask: isProd
-  }
-})
-
-// Set up routing
 Vue.use(VueRouter)
-
-/*
-const routes = [
-  { path: '/', component: App },
-  { path: '/about', component: About }
-]
-*/
 
 const router = new VueRouter({
   routes: [
     {
       path: '/',
       name: 'MapBox',
-      component: MapBox,
-      meta: {
-        title: 'National Integrated Water Availability Assessments'
-      }
+      component: MapBox
     },
     {
       path: '/about',
       name: 'About',
-      component: About,
-      meta: {
-        title: 'About the National Integrated Water Availability Assessments'
-      }
+      component: About
     }
   ],
   mode: 'history'
 })
 
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
-  next()
+Vue.use(VueAnalytics, {
+  id: 'UA-149352326-1',
+  router
 })
-
 
 const app = new Vue({
   router,
