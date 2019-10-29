@@ -219,10 +219,10 @@ export default {
             },
             {
                 'id': 'Least Detail',
-                'nhdOrder': 'nhdplus_orders_4_5',
+                'layerDescription': 'contains stream orders 4-10',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_orders_4_5',
+                'source-layer': 'least_detail',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -234,10 +234,10 @@ export default {
             },
             {
                 'id': 'Medium Detail',
-                'nhdOrder': 'nhdplus_orders_2_3',
+                'layerDescription': 'contains stream orders 2-10',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_orders_2_3',
+                'source-layer': 'medium_detail',
                 'layout': {
                     'visibility': 'none'
                 },
@@ -249,10 +249,10 @@ export default {
             },
             {
                 'id': 'Most Detail',
-                'nhdOrder': 'stream_order_1',
+                'layerDescription': 'contains stream orders 1-10',
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
-                'source-layer': 'nhdplus_order_1',
+                'source-layer': 'most_detail',
                 'layout': {
                     'visibility': 'none'
                 },

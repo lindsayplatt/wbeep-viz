@@ -11,8 +11,11 @@
     <p>
       <router-link to="/">
         The National Integrated Water Availability Assessments map
-      </router-link> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.
-      Map shading indicates the current natural water storage relative to historical conditions for this time of year.
+      </router-link> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.  Natural water storage shown here includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and shallow groundwater. It does not include water in rivers or deep groundwater. Map shading indicates the current natural water storage relative to historical conditions for this time of year. 
+    </p>
+
+    <p>
+      <em>Why is the &quot;latest available&quot; map not for today?</em> The latest model run requires a summary of the weather (precipitation and temperature) for a complete day. A sequence of operations begins at midnight starting with collecting observed weather data and ending several hours later with estimates of natural water storage and an updated map. For this reason, depending on the time of day relative to the latest update, the date at the top of the map will be yesterday or the day before yesterday. If the date is more than two days ago, that is an indication that some part of the update operations did not run successfully and the team is working to bring the system back online.
     </p>
 
     <p>
@@ -21,31 +24,7 @@
         href="https://www.usgs.gov/software/precipitation-runoff-modeling-system-prms"
         @click="runGoogleAnalytics('about page', 'click', 'clicked text link for precipitation-runoff-modeling-system-prms')"
       >Precipitation Runoff Modeling
-        System</a> (PRMS; Markstrom et al., 2015). The PRMS is a modular, deterministic, distributed-parameter, physical process-based
-      hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on
-      hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to
-      represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the
-      NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the following citations.
-    </p>
-
-    <p>
-      Abatzoglou, J. T. (2013), <a href="http://onlinelibrary.wiley.com/doi/10.1002/joc.3413/full">Development of gridded surface meteorological data for ecological applications and modelling</a>. Int. J. Climatol., 33: 121–131.
-    </p>
-
-    <p>
-      Markstrom, S.L., Regan, R.S., Hay, L.E., Viger, R.J., Webb, R.M.T., Payn, R.A., and LaFontaine, J.H., 2015, PRMS-IV, the precipitation-runoff modeling system, version 4: U.S. Geological Survey Techniques and Methods, book 6, chap. B7, 158 p., <a href="http://dx.doi.org/10.3133/tm6B7">http://dx.doi.org/10.3133/tm6B7</a>.
-    </p>
-
-    <p>
-      Regan, R.S., Juracek, K.E., Hay, L.E., Markstrom, S.L., Viger, R.J., Driscoll, J.M., LaFontaine, J.H., and Norton, P.A., 2019, The US Geological Survey National Hydrologic Model infrastructure: Rationale, description, and application of a watershed-scale model for the conterminous United States: Environmental Modelling & Software, v. 111, p. 192-203, <a href="https://doi.org/10.1016/j.envsoft.2018.09.023">https://doi.org/10.1016/j.envsoft.2018.09.023</a>.
-    </p>
-
-    <p>
-      Regan, R.S., Markstrom, S.L., Hay, L.E., Viger, R.J., Norton, P.A., Driscoll, J.M., LaFontaine, J.H., 2018, Description of the National Hydrologic Model for use with the Precipitation-Runoff Modeling System (PRMS): U.S. Geological Survey Techniques and Methods, book 6, chap B9, 38 p., <a href="https://doi.org/10.3133/tm6B9">https://doi.org/10.3133/tm6B9</a>.
-    </p>
-
-    <p>
-      Viger, R.J., and Bock, Andrew, 2014, GIS features of the geospatial fabric for national hydrologic modeling: U.S. Geological Survey data release, <a href="https://dx.doi.org/doi:10.5066/F7542KMD">https://dx.doi.org/doi:10.5066/F7542KMD</a>.
+        System</a> (PRMS; Markstrom et al., 2015). The <a href="http://www.climatologylab.org/gridmet.html" @click="runGoogleAnalytics('about page', 'click', 'clicked text link for gridMET')">gridMET</a> daily weather dataset is used to force both historical and latest-available model runs (Abatzoglou, 2013). The PRMS is a modular, deterministic, distributed-parameter, physical process-based hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the references below.
     </p>
 
     <h2>About IWAAs</h2>
@@ -92,6 +71,32 @@
         href="https://water.usgs.gov/watercensus/index.html"
         @click="runGoogleAnalytics('about page', 'click', 'clicked text link for National Water Census')"
       >National Water Census</a> as established through the SECURE Water Act.
+    </p>
+
+    <h2>References</h2>
+
+    <p class="about-ref">
+      Abatzoglou, J. T. (2013), <a href="http://onlinelibrary.wiley.com/doi/10.1002/joc.3413/full">Development of gridded surface meteorological data for ecological applications and modelling</a>. Int. J. Climatol., 33: 121–131.
+    </p>
+
+    <p class="about-ref">
+      Hay, L., 2019. Application of the National Hydrologic Model Infrastructure with the Precipitation-Runoff Modeling System (NHM-PRMS), by HRU Calibrated Version. <a href="https://doi.org/10.5066/P9NM8K8W">https://doi.org/10.5066/P9NM8K8W</a>.
+    </p>
+
+    <p class="about-ref">
+      Regan, R.S., Juracek, K.E., Hay, L.E., Markstrom, S.L., Viger, R.J., Driscoll, J.M., LaFontaine, J.H., and Norton, P.A., 2019, The US Geological Survey National Hydrologic Model infrastructure: Rationale, description, and application of a watershed-scale model for the conterminous United States: Environmental Modelling & Software, v. 111, p. 192-203, <a href="https://doi.org/10.1016/j.envsoft.2018.09.023">https://doi.org/10.1016/j.envsoft.2018.09.023</a>.
+    </p>
+
+    <p class="about-ref">
+      Regan, R.S., Markstrom, S.L., Hay, L.E., Viger, R.J., Norton, P.A., Driscoll, J.M., LaFontaine, J.H., 2018, Description of the National Hydrologic Model for use with the Precipitation-Runoff Modeling System (PRMS): U.S. Geological Survey Techniques and Methods, book 6, chap B9, 38 p., <a href="https://doi.org/10.3133/tm6B9">https://doi.org/10.3133/tm6B9</a>.
+    </p>
+
+    <p class="about-ref">
+      Viger, R.J., and Bock, Andrew, 2014, GIS features of the geospatial fabric for national hydrologic modeling: U.S. Geological Survey data release, <a href="https://dx.doi.org/doi:10.5066/F7542KMD">https://dx.doi.org/doi:10.5066/F7542KMD</a>.
+    </p>
+
+    <p class="about-ref">
+      Markstrom, S.L., Regan, R.S., Hay, L.E., Viger, R.J., Webb, R.M.T., Payn, R.A., and LaFontaine, J.H., 2015, PRMS-IV, the precipitation-runoff modeling system, version 4: U.S. Geological Survey Techniques and Methods, book 6, chap. B7, 158 p., <a href="http://dx.doi.org/10.3133/tm6B7">http://dx.doi.org/10.3133/tm6B7</a>.
     </p>
 
     <p>
@@ -151,5 +156,11 @@
     border-radius: 5px;
     font-size: .9em;
     font-weight: bold;
+  }
+  .about-ref {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-left: 1.5em;
+    text-indent: -1.5em;
   }
 </style>
