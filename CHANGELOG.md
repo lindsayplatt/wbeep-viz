@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Update styles for updated nhd river tiles 
 - Modify About text and layout
 - Secondary About Button
 - USWDS SVG Fix Implemented
