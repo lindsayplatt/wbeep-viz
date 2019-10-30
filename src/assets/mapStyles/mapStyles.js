@@ -222,7 +222,7 @@ export default {
                     'visibility': 'none'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
+                    'line-color': 'rgba(148, 193, 225, 1)'
                 },
                 'showButtonLayerToggle': false,
                 'showButtonStreamToggle': true
@@ -237,7 +237,7 @@ export default {
                     'visibility': 'none'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
+                    'line-color': 'rgba(148, 193, 225, 1)'
                 },
                 'showButtonLayerToggle': false,
                 'showButtonStreamToggle': true
@@ -252,7 +252,7 @@ export default {
                     'visibility': 'none'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
+                    'line-color': 'rgba(148, 193, 225, 1)'
                 },
                 'showButtonLayerToggle': false,
                 'showButtonStreamToggle': true,
