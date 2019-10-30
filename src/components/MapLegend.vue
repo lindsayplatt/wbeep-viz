@@ -156,7 +156,7 @@ export default {
           let styleSheetColorLabel = null;
           for (let index = 0; index < styleSheetColorStops.length; index++) {
             // Make a label for the blank and missing data
-            if (styleSheetColorStops[index][0] === "") {
+            if (styleSheetColorStops[index][0] === "Undefined") {
               styleSheetColorLabel = "no data";
             } else {
               styleSheetColorLabel = styleSheetColorStops[index][0];
@@ -186,6 +186,7 @@ export default {
         item.style.margin = "0 0 5px 0";
         item.style.padding = "0 10px 0 0";
         key.style.backgroundColor = color;
+        key.style.border = "1px solid rgb(190,190,190)"
         key.style.margin = " 0 5px 0 10px";
         key.style.display = "inline-block";
         key.style.height = "10px";
