@@ -68,19 +68,14 @@ export default {
                             ['average','#C8D3BA'],
                             ['low', '#BDAD9D'],
                             ['very low','#967a4a'],
-                            ['','#000000'],
+                            ['Undefined','rgba(237, 236, 232, 1)']
                         ]
                     },
                     'fill-opacity': ['case',
                         ['boolean', ['feature-state', 'hover'], false],
                         0.7,
                         1
-                    ],
-                    'fill-outline-color': ['case',
-                        ['boolean', ['feature-state', 'hover'], false],
-                        'rgba(0, 0, 0, 1)',
-                        'rgba(0, 0, 0, 0.0)'
-                    ],
+                    ]
                 },
                 'showButtonLayerToggle': false,
                 'legendText': {
