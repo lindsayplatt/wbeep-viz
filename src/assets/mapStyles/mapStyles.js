@@ -68,7 +68,7 @@ export default {
                             ['average','#C8D3BA'],
                             ['low', '#BDAD9D'],
                             ['very low','#967a4a'],
-                            ['','#000000'],
+                            ['Undefined','rgba(237, 236, 232, 1)']
                         ]
                     },
                     'fill-opacity': ['case',
