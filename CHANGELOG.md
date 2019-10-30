@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Change river layers style to match openmaptiles rivers/waterbodies
 - White Slivers Removal (fill-outline)
 - Update styles for updated nhd river tiles 
 - Modify About text and layout
