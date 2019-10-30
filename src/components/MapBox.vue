@@ -6,7 +6,12 @@
           {{ title }} {{ developmentTier }}
         </h1>
         <router-link to="/about">
-          <button id="aboutButton" @click="runGoogleAnalytics('About Button', 'click', 'user went to about page')">About</button>
+          <button
+            id="aboutButton"
+            @click="runGoogleAnalytics('About Button', 'click', 'user went to about page')"
+          >
+            About
+          </button>
         </router-link>
       </div>
     </div>
