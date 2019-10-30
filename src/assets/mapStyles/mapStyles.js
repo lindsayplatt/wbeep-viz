@@ -75,12 +75,7 @@ export default {
                         ['boolean', ['feature-state', 'hover'], false],
                         0.7,
                         1
-                    ],
-                    'fill-outline-color': ['case',
-                        ['boolean', ['feature-state', 'hover'], false],
-                        'rgba(0, 0, 0, 1)',
-                        'rgba(0, 0, 0, 0.0)'
-                    ],
+                    ]
                 },
                 'showButtonLayerToggle': false,
                 'legendText': {
