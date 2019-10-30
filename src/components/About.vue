@@ -76,27 +76,27 @@
     <h2>References</h2>
 
     <p class="about-ref">
-      Abatzoglou, J. T. (2013), <a href="http://onlinelibrary.wiley.com/doi/10.1002/joc.3413/full">Development of gridded surface meteorological data for ecological applications and modelling</a>. Int. J. Climatol., 33: 121–131.
+      Abatzoglou, J.T., 2013. Development of gridded surface meteorological data for ecological applications and modelling. Int. J. Climatol. 33, 121–131. <a href="https://doi.org/10.1002/joc.3413">https://doi.org/10.1002/joc.3413</a>
     </p>
 
     <p class="about-ref">
-      Hay, L., 2019. Application of the National Hydrologic Model Infrastructure with the Precipitation-Runoff Modeling System (NHM-PRMS), by HRU Calibrated Version. <a href="https://doi.org/10.5066/P9NM8K8W">https://doi.org/10.5066/P9NM8K8W</a>.
+      Hay, L., 2019. Application of the National Hydrologic Model Infrastructure with the Precipitation-Runoff Modeling System (NHM-PRMS), by HRU Calibrated Version. <a href="https://doi.org/10.5066/P9NM8K8W">https://doi.org/10.5066/P9NM8K8W</a>
     </p>
 
     <p class="about-ref">
-      Regan, R.S., Juracek, K.E., Hay, L.E., Markstrom, S.L., Viger, R.J., Driscoll, J.M., LaFontaine, J.H., and Norton, P.A., 2019, The US Geological Survey National Hydrologic Model infrastructure: Rationale, description, and application of a watershed-scale model for the conterminous United States: Environmental Modelling & Software, v. 111, p. 192-203, <a href="https://doi.org/10.1016/j.envsoft.2018.09.023">https://doi.org/10.1016/j.envsoft.2018.09.023</a>.
+      Regan, R.S., Juracek, K.E., Hay, L.E., Markstrom, S.L., Viger, R.J., Driscoll, J.M., LaFontaine, J.H., Norton, P.A., 2019. The U. S. Geological Survey National Hydrologic Model infrastructure: Rationale, description, and application of a watershed-scale model for the conterminous United States. Environ. Model. Softw. 111, 192–203. <a href="https://doi.org/10.1016/j.envsoft.2018.09.023">https://doi.org/10.1016/j.envsoft.2018.09.023</a>
     </p>
 
     <p class="about-ref">
-      Regan, R.S., Markstrom, S.L., Hay, L.E., Viger, R.J., Norton, P.A., Driscoll, J.M., LaFontaine, J.H., 2018, Description of the National Hydrologic Model for use with the Precipitation-Runoff Modeling System (PRMS): U.S. Geological Survey Techniques and Methods, book 6, chap B9, 38 p., <a href="https://doi.org/10.3133/tm6B9">https://doi.org/10.3133/tm6B9</a>.
+      Regan, R.S., Markstrom, S.L., Hay, L.E., Viger, R.J., Norton, P.A., Driscoll, J.M., LaFontaine, J.H., 2018. Description of the National Hydrologic Model for use with the Precipitation-Runoff Modeling System (PRMS), in: U.S. Geological Survey Techniques and Methods, Book 6. U.S. Geological Survey, p. 38. <a href="https://doi.org/10.3133/tm6B9">https://doi.org/10.3133/tm6B9</a>
     </p>
 
     <p class="about-ref">
-      Viger, R.J., and Bock, Andrew, 2014, GIS features of the geospatial fabric for national hydrologic modeling: U.S. Geological Survey data release, <a href="https://dx.doi.org/doi:10.5066/F7542KMD">https://dx.doi.org/doi:10.5066/F7542KMD</a>.
+      Viger, R.J., Bock, A., 2014. GIS Features of the Geospatial Fabric for National Hydrologic Modeling. <a href="https://doi.org/doi:10.5066/F7542KMD">https://doi.org/doi:10.5066/F7542KMD</a>
     </p>
 
     <p class="about-ref">
-      Markstrom, S.L., Regan, R.S., Hay, L.E., Viger, R.J., Webb, R.M.T., Payn, R.A., and LaFontaine, J.H., 2015, PRMS-IV, the precipitation-runoff modeling system, version 4: U.S. Geological Survey Techniques and Methods, book 6, chap. B7, 158 p., <a href="http://dx.doi.org/10.3133/tm6B7">http://dx.doi.org/10.3133/tm6B7</a>.
+      Markstrom, S.L., Regan, R.S., Hay, L.E., Viger, R.J., Webb, R.M.T., Payn, R.A., LaFontaine, J.H., 2015. PRMS-IV, the precipitation-runoff modeling system, version 4, in: U.S. Geological Survey Techniques and Methods, Book 6. U.S. Geological Survey, p. 158. <a href="https://doi.org/10.3133/tm6B7">https://doi.org/10.3133/tm6B7</a>
     </p>
 
     <p>
