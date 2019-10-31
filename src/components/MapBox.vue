@@ -1,6 +1,6 @@
 <template>
   <div id="viz_container">
-    <LoadingScreen :isLoading="isLoading"/>
+    <LoadingScreen :is-loading="isLoading" />
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">

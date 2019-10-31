@@ -3,7 +3,7 @@
     <div id="loadingMessage">
       <USGSLOGO />
       <p>National Integrated Water Availability Assessments</p>
-      <div id="spinner"></div>
+      <div id="spinner" />
     </div>
   </div>
 </template>
@@ -11,10 +11,10 @@
 import USGSLOGO from "../images/usgssvg/usgsScienceLogo.svg";
 export default {
   name: "LoadingScreen",
-  props: ["isLoading"],
   components: {
     USGSLOGO
-  }
+  },
+  props: {isLoading: Boolean}
 };
 </script>
 <style lang="scss">
