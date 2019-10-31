@@ -1,5 +1,6 @@
 <template>
   <div id="viz_container">
+    <LoadingScreen :isLoading="isLoading"/>
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
@@ -59,6 +60,7 @@
   </div>
 </template>
 <script>
+import LoadingScreen from './LoadingScreen';
 import MapSubtitle from "./MapSubtitle";
 import MapAvailableDataDate from "./MapAvailableDataDate";
 import MapLegend from "./MapLegend";
@@ -78,6 +80,7 @@ import mapStyles from "../assets/mapStyles/mapStyles";
 export default {
   name: "MapBox",
   components: {
+    LoadingScreen,
     MglMap,
     MapSubtitle,
     MapAvailableDataDate,
@@ -111,7 +114,8 @@ export default {
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
       maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
-      legendTitle: "Latest Available Water Status"
+      legendTitle: "Latest Available Water Status",
+      isLoading: true
     };
   },
   methods: {
@@ -127,6 +131,10 @@ export default {
 
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
+      //set timeout to make sure the fitbounds is completely done before fadeaway
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
 
       //Create elements and give them specific ids
       //Div that the map uses to display things fullscreen

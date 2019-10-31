@@ -9,6 +9,7 @@
 </template>
 
 <script>
+    import LoadingScreen from './components/LoadingScreen';
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
     import FooterEmail from './components/FooterEmail'
