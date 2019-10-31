@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-
+- Added Loading Screen Functionality
 ## [0.0.4] - 2019-10-30
 - Restrict river layers to minzoom of 8 to avoid poor river tile appearance
 
