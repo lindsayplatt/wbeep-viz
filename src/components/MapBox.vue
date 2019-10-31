@@ -134,7 +134,7 @@ export default {
       //set timeout to make sure the fitbounds is completely done before fadeaway
       setTimeout(() => {
         this.isLoading = false;
-      }, 1000);
+      }, 200);
 
       //Create elements and give them specific ids
       //Div that the map uses to display things fullscreen
