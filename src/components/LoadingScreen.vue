@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ loader: true, fadeout: !isLoading }">
+  <div id="splashloader" :class="{ loader: true, fadeout: !isLoading }">
     <div id="loadingMessage">
       <USGSLOGO />
       <p>National Integrated Water Availability Assessments</p>
@@ -17,7 +17,7 @@ export default {
   props: {isLoading: Boolean},
   mounted(){
     //prevent user from scrolling this div on mobile
-    let fixed = document.getElementsByClassName("loader");
+    let fixed = document.getElementById("splashloader");
     fixed.addEventListener('touchmove', function(e){
       e.preventDefault();
     }, false);
