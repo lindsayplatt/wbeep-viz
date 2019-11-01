@@ -14,7 +14,14 @@ export default {
   components: {
     USGSLOGO
   },
-  props: {isLoading: Boolean}
+  props: {isLoading: Boolean},
+  mounted(){
+    //prevent user from scrolling this div on mobile
+    var fixed = document.getElementsByClassName("loader");
+    fixed.addEventListener('touchmove', function(e){
+      e.preventDefault();
+    }, false);
+  }
 };
 </script>
 <style lang="scss">
