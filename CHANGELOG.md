@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Mobile Loading Screen Scrolling Bug Fix
 
 ## [0.0.5]
 - Added Loading Screen Functionality
