@@ -21,7 +21,7 @@ export default {
             },
             nhd_streams_grouped: {
                 type: 'vector',
-                'tiles':['http://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams_grouped/{z}/{x}/{y}.pbf'],
+                'tiles':['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams_grouped/{z}/{x}/{y}.pbf'],
                 'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
                 'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 10
             },
