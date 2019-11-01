@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.0.6]
 - Mobile Loading Screen Scrolling Bug Fix
 
 ## [0.0.5]
@@ -88,6 +90,7 @@ All notable changes to this project will be documented in this file.
 - Added USWDS components, Added title, removed component not needed
 
 [Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.4...master
+[0.0.6]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.2...v0.0.3
