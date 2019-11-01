@@ -17,7 +17,7 @@ export default {
   props: {isLoading: Boolean},
   mounted(){
     //prevent user from scrolling this div on mobile
-    var fixed = document.getElementsByClassName("loader");
+    let fixed = document.getElementsByClassName("loader");
     fixed.addEventListener('touchmove', function(e){
       e.preventDefault();
     }, false);
