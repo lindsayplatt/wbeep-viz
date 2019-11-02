@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+import 'es6-promise/auto'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
