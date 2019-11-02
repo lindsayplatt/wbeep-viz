@@ -1,4 +1,5 @@
 module.exports = {
+    transpileDependencies: ['vue-mapbox'],
     chainWebpack: (config) => {
         const svgRule = config.module.rule('svg');
 
