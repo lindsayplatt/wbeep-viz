@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Pinch to Zoom Functionality for Touch Devices
 
 ## [0.0.7]
 - Fixes for Internet Explorer and Edge browsers
