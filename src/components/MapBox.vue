@@ -129,6 +129,9 @@ export default {
 
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
+      //pinch to zoom for touch devicesgit pull 
+      map.touchZoomRotate.enable();
+
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
       //set timeout to make sure the fitbounds is completely done before fadeaway
