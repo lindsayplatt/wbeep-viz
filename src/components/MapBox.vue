@@ -1,6 +1,6 @@
 <template>
   <div id="viz_container">
-    <LoadingScreen :is-loading="isLoading" />
+<!--    <LoadingScreen :is-loading="isLoading" />-->
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
@@ -80,7 +80,7 @@ import mapStyles from "../assets/mapStyles/mapStyles";
 export default {
   name: "MapBox",
   components: {
-    LoadingScreen,
+    // LoadingScreen,
     MglMap,
     MapSubtitle,
     MapAvailableDataDate,
