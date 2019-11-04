@@ -2,7 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.0.8]
 - Pinch to Zoom Functionality for Touch Devices
+- Replace babel polyfill with regenerator/runtime to further address IE issues/deprecations
 
 ## [0.0.7]
 - Fixes for Internet Explorer and Edge browsers
@@ -93,7 +96,8 @@ All notable changes to this project will be documented in this file.
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
 
-[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.7...master
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.8...master
+[0.0.8]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.4...v0.0.5
