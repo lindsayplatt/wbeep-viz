@@ -131,6 +131,8 @@ export default {
 
       //pinch to zoom for touch devicesgit pull 
       map.touchZoomRotate.enable();
+      //disable the rotation functionality, but keep pinch to zoom
+      map.touchZoomRotate.disableRotation();
 
       // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
