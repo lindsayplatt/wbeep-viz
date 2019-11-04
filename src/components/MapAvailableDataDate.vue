@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+  import 'whatwg-fetch'
   export default {
       name: "MapAvailableDataDate",
       data() {

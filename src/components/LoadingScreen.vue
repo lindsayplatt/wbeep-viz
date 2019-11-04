@@ -1,5 +1,8 @@
 <template>
-  <div id="splashloader" :class="{ loader: true, fadeout: !isLoading }">
+  <div
+    id="splashloader"
+    :class="{ loader: true, fadeout: !isLoading }"
+  >
     <div id="loadingMessage">
       <USGSLOGO />
       <p>National Integrated Water Availability Assessments</p>
