@@ -1,5 +1,6 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+import browserDetect from 'vue-browser-detect-plugin'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
@@ -49,6 +50,7 @@ library.add(faInstagram)
 
 Vue.config.productionTip = false
 Vue.use(uswds)
+Vue.use(browserDetect)
 Vue.use(VueRouter)
 
 const router = new VueRouter({
