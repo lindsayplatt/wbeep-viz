@@ -1,6 +1,6 @@
 <template>
   <div id="viz_container">
-<!--    <LoadingScreen :is-loading="isLoading" />-->
+    <LoadingScreen :is-loading="isLoading" />
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
@@ -80,7 +80,7 @@ import mapStyles from "../assets/mapStyles/mapStyles";
 export default {
   name: "MapBox",
   components: {
-    // LoadingScreen,
+    LoadingScreen,
     MglMap,
     MapSubtitle,
     MapAvailableDataDate,
@@ -118,6 +118,13 @@ export default {
       isLoading: true
     };
   },
+  created() {
+      // Internet Explorer sometimes gets stuck when using the loading so let's skip the loading screen on IE
+      if (this.$browserDetect.isIE) {
+          console.log('Internet Explorer detected, bypassing the loading screen.');
+          this.isLoading = false;
+      }
+  },
   methods: {
     runGoogleAnalytics(eventName, action, label) {
         this.$ga.event(eventName, action, label)
@@ -129,12 +136,12 @@ export default {
 
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
-      //pinch to zoom for touch devicesgit pull 
+      // pinch to zoom for touch devices
       map.touchZoomRotate.enable();
-      //disable the rotation functionality, but keep pinch to zoom
+      // disable the rotation functionality, but keep pinch to zoom
       map.touchZoomRotate.disableRotation();
 
-      // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
+      // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
       map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
       //set timeout to make sure the fitbounds is completely done before fadeaway
       setTimeout(() => {

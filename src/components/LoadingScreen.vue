@@ -18,7 +18,7 @@ export default {
     USGSLOGO
   },
   props: {isLoading: Boolean},
-  mounted(){
+  mounted() {
     //prevent user from scrolling this div on mobile
     let fixed = document.getElementById("splashloader");
     fixed.addEventListener('touchmove', function(e){

@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-  import 'whatwg-fetch'
+  import 'whatwg-fetch' // need this for IE11 compatibility
   export default {
       name: "MapAvailableDataDate",
       data() {
