@@ -121,7 +121,7 @@ export default {
   created() {
       // Internet Explorer sometimes gets stuck when using the loading so let's skip the loading screen on IE
       if (this.$browserDetect.isIE) {
-          console.log('Internet Explorer detected; bypassing the loading screen ');
+          console.log('Internet Explorer detected, bypassing the loading screen.');
           this.isLoading = false;
       }
   },
