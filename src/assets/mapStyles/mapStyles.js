@@ -289,7 +289,7 @@ export default {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'fill-color': 'rgba(237, 236, 232, 1)'
+                    'fill-color': 'hsl(47, 26%, 88%)'
                 },
                 'showButtonLayerToggle': false
             },
