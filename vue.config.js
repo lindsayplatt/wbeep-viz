@@ -8,5 +8,8 @@ module.exports = {
         svgRule
                 .use('vue-svg-loader')
                 .loader('vue-svg-loader');
+    },
+    devServer: {                // this allows the use of Localtunnel to view your development environment on a mobile device or another computer
+        disableHostCheck: true
     }
 };

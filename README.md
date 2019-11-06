@@ -381,7 +381,7 @@ HTML would have been called an 'element'.
 
 Step two - add the icon to the 'library' object. Since we globally imported the FontAwesome 'library' object, we can now use it throughout the application.
 We can add our icon to the 'library' object with this code.
-```aidl
+```
 library.add(faLayerGroup)
 ```
 Sweet! Our importing and registering work in 'main.js' is done for now. If we want to add other Font Awesome icons
@@ -389,7 +389,7 @@ to our project later we just need to 1) import the specific icon from the 'node_
 'library' object. 
 
 Now your 'main.js' should look something like . . .
-```aidl
+```
 import Vue from 'vue'
 import App from './App.vue'
 import uswds from 'uswds'
@@ -477,7 +477,8 @@ than in the previous example. The error notes that it seeking an icon with the p
 'free-brands-svg-icons'. But why is it looking for the prefix 'fas'? We never told it to do that! Well, apparently
 this is related to behind-the-scenes coding of the 'FontAwesomeIcon' component which, you may remember, we wired our imported
 icon to in the last step of our work in 'main,js'.
-```// Enable the FontAwesomeIcon component globally
+```
+// Enable the FontAwesomeIcon component globally
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 ```
 Inside the code of the FontAwesomeIcon component there is a section that basically defaults to the most common prefix, of 'fas', unless 
@@ -507,3 +508,7 @@ In the above snippet, notice that there is a 'class' attribute with three assign
 them with CSS styling code. These classes are basically 'secret' and don't show in the code; they are only visible with 
 the developer tools in the browser. So it is important to know that they are there (in hiding) as other developers may 
 have targeted these classes, leaving you to wonder what the heck is going on. 
+
+Thanks to the folks at BrowserStack for the use of cross browser quality assurance tools - [BrowserStack](https://www.browserstack.com)
+
+![Browserstack](./markDownImages/Browserstack-logo.svg)
