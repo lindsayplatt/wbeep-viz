@@ -65,10 +65,10 @@ export default {
                         'stops': [
                             ['very high','#1C2040'],
                             ['high','#337598'],
-                            ['average','hsl(47, 26%, 88%)'],
+                            ['average','#C8D3BA'],
                             ['low', '#BDAD9D'],
                             ['very low','#967a4a'],
-                            ['Undefined','hsl(47, 26%, 88%)']
+                            ['Undefined','rgba(237, 236, 232, 1)']
                         ]
                     },
                     'fill-opacity': ['case',
