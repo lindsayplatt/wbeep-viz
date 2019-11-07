@@ -4,6 +4,7 @@ Before making a pull request
 - [ ] Make sure all tests run
 - [ ] Update the changelog appropriately
 - [ ] Run WAVE plugin 508 compliance tool
+
 Title
 -----------
 Brief description of changes. Reference the JIRA ticket if appropriate
