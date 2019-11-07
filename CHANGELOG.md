@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.0.10]
+- Set up the tiers to use tier-specific resources
+
 ## [0.0.9]
 - Disable the loading/splash screen on IE
 
@@ -99,7 +102,8 @@ All notable changes to this project will be documented in this file.
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
 
-[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.9...master
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.10...master
+[0.0.10]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.7...v0.0.8
 [0.0.8]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.7...v0.0.8
