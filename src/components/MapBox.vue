@@ -136,6 +136,9 @@ export default {
 
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
+      //This solves the mysterious whitespace by resizing the map to the correct size.
+      map.resize();
+
       // pinch to zoom for touch devices
       map.touchZoomRotate.enable();
       // disable the rotation functionality, but keep pinch to zoom
@@ -474,6 +477,8 @@ $borderGray: 1px solid rgb(100, 100, 100);
 #mapContainer {
   position: relative;
   height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 600px) {
@@ -483,16 +488,11 @@ $borderGray: 1px solid rgb(100, 100, 100);
     flex-direction: column;
   }
 
-  #mapContainer {
+   #mapContainer {
     flex: 1;
-    display: flex;
-    flex-direction: column;
     height: auto;
   }
-  #map {
-    flex: 1;
-    min-height: 70vh;
-  }
+  
 }
 </style>
 <style lang="scss">
@@ -500,6 +500,7 @@ $color: #fff;
 $blue: #4574a3;
 $border: 1px solid rgb(200, 200, 200);
 $background: rgba(255, 255, 255, 0.9);
+
 #mapLayersToggleContainer {
   background: $background;
   border-right: $border;
