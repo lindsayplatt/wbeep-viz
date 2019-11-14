@@ -5,7 +5,7 @@
     </div>
 
     <p>
-      As you may know, the internet browser you are using is quite antiquated. In order to bring you, and
+      As you may know, the internet browser you are using is antiquated. In order to bring you, and
       the rest of the internet audience, the best possible user experience, the {{ title }} application no longer offers support.
     </p>
     <p>

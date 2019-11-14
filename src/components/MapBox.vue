@@ -130,8 +130,7 @@ export default {
   },
   created() {
       // Internet Explorer sometimes gets stuck when using the loading so let's skip the loading screen on IE
-      if (this.$browserDetect.isChrome) {
-          console.log('Internet Explorer detected.');
+      if (this.$browserDetect.isIE) {
           this.isInternetExplorer = true;
       }
   },
