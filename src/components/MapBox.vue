@@ -1,6 +1,9 @@
 <template>
   <div id="viz_container">
-    <LoadingScreen :is-loading="isLoading" />
+    <LoadingScreen
+      v-if="!isInternetExplorer"
+      :is-loading="isLoading"
+    />
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
@@ -16,7 +19,11 @@
         </router-link>
       </div>
     </div>
-    <div id="mapContainer">
+    <InternetExplorerPage v-if="isInternetExplorer" />
+    <div
+      v-if="!isInternetExplorer"
+      id="mapContainer"
+    >
       <MapSubtitle />
       <MapAvailableDataDate />
       <MapLegend :legend-title="legendTitle" />
@@ -55,12 +62,13 @@
       </MglMap>
     </div>
     <!--The next div contains information to show the current zoom level of the map. This will only show on the
-        development version of the application. To find the code controlling this, search for 'zoom level display' -->
+          development version of the application. To find the code controlling this, search for 'zoom level display' -->
     <div id="zoom-level-div" />
   </div>
 </template>
 <script>
 import LoadingScreen from './LoadingScreen';
+import InternetExplorerPage from "./InternetExplorerPage";
 import MapSubtitle from "./MapSubtitle";
 import MapAvailableDataDate from "./MapAvailableDataDate";
 import MapLegend from "./MapLegend";
@@ -81,6 +89,7 @@ export default {
   name: "MapBox",
   components: {
     LoadingScreen,
+    InternetExplorerPage,
     MglMap,
     MapSubtitle,
     MapAvailableDataDate,
@@ -115,14 +124,15 @@ export default {
       hoveredHRUId: null,
       maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
       legendTitle: "Latest Available Water Status",
-      isLoading: true
+      isLoading: true,
+      isInternetExplorer: false
     };
   },
   created() {
       // Internet Explorer sometimes gets stuck when using the loading so let's skip the loading screen on IE
-      if (this.$browserDetect.isIE) {
-          console.log('Internet Explorer detected, bypassing the loading screen.');
-          this.isLoading = false;
+      if (this.$browserDetect.isChrome) {
+          console.log('Internet Explorer detected.');
+          this.isInternetExplorer = true;
       }
   },
   methods: {
