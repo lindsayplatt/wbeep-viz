@@ -2,7 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
- - 
+- Added page to intercept Internet Explorer users and require use of another browser
+- Map Resize solution
 
 ## [0.0.10]
 - Set up the tiers to use tier-specific resources
