@@ -129,7 +129,7 @@ export default {
     };
   },
   created() {
-      // Internet Explorer sometimes gets stuck when using the loading so let's skip the loading screen on IE
+      // We are ending support for Internet Explorer, so let's test to see if the browser used is IE.
       if (this.$browserDetect.isIE) {
           this.isInternetExplorer = true;
       }
