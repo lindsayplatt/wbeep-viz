@@ -5,11 +5,17 @@
     </div>
 
     <p>
-      As you may know, the internet browser you are using is antiquated. In order to bring you, and
-      the rest of the internet audience, the best possible user experience, the {{ title }} application no longer offers support.
+      As of January of 2016, Microsoft no longer provides security updates or technical support for
+      old versions of Internet Explorer, and while Internet Explorer 11 (the latest version) is still supported for security updates,
+      compatibility fixes, and technical support, it is becoming increasingly difficult, time consuming, and costly for developers
+      to maintain backward compatibility with this aging browser.
+    <p>
+      In order to bring you -- and the rest of the internet audience -- the best possible user experience,
+      the {{ title }} application no longer offers support for any version of Internet Explorer.
     </p>
     <p>
-      We encourage you to return with one of the many other browsers available.
+      We regret any inconvenience this may cause, but we encourage you to return with one of the many other browsers available.
+      We are sure you will be happy you did.
     </p>
   </div>
 </template>
