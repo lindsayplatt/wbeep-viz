@@ -1,71 +1,57 @@
+// Since the Mapbox gl wants the tile request to have an array containing the URL for the tiles, we need to
+// grab the URL for the correct tier from the environment variables and prepackage the result as an array
+const hruTileUrl = [];
+hruTileUrl.push(process.env.VUE_APP_HRU_TILE_URL);
+
 export default {
     style: {
         version: 8,
         sources: {
             basemap: {
                 type: 'vector',
-                // This URL will pull the basemap GeoJson from S3 so that no local tile server is required.
-                // NOTE: this location is under development and may change. If you suddenly lose parts of the map, it
-                // may be that we have moved the tiles to a new location on S3.
-                'tiles': ['https://d38anyyapxci3p.cloudfront.net/baseTiles_3/{z}/{x}/{y}.pbf']
-                // url: 'http://localhost:8086/data/basemap.json'
-                // The above URL is an example for using a local mbtiles file and a tile server. See the readme for more
-                // information: https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
+                'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misctilesets/usstatecounties/{z}/{x}/{y}.pbf'],
+                'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 2
+                'maxzoom': 10  // setting this to the real tile extent is 10
             },
             HRU: {
                 type: 'vector',
-                // This URL will pull the Hydrological Response Units(HRUs) GeoJson from S3 so that no local tile server
-                // is required.
-                // NOTE: this location is under development and may change. If you suddenly lose your HRUs from the map, it
-                // may be that we have moved the HRU tiles to a new location on S3.
-                'tiles': ['https://d38anyyapxci3p.cloudfront.net/testTiles_5/{z}/{x}/{y}.pbf']
-                // url: 'http://localhost:8085/data/new2.json'
-                // The above URL is an example for using a local mbtiles file and a tile server. See the readme for more
-                // information: https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
+                'tiles': hruTileUrl,
+                'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
+                'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 11
+            },
+            nhd_streams_grouped: {
+                type: 'vector',
+                'tiles':['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams_grouped/{z}/{x}/{y}.pbf'],
+                'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
+                'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 10
+            },
+            openmaptiles: {
+                type: 'vector',
+                'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/openmaptiles/baselayers/{z}/{x}/{y}.pbf'],
+                'minzoom': 2,
+                'maxzoom': 14
+            },
+            hillshade: {
+                type: 'raster',
+                'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/openmaptiles/omthillshade/{z}/{x}/{y}.png'],
+                'minzoom': 2,
+                'maxzoom': 12,
+                'tileSize': 256
             }
         },
         'sprite': '',
         'glyphs': 'https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf',
         'layers': [
             {
-                'id': 'Background',
+                'id': 'background',
+                'paint': {
+                    'background-color': 'hsl(47, 26%, 88%)'
+                },
                 'type': 'background',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'background-color': 'rgba(202, 210, 211, 1)'
-                },
-                'showButton': true
+                'showButtonLayerToggle': false
             },
             {
-                'id': 'State Color Fill',
-                'type': 'fill',
-                'source': 'basemap',
-                'source-layer': 'states',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'fill-color': 'rgba(246, 246, 244, 1)',
-                },
-                'showButton': true
-            },
-            {
-                'id': 'Neighboring Countries',
-                'type': 'fill',
-                'source': 'basemap',
-                'source-layer': 'neighboringcountry',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'fill-color': 'rgba(246, 246, 244, 1)'
-                },
-                'showButton': true
-            },
-            {
-                'id': 'HRUS Fill Colors',
+                'id': 'HRUs',
                 'type': 'fill',
                 'source': 'HRU',
                 'source-layer': 'hrus',
@@ -74,140 +60,324 @@ export default {
                 },
                 'paint': {
                     'fill-color': {
-                        'property': 'SoilMoisture',
+                        'property': 'value',
                         'type': 'categorical',
                         'stops': [
-                            ["",'#000000'],
-                            ['very low','#CC4C02'],
-                            ['low', '#EDAA5F'],
-                            ['average','#FED98E'],
-                            ['high','#A7B9D7'],
-                            ['very high','#144873'],
+                            ['very high','#1C2040'],
+                            ['high','#337598'],
+                            ['average','#C8D3BA'],
+                            ['low', '#BDAD9D'],
+                            ['very low','#967a4a'],
+                            ['Undefined','rgba(237, 236, 232, 1)']
                         ]
                     },
                     'fill-opacity': ['case',
                         ['boolean', ['feature-state', 'hover'], false],
-                        0.1,
+                        0.7,
                         1
                     ]
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'legendText': {
+                    'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
+                    'high': ['',''],
+                    'average': ['Common',' \- today is normal for this region'],
+                    'low': ['',''],
+                    'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
+                    'no data': ['','No Data']
+                }
             },
-
             {
-                'id': 'HRUS Outlines',
+                'filter': ['all', ['==', '$type', 'LineString'],
+                    ['in', 'class', 'minor', 'service', 'trunk', 'primary', 'secondary', 'tertiary', 'motorway']
+                ],
+                'id': 'Roads',
+                'layout': {
+                    'line-cap': 'round',
+                    'line-join': 'round',
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'hsl(0, 0%, 97%)',
+                    'line-width': {
+                        'base': 1.55,
+                        'stops': [
+                            [4, 0.25],
+                            [20, 30]
+                        ]
+                    }
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'transportation',
+                'type': 'line',
+                'minzoom': 5,
+                'showButtonLayerToggle': true
+            },
+            {
+                'filter': ['all', ['==', '$type', 'Polygon'],
+                    ['==', 'intermittent', 1]
+                ],
+                'id': 'water_intermittent',
+                'paint': {
+                    'fill-color': 'hsl(205, 56%, 73%)',
+                    'fill-opacity': 0.7
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'water',
+                'type': 'fill',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'filter': ['all', ['==', '$type', 'LineString'],
+                    ['==', 'brunnel', 'tunnel']
+                ],
+                'id': 'waterway-tunnel',
+                'paint': {
+                    'line-color': 'hsl(205, 56%, 73%)',
+                    'line-dasharray': [3, 3],
+                    'line-gap-width': {
+                        'stops': [
+                            [12, 0],
+                            [20, 6]
+                        ]
+                    },
+                    'line-opacity': 1,
+                    'line-width': {
+                        'base': 1.4,
+                        'stops': [
+                            [8, 1],
+                            [20, 2]
+                        ]
+                    }
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'waterway',
+                'type': 'line',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'filter': ['all', ['==', '$type', 'LineString'],
+                    ['!in', 'brunnel', 'tunnel', 'bridge'],
+                    ['!=', 'intermittent', 1]
+                ],
+                'id': 'waterway',
+                'paint': {
+                    'line-color': 'hsl(205, 56%, 73%)',
+                    'line-opacity': 1,
+                    'line-width': {
+                        'base': 1.4,
+                        'stops': [
+                            [8, 1],
+                            [20, 8]
+                        ]
+                    }
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'waterway',
+                'type': 'line',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'filter': ['all', ['==', '$type', 'LineString'],
+                    ['!in', 'brunnel', 'tunnel', 'bridge'],
+                    ['==', 'intermittent', 1]
+                ],
+                'id': 'waterway_intermittent',
+                'paint': {
+                    'line-color': 'hsl(205, 56%, 73%)',
+                    'line-opacity': 1,
+                    'line-width': {
+                        'base': 1.4,
+                        'stops': [
+                            [8, 1],
+                            [20, 8]
+                        ]
+                    },
+                    'line-dasharray': [2, 1]
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'waterway',
+                'type': 'line',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'id': 'Least Detail',
+                'layerDescription': 'contains stream orders 4-10',
+                'type': 'line',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'least_detail',
+                'minzoom': 8,
+                'maxzoom': 24,
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(148, 193, 225, 1)'
+                },
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
+            },
+            {
+                'id': 'Medium Detail',
+                'layerDescription': 'contains stream orders 2-10',
+                'type': 'line',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'medium_detail',
+                'minzoom': 8,
+                'maxzoom': 24,
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(148, 193, 225, 1)'
+                },
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
+            },
+            {
+                'id': 'Most Detail',
+                'layerDescription': 'contains stream orders 1-10',
+                'type': 'line',
+                'source': 'nhd_streams_grouped',
+                'source-layer': 'most_detail',
+                'minzoom': 8,
+                'maxzoom': 24,
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(148, 193, 225, 1)'
+                },
+
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true,
+            },
+            {
+                'id': 'Hydrologic Response Unit',
                 'type': 'line',
                 'source': 'HRU',
                 'source-layer': 'hrus',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
-                    'line-color': {
-                        'property': 'SoilMoisture',
-                        'type': 'categorical',
-                        'stops': [
-                            ["",'#000000'],
-                            ['very low','#823102'],
-                            ['low', '#C28C4E'],
-                            ['average','#D0B275'],
-                            ['high','#8998B0'],
-                            ['very high','#113B5F'],
-                        ]
-                    },
-                    'line-width': 1
+                    'line-color': 'rgba(57, 79, 87, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false
             },
             {
-                'id': 'Rivers',
-                'type': 'line',
+                'id': 'Neighboring Countries',
+                'type': 'fill',
                 'source': 'basemap',
-                'source-layer': 'USA_Rivers_and_Streams',
-                'minzoom': 5,
+                'minzoom': 2,
+                'maxzoom': 24,
+                'source-layer': 'neighboringcountry',
                 'layout': {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
+                    'fill-color': 'hsl(47, 26%, 88%)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false
             },
             {
-                'id': 'Counties Borders',
+                'filter': ['all', ['==', '$type', 'Polygon'],
+                    ['!=', 'intermittent', 1]
+                ],
+                'id': 'water',
+                'paint': {
+                    'fill-color': 'hsl(205, 56%, 73%)'
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'water',
+                'type': 'fill',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'id': 'Terrain',
+                'type': 'raster',
+                'source': 'hillshade',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false,
+            },
+            {
+                'id': 'Counties',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'counties',
                 'minzoom': 6,
                 'maxzoom': 24,
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
+                    'line-color': 'rgb(0,0,0)',
+                    'line-dasharray': [4, 3]
                 },
-                'showButton': true
+                'showButtonLayerToggle': true
             },
             {
-                'id': 'State Borders',
+                'id': 'states',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'states',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)',
-                    'line-dasharray': [
-                        2,
-                        1.5
-                    ]
-                },
-                'showButton': true
-            },
-            {
-                'id': 'Cities Dots',
-                'type': 'circle',
-                'source': 'basemap',
-                'source-layer': 'Cities_and_Towns_NTAD',
-                'minzoom': 6,
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'circle-radius': 4
-                },
-                'showButton': true
-            },
-            {
-                'id': 'Cities Names',
-                'type': 'symbol',
-                'source': 'basemap',
-                'source-layer': 'Cities_and_Towns_NTAD',
-                'minzoom': 6,
+                'minzoom': 2,
+                'maxzoom': 24,
                 'layout': {
                     'visibility': 'visible',
-                    'text-field': '{NAME}',
-                    'text-font': [
-                        'Roboto Regular'
-                    ],
-                    'text-size': 12,
-                    'symbol-placement': 'point',
-                    'text-line-height': 1.2,
-                    'text-justify': 'center',
-                    'text-anchor': 'bottom',
-                    'text-offset': [
-                        0,
-                        -0.5
-                    ]
                 },
                 'paint': {
-                    'text-color': 'rgba(255,255,255, 1)',
-                    'text-halo-width': 1,
-                    'text-halo-blur': 1,
-                    'text-halo-color': 'rgba(0, 0, 0, 0.5)',
+                    'line-color': 'rgb(0,0,0)'
+                }
+
+            },
+            {
+                'filter': ['all', ['==', '$type', 'Point'],
+                    ['==', 'class', 'city']
+                ],
+                'id': 'place_label_city',
+                'layout': {
+                    'text-field': '{name:latin}\n{name:nonlatin}',
+                    'text-font': ['Noto Sans Regular'],
+                    'text-max-width': 10,
+                    'text-size': {
+                        'stops': [
+                            [3, 12],
+                            [8, 16]
+                        ]
+                    }
                 },
-                'showButton': true
+                'maxzoom': 16,
+                'minzoom': 5,
+                'paint': {
+                    'text-color': 'hsl(0, 0%, 0%)',
+                    'text-halo-blur': 0,
+                    'text-halo-color': 'hsla(0, 0%, 100%, 0.75)',
+                    'text-halo-width': 2
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'place',
+                'type': 'symbol',
+                'showButtonLayerToggle': false
             }
         ]
     }

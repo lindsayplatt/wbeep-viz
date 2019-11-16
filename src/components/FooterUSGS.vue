@@ -63,48 +63,60 @@
               <a
                 href="https://twitter.com/usgs"
                 target="_blank"
+                aria-label="twitter link"
+                @click="runGoogleAnalytics('twitter', 'click', 'user selected twitter social link')"
               >
-                <i class="fa fa-twitter-square"><span class="only">Twitter</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'twitter-square' }"><span class="only">Twitter</span></font-awesome-icon>
               </a>
             </li>
             <li class="facebook">
               <a
                 href="https://facebook.com/usgeologicalsurvey"
                 target="_blank"
+                aria-label="facebook link"
+                @click="runGoogleAnalytics('facebook', 'click', 'user selected facebook social link')"
               >
-                <i class="fa fa-facebook-square"><span class="only">Facebook</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }"><span class="only">Facebook</span></font-awesome-icon>
               </a>
             </li>
             <li class="github">
               <a
                 href="https://github.com/usgs"
                 target="_blank"
+                aria-label="github link"
+                @click="runGoogleAnalytics('github', 'click', 'user selected github social link')"
               >
-                <i class="fa fa-github"><span class="only">GitHub</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }"><span class="only">GitHub</span></font-awesome-icon>
               </a>
             </li>
             <li class="flickr">
               <a
                 href="https://flickr.com/usgeologicalsurvey"
                 target="_blank"
+                aria-label="flickr link"
+                @click="runGoogleAnalytics('flickr', 'click', 'user selected flickr social link')"
               >
-                <i class="fa fa-flickr"><span class="only">Flickr</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'flickr' }"><span class="only">Flickr</span></font-awesome-icon>
               </a>
             </li>
             <li class="youtube">
               <a
                 href="http://youtube.com/usgs"
                 target="_blank"
+                aria-label="youtube link"
+                @click="runGoogleAnalytics('youtube', 'click', 'user selected youtube social link')"
               >
-                <i class="fa fa-youtube-play"><span class="only">YouTube</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'youtube-square' }"><span class="only">YouTube</span></font-awesome-icon>
               </a>
             </li>
             <li class="instagram">
               <a
                 href="https://instagram.com/usgs"
                 target="_blank"
+                aria-label="instagram link"
+                @click="runGoogleAnalytics('instagram', 'click', 'user selected instagram social link')"
               >
-                <i class="fa fa-instagram"><span class="only">Instagram</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"><span class="only">Instagram</span></font-awesome-icon>
               </a>
             </li>
           </ul>
@@ -118,10 +130,98 @@
 
 <script>
     export default {
-        name: 'FooterUSGS'
+        name: 'FooterUSGS',
+        methods: {
+            runGoogleAnalytics(eventName, action, label) {
+                this.$ga.event(eventName, action, label)
+            }
+        }
     }
 </script>
 
 <style scoped lang="scss">
-    @import"../style/usgsHeaderFooter/combinedLoad.css";
+  @import"../style/usgsHeaderFooter/combinedLoad.css";
+
+  .svg-inline--fa {
+    color: white;
+    text-decoration: none;
+    height: 24px;
+    width: 21px;
+  }
+  /* Font Awesome Social Media icons */
+  /*!
+   *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+   *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+   */
+  /* FONT PATH
+   * -------------------------- */
+  @font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/usgsHeaderFooter/fontawesome-webfont.eot');
+    src: url('../fonts/usgsHeaderFooter/fontawesome-webfont.eot') format('embedded-opentype'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.woff2') format('woff2'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.woff') format('woff'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.ttf') format('truetype'), url('../fonts/usgsHeaderFooter/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .fa-wrapper {
+    position: relative
+  }
+  .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .fa-ul {
+    padding-left: 0;
+    margin-left: 2.14285714em;
+    list-style-type: none;
+  }
+  .fa-ul > li {
+    position: relative;
+  }
+  .fa-li {
+    position: absolute;
+    left: -2.14285714em;
+    width: 2.14285714em;
+    top: 0.14285714em;
+    text-align: center;
+  }
+  .fa-search:before {
+    content: "\f002";
+  }
+  .fa-twitter-square:before {
+    Content: "\f081";
+  }
+  .fa-facebook-square:before {
+    Content: "\f082";
+  }
+  .fa-github:before {
+    content: "\f09b";
+  }
+  .fa-google-plus-square:before {
+    content:"\f0d4";
+  }
+  .fa-flickr:before {
+    content: "\f16e";
+  }
+  .fa-youtube-play:before {
+    content: "\f16a";
+  }
+  .fa-instagram:before {
+    content: "\f16d";
+  }
+  .only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  [role="button"]{cursor:pointer}
+
 </style>
