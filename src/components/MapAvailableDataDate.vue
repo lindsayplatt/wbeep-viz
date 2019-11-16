@@ -60,5 +60,4 @@
       padding: 0;
     }
   }
-<<<<<<< HEAD
 </style>
