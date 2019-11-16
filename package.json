@@ -31,6 +31,7 @@
     "uswds": "^2.2.1",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.5",
+    "vue-browser-detect-plugin": "^0.1.5",
     "vue-mapbox": "^0.4.1"
   },
   "devDependencies": {

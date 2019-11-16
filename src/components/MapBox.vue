@@ -9,7 +9,10 @@
         <h1 class="title-text">
           {{ title }} {{ developmentTier }}
         </h1>
-        <router-link to="/about">
+        <router-link
+          v-if="!isInternetExplorer"
+          to="/about"
+        >
           <button
             id="aboutButton"
             @click="runGoogleAnalytics('About Button', 'click', 'user went to about page')"

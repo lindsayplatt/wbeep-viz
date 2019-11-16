@@ -5,6 +5,7 @@ import VueAnalytics from 'vue-analytics'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import uswds from 'uswds'
+import browserDetect from 'vue-browser-detect-plugin'
 
 import About from './components/About.vue'
 import MapBox from './components/MapBox.vue'
@@ -51,6 +52,7 @@ library.add(faInstagram)
 Vue.config.productionTip = false
 Vue.use(uswds)
 Vue.use(VueRouter)
+Vue.use(browserDetect)
 
 const router = new VueRouter({
   routes: [
