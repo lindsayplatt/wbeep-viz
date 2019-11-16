@@ -13,6 +13,7 @@ Then run Browserstack; check that application works on . . .
 - [ ] Edge
 - [ ] Firefox
 - [ ] Samsung Internet
+- [ ] Internet Explorer 11 (not supported, but still needs at least a working user redirect page)
 
 Finally . . .
 - [ ] Update the changelog appropriately

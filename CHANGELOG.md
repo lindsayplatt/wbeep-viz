@@ -2,27 +2,93 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added page to intercept Internet Explorer users and require use of another browser
+- Map Resize solution
+
+## [0.0.10]
+- Set up the tiers to use tier-specific resources
+
+## [0.0.9]
+- Disable the loading/splash screen on IE
+
+## [0.0.8]
+- Pinch to Zoom Functionality for Touch Devices
+- Replace babel polyfill with regenerator/runtime to further address IE issues/deprecations
+
+## [0.0.7]
+- Fixes for Internet Explorer and Edge browsers
+
+## [0.0.6]
+- Mobile Loading Screen Scrolling Bug Fix
+
+## [0.0.5]
+- Added Loading Screen Functionality
+- Modified env vars for beta tile source so it displays tiles correctly
+
+## [0.0.4] - 2019-10-30
+- Restrict river layers to minzoom of 8 to avoid poor river tile appearance
+
+## [0.0.3] - 2019-10-30
+- Change river layers style to match openmaptiles rivers/waterbodies
+- White Slivers Removal (fill-outline)
+- Update styles for updated nhd river tiles 
+- Modify About text and layout
+- Secondary About Button
+- USWDS SVG Fix Implemented
+- Road toggle and road layers combined
+- Flow Detail can only have one active button functionality
+- Added aria labels to links with no text content
+- Added Flow Detail to layers toggle and renamed stream titles
+- Added Google Analytics event tracking for most user click actions
+- Fixed changelog typos
+
+## [0.0.2] - 2019-10-18
+- Added About page and implemented routing
+- Added post build notifications to Jenkinsfile
+- Added Google Analytics plugin
+- Legend Modal coloring and text fix
+
+## [0.0.1] - 2019-10-09
+- Use jordanpalette color scheme
+- Layers box adjustment and Function refactor
+- Map Layers Toggle Button
+- Changed to use grouped stream orders
+- Changed footer icons to Vue components
+- New Map Layers Toggle Functionality
+- Water layer above neighboring counties
+- Restricted user ability to zoom out past the continental United States
+- Added sub-subtitle with date of last available data
+- Adjusted mapStyles to have HRU's solid colors
+- Legend Toggle functionality
+- Min-height for map
+- Added footer email
+- topNavToggle icon adjustment and mobile adjustment
+- Changed URLs to use new tile server
+- Map Options layers dynamic toggle functionality first added
+- Made Subtitle more mobile friendly
+- Edited Legend modal to better fit a mobile experience
+- Added vue-svg-loader package
+- Added Florida and Arizona SVGS
+- Created Legend Modal
+- Added new Legend text and legend info button
+- Added a stream orders toggle bar so that we can test out which stream orders we want
+- Made subtitle information modal popup
+- Made Map Subtitle component
+- Added map subtitle and subtitle info button
+- Cleaned up mapStyles.json
+- Changed map and page title to 'National Integrated Water Availability Assessments'
+- Added attribution control for OpenMapTiles layers
+- Removed Mapbox street layers and replaced them with OpenMapTiles
+- Zoom to bounding box of the U.S.
+- Removed City Dots and HRU Outlines
+- Added Flexbox fluidity to the layout
+- Added Mapbox layers for testing 
+- Parameterized git branch/tag in Jenkinsfile
+- Refined layer toggle for appearance and mobile compatibility
+- Adjusted the minimum zoom level to 3 as well as the default/initial zoom level to 3
+- Added Legend
 - Added hover effect to HRUs
-- Changed to allow tiBefore making a pull request
-                     ----------------------------
-                     - [ ] Clean the code the way Vue likes it - run 'npm run lint --fix'
-                     - [ ] Make sure all tests run
-                     - [ ] Update the changelog appropriately
-                     - [ ] Run WAVE plugin 508 compliance tool
-                     
-                     Title
-                     -----------
-                     Brief description of changes. Reference the JIRA ticket if appropriate
-                     
-                     Description
-                     -----------
-                     If no ticket is referenced, describe the changes made. Note anything that you want the reviewers to know while
-                     reviewing your pull request
-                     
-                     After making a pull request
-                     ---------------------------
-                     - [ ] If appropriate, put the link to the PR in the ticket
-                     - [ ] Assign someone to review unless the change is trivialle assets to be pulled from S3
+- Changed to allow tile assets to be pulled from S3
 - Added layer toggle for all layers, and added 'showButton' property to mapStyles.js to control display of buttons
 - Moved the map styles to a separate mapStyles.js 
 - Changed application to use vue-mapbox plugin
@@ -37,3 +103,15 @@ All notable changes to this project will be documented in this file.
 - Fixed menu bar title, added more appropriate title to page
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
+
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.10...master
+[0.0.10]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.9...v0.0.10
+[0.0.9]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.8...v0.0.9
+[0.0.8]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.7...v0.0.8
+[0.0.8]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.7...v0.0.8
+[0.0.7]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.6...v0.0.7
+[0.0.6]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.4...v0.0.5
+[0.0.4]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.1...v0.0.2
