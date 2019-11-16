@@ -2,8 +2,12 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
+import VueRouter from 'vue-router'
 import App from './App.vue'
 import uswds from 'uswds'
+
+import About from './components/About.vue'
+import MapBox from './components/MapBox.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -47,10 +51,28 @@ library.add(faInstagram)
 Vue.config.productionTip = false
 Vue.use(uswds)
 
-Vue.use(VueAnalytics, {
-  id: 'UA-149352326-1'
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/',
+      name: 'MapBox',
+      component: MapBox
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
+    }
+  ],
+  mode: 'history'
 })
 
-new Vue({
-  render: h => h(App),
+Vue.use(VueAnalytics, {
+  id: 'UA-149352326-1',
+  router
+})
+
+const app = new Vue({
+  router,
+  render: h => h(App)
 }).$mount('#app')
