@@ -3,7 +3,26 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 - Added hover effect to HRUs
-- Changed to allow tile assets to be pulled from S3
+- Changed to allow tiBefore making a pull request
+                     ----------------------------
+                     - [ ] Clean the code the way Vue likes it - run 'npm run lint --fix'
+                     - [ ] Make sure all tests run
+                     - [ ] Update the changelog appropriately
+                     - [ ] Run WAVE plugin 508 compliance tool
+                     
+                     Title
+                     -----------
+                     Brief description of changes. Reference the JIRA ticket if appropriate
+                     
+                     Description
+                     -----------
+                     If no ticket is referenced, describe the changes made. Note anything that you want the reviewers to know while
+                     reviewing your pull request
+                     
+                     After making a pull request
+                     ---------------------------
+                     - [ ] If appropriate, put the link to the PR in the ticket
+                     - [ ] Assign someone to review unless the change is trivialle assets to be pulled from S3
 - Added layer toggle for all layers, and added 'showButton' property to mapStyles.js to control display of buttons
 - Moved the map styles to a separate mapStyles.js 
 - Changed application to use vue-mapbox plugin

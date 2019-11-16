@@ -1,7 +1,20 @@
 Before making a pull request
 ----------------------------
-
+First . . .
+- [ ] Clean the code the way Vue likes it - run 'npm run lint --fix'        
 - [ ] Make sure all tests run
+
+Then check for accessibly compliance
+- [ ] Run WAVE plugin 508 compliance tool
+
+Then run Browserstack; check that application works on . . .
+- [ ] Chrome
+- [ ] Safari
+- [ ] Edge
+- [ ] Firefox
+- [ ] Samsung Internet
+
+Finally . . .
 - [ ] Update the changelog appropriately
 
 Title
