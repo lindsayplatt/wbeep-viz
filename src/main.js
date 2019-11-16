@@ -50,6 +50,7 @@ library.add(faInstagram)
 
 Vue.config.productionTip = false
 Vue.use(uswds)
+Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [

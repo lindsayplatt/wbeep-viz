@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-
+    <router-view />
     <FooterEmail />
     <FooterUSGS />
   </div>
