@@ -75,21 +75,21 @@
 </template>
 
 <script>
-    import iconDot from '../../node_modules/uswds/dist/img/icon-dot-gov.svg';
-    import iconHTTPS from '../../node_modules/uswds/dist/img/icon-https.svg';
+import iconDot from '../../node_modules/uswds/dist/img/icon-dot-gov.svg';
+import iconHTTPS from '../../node_modules/uswds/dist/img/icon-https.svg';
     export default {
         name: 'HeaderUSWDSBanner',
         components: {
-            iconDot,
-            iconHTTPS
+          iconDot,
+          iconHTTPS
         }
     }
 
 </script>
 
 <style lang="scss">
-  @import '~uswds/dist/css/uswds.css';
-  .usa-banner__icon {
-    width: 4rem;
-  }
+    @import '~uswds/dist/css/uswds.css';
+    .usa-banner__icon {
+      width: 4rem;
+    }
 </style>

@@ -6,25 +6,25 @@
   </div>
 </template>
 <script>
-    export default {
-        name: "FooterEmail"
-    }
+export default {
+    name: "FooterEmail"
+}
 </script>
 <style scoped lang="scss">
-  #footerEmailContainer{
-    padding: 2px 10px;
-    text-align: center;
+    #footerEmailContainer{
+        padding: 2px 10px;
+        text-align: center;
 
-    p{
-      margin: 0;
-      font-size: .8em;
-    }
+        p{
+            margin: 0;
+            font-size: .8em;
+        }
 
-    a{
-      color: #003366;
-      text-decoration: none;
-      font-weight: bold;
-      white-space: nowrap;
+        a{
+            color: #003366;
+            text-decoration: none;
+            font-weight: bold; 
+            white-space: nowrap;
+        }
     }
-  }
 </style>

@@ -1,7 +1,7 @@
 // Since the Mapbox gl wants the tile request to have an array containing the URL for the tiles, we need to
 // grab the URL for the correct tier from the environment variables and prepackage the result as an array
 const hruTileUrl = [];
-hruTileUrl.push(process.env.VUE_APP_HRU_TILE_URL);
+    hruTileUrl.push(process.env.VUE_APP_HRU_TILE_URL);
 
 export default {
     style: {

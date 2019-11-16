@@ -8,7 +8,7 @@ RUN apt-get update && \
       apt-get install curl -y && \
       apt-get purge -y --auto-remove && \
       apt-get clean
-
+      
 # Enable the NodeSource repository and install the latest nodejs
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
       apt-get install nodejs -y
@@ -29,3 +29,4 @@ ENV E_VUE_BUILD_MODE=$VUE_BUILD_MODE
 # Build the Vue app.
 RUN npm install
 RUN chmod +x ./build.sh && ./build.sh
+
