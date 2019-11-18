@@ -1,9 +1,9 @@
 echo "this is the var $E_VUE_BUILD_MODE"
-if [ "$E_VUE_BUILD_MODE" = "test_tier" ]
+if [ "$E_VUE_BUILD_MODE" = "test" ]
 then npm run build-test
-elif [ "$E_VUE_BUILD_MODE" = "qa_tier" ]
+elif [ "$E_VUE_BUILD_MODE" = "qa" ]
 then npm run build-qa
-elif [ "$E_VUE_BUILD_MODE" = "beta_tier" ]
+elif [ "$E_VUE_BUILD_MODE" = "beta" ]
 then npm run build-beta
 else npm run build
 fi
