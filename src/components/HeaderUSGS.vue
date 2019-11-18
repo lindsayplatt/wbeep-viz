@@ -59,5 +59,5 @@
 </script>
 
 <style scoped lang="scss">
-    @import"../style/usgsHeaderFooter/combinedLoad.css";
+  @import"../style/usgsHeaderFooter/combinedLoad.css";
 </style>

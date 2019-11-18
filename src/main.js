@@ -1,13 +1,14 @@
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
-import browserDetect from 'vue-browser-detect-plugin'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import Vue from 'vue'
+import VueAnalytics from 'vue-analytics'
 import VueRouter from 'vue-router'
 import App from './App.vue'
+import uswds from 'uswds'
+import browserDetect from 'vue-browser-detect-plugin'
+
 import About from './components/About.vue'
 import MapBox from './components/MapBox.vue'
-import uswds from 'uswds'
-import VueAnalytics from 'vue-analytics'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -50,8 +51,8 @@ library.add(faInstagram)
 
 Vue.config.productionTip = false
 Vue.use(uswds)
-Vue.use(browserDetect)
 Vue.use(VueRouter)
+Vue.use(browserDetect)
 
 const router = new VueRouter({
   routes: [

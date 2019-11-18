@@ -11,7 +11,7 @@
     <p>
       <router-link to="/">
         The National Integrated Water Availability Assessments map
-      </router-link> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.  Natural water storage shown here includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and shallow groundwater. It does not include water in rivers or deep groundwater. Map shading indicates the current natural water storage relative to historical conditions for this time of year. 
+      </router-link> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.  Natural water storage shown here includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and shallow groundwater. It does not include water in rivers or deep groundwater. Map shading indicates the current natural water storage relative to historical conditions for this time of year.
     </p>
 
     <p>

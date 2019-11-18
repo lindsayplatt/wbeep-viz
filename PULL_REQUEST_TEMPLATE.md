@@ -1,9 +1,22 @@
 Before making a pull request
 ----------------------------
-- [ ] Clean the code the way Vue likes it - run 'npm run lint --fix'
+First . . .
+- [ ] Clean the code the way Vue likes it - run 'npm run lint --fix'        
 - [ ] Make sure all tests run
-- [ ] Update the changelog appropriately
+
+Then check for accessibly compliance
 - [ ] Run WAVE plugin 508 compliance tool
+
+Then run Browserstack; check that application works on . . .
+- [ ] Chrome
+- [ ] Safari
+- [ ] Edge
+- [ ] Firefox
+- [ ] Samsung Internet
+- [ ] Internet Explorer 11 (not supported, but still needs at least a working user redirect page)
+
+Finally . . .
+- [ ] Update the changelog appropriately
 
 Title
 -----------
