@@ -7,7 +7,7 @@
     <p>
       As of January of 2016, Microsoft no longer provides security updates or technical support for
       old versions of Internet Explorer, and while Internet Explorer 11 (the latest version) is still supported for security updates,
-      compatibility fixes, and technical support, it is becoming increasingly difficult, time consuming, and costly for developers
+      compatibility fixes, and technical support, it is becoming increasingly difficult, time consuming, and costly
       to maintain backward compatibility with this aging browser.
     </p><p>
       In order to bring you &mdash; and the rest of the internet audience &mdash; the best possible user experience,
