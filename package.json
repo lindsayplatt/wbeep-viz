@@ -8,16 +8,16 @@
     "IE 11"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve --mode test",
-    "serve-test": "vue-cli-service serve --mode test",
-    "serve-qa": "vue-cli-service serve --mode qa",
-    "serve-beta": "vue-cli-service serve --mode beta",
-    "serve-prod": "vue-cli-service serve --mode prod",
-    "build": "vue-cli-service build --mode prod",
-    "build-test": "vue-cli-service build --mode test",
-    "build-qa": "vue-cli-service build --mode qa",
-    "build-beta": "vue-cli-service build --mode beta",
-    "build-prod": "vue-cli-service build --mode prod",
+    "serve": "vue-cli-service serve --mode test_tier",
+    "serve-test": "vue-cli-service serve --mode test_tier",
+    "serve-qa": "vue-cli-service serve --mode qa_tier",
+    "serve-beta": "vue-cli-service serve --mode beta_tier",
+    "serve-prod": "vue-cli-service serve --mode prod_tier",
+    "build": "vue-cli-service build --mode prod_tier",
+    "build-test": "vue-cli-service build --mode test_tier",
+    "build-qa": "vue-cli-service build --mode qa_tier",
+    "build-beta": "vue-cli-service build --mode beta_tier",
+    "build-prod": "vue-cli-service build --mode prod_tier",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
