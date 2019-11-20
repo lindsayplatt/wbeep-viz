@@ -156,11 +156,8 @@ export default {
           let styleSheetColorLabel = null;
           for (let index = 0; index < styleSheetColorStops.length; index++) {
             // Make a label for the blank and missing data
-            if (styleSheetColorStops[index][0] === "Undefined") {
-              styleSheetColorLabel = "no data";
-            } else {
+            
               styleSheetColorLabel = styleSheetColorStops[index][0];
-            }
             legendColorValues.push(styleSheetColorStops[index][1]);
             styleSheetCategories.push(styleSheetColorLabel);
           }
@@ -189,8 +186,8 @@ export default {
         key.style.border = "1px solid rgb(190,190,190)"
         key.style.margin = " 0 5px 0 10px";
         key.style.display = "inline-block";
-        key.style.height = "10px";
-        key.style.width = "10px";
+        key.style.height = "30px";
+        key.style.width = "30px";
         let value = document.createElement("span");
         value.style.fontSize = ".8em";
         value.style.userSelect = "none";
@@ -199,10 +196,9 @@ export default {
 
         highlight.style.color = color;
         highlight.style.fontWeight = "bold";
-        highlight.style.textShadow = "1px 1px 0 rgba(0,0,0,.25)";
 
-        highlight.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
-        text.innerHTML = selectedLayerStyle.legendText[legendMainText][1];
+        //highlight.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
+        text.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
         value.appendChild(highlight);
         value.appendChild(text);
 
@@ -234,6 +230,7 @@ $fontSizeDesktop: 0.9em;
   border-radius: $borderRadius;
   border: $border;
   max-width: 280px;
+  width: 280px;
 
   p {
     margin: 0 5px 0 0;
