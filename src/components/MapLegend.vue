@@ -229,7 +229,6 @@ $fontSizeDesktop: 0.9em;
   border-radius: $borderRadius;
   border: $border;
   max-width: 280px;
-  width: 280px;
 
   p {
     margin: 0 5px 0 0;
@@ -240,6 +239,7 @@ $fontSizeDesktop: 0.9em;
 
 #map_legend_container{
   display: none;
+  width: 280px;
 }
 
 #collapsedLegend{
