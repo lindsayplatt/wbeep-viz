@@ -197,7 +197,6 @@ export default {
         highlight.style.color = color;
         highlight.style.fontWeight = "bold";
 
-        //highlight.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
         text.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
         value.appendChild(highlight);
         value.appendChild(text);
