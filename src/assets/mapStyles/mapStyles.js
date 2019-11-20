@@ -45,7 +45,7 @@ export default {
             {
                 'id': 'background',
                 'paint': {
-                    'background-color': '#F5F5F5'
+                    'background-color': 'hsl(47, 26%, 88%)'
                 },
                 'type': 'background',
                 'showButtonLayerToggle': false
@@ -287,7 +287,7 @@ export default {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'fill-color': '#F5F5F5'
+                    'fill-color': 'hsl(47, 26%, 88%)'
                 },
                 'showButtonLayerToggle': false
             },
