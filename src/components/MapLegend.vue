@@ -199,7 +199,6 @@ export default {
 
         highlight.style.color = color;
         highlight.style.fontWeight = "bold";
-        highlight.style.textShadow = "1px 1px 0 rgba(0,0,0,.25)";
 
         highlight.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
         text.innerHTML = selectedLayerStyle.legendText[legendMainText][1];
