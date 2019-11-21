@@ -67,8 +67,7 @@ export default {
                             ['high','#337598'],
                             ['average','#C8D3BA'],
                             ['low', '#BDAD9D'],
-                            ['very low','#967a4a'],
-                            ['Undefined','rgba(237, 236, 232, 1)']
+                            ['very low','#967a4a']
                         ]
                     },
                     'fill-opacity': ['case',
@@ -79,12 +78,11 @@ export default {
                 },
                 'showButtonLayerToggle': false,
                 'legendText': {
-                    'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
-                    'high': ['',''],
-                    'average': ['Common',' \- today is normal for this region'],
-                    'low': ['',''],
-                    'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
-                    'no data': ['','No Data']
+                    'very high': ['Very High'],
+                    'high': ['High'],
+                    'average': ['Normal'],
+                    'low': ['Low'],
+                    'very low': ['Very Low']
                 }
             },
             {
