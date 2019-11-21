@@ -78,11 +78,11 @@ export default {
                 },
                 'showButtonLayerToggle': false,
                 'legendText': {
-                    'very high': ['Wetter than normal'],
-                    'high': ['Trending towards wetter than normal'],
+                    'very high': ['Very High'],
+                    'high': ['High'],
                     'average': ['Normal'],
-                    'low': ['Trending towards drier than normal'],
-                    'very low': ['Drier than normal']
+                    'low': ['Low'],
+                    'very low': ['Very Low']
                 }
             },
             {
