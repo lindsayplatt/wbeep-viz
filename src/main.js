@@ -72,6 +72,11 @@ const router = new VueRouter({
 
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
+  commands: {
+    trackName (eventName, action, label) {
+      this.$ga.event(eventName, action, label)
+    }
+  },
   router
 })
 
