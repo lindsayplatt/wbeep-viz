@@ -15,7 +15,7 @@
         >
           <button
             id="aboutButton"
-            @click="runGoogleAnalytics('About Button', 'click', 'user went to about page')"
+            v-ga="$ga.commands.trackName.bind(this, 'About Button', 'click', 'user went to about page')"
           >
             About
           </button>
@@ -138,13 +138,10 @@
             }
         },
         methods: {
-            runGoogleAnalytics(eventName, action, label) {
-                this.$ga.event(eventName, action, label)
-            },
             onMapLoaded(event) {
                 // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make
                 // a local variable and assign our GA event tracking method to that.
-                let googleAnalytics = this.runGoogleAnalytics;
+
 
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 

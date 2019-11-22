@@ -1,7 +1,11 @@
 <template>
   <div id="footerEmailContainer">
     <p>
-      Have feedback? Let us know by sending an email to <a href="mailto:gs-w_onhm@usgs.gov">gs-w_onhm@usgs.gov</a>
+      Have feedback? Let us know by sending an email to
+      <a
+        v-ga="$ga.commands.trackName.bind(this, 'feedback email', 'click', 'user selected feedback email link')"
+        href="mailto:gs-w_onhm@usgs.gov"
+      >gs-w_onhm@usgs.gov</a>
     </p>
   </div>
 </template>
