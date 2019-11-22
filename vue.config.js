@@ -1,4 +1,7 @@
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'prod_tier'
+            ? '/estimated-availability/'
+            : '/',
     transpileDependencies: ['vue-mapbox'],
     chainWebpack: (config) => {
         const svgRule = config.module.rule('svg');

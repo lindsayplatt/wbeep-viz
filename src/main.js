@@ -55,6 +55,7 @@ Vue.use(VueRouter)
 Vue.use(browserDetect)
 
 const router = new VueRouter({
+  base: process.env.VUE_APP_BASE_URL,
   routes: [
     {
       path: '/',
