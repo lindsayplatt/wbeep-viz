@@ -120,7 +120,7 @@
                 container: "map",
                 zoom: 3,
                 minZoom: 2,
-                maxZoom: 11,
+                maxZoom: 6,
                 center: [-95.7129, 37.0902],
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
@@ -138,12 +138,14 @@
             }
         },
         methods: {
+            runGoogleAnalytics(eventName, action, label) {
+                this.$ga.event(eventName, action, label)
+            },
             onMapLoaded(event) {
+                let map = event.map; // This gives us access to the map as an object but only after the map has loaded
                 // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make
                 // a local variable and assign our GA event tracking method to that.
-
-
-                let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+                let googleAnalytics = this.runGoogleAnalytics;
 
                 //This solves the mysterious whitespace by resizing the map to the correct size.
                 map.resize();

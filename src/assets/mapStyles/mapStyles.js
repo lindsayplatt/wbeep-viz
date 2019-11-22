@@ -11,25 +11,25 @@ export default {
                 type: 'vector',
                 'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misctilesets/usstatecounties/{z}/{x}/{y}.pbf'],
                 'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 2
-                'maxzoom': 10  // setting this to the real tile extent is 10
+                'maxzoom': 6  // setting this to equal the maxzoom of main map, real tile extent is 10
             },
             HRU: {
                 type: 'vector',
                 'tiles': hruTileUrl,
                 'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
-                'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 11
+                'maxzoom': 6  // setting this to equal the maxzoom of main map, real tile extent is 11
             },
             nhd_streams_grouped: {
                 type: 'vector',
                 'tiles':['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams_grouped/{z}/{x}/{y}.pbf'],
                 'minzoom': 2, // setting this to equal the minzoom of main map, real tile extent is 0
-                'maxzoom': 9  // setting this to equal the maxzoom of main map, real tile extent is 10
+                'maxzoom': 6  // setting this to equal the maxzoom of main map, real tile extent is 10
             },
             openmaptiles: {
                 type: 'vector',
                 'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/openmaptiles/baselayers/{z}/{x}/{y}.pbf'],
                 'minzoom': 2,
-                'maxzoom': 14
+                'maxzoom': 6
             },
             hillshade: {
                 type: 'raster',
