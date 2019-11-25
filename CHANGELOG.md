@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Rivers turn on no matter the zoom
 - Added the All USGS Google Analytics script
 - Added page to intercept Internet Explorer users and require use of another browser
 - Map Resize solution
