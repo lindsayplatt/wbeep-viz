@@ -216,8 +216,6 @@ export default {
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'least_detail',
-                'minzoom': 8,
-                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
@@ -233,8 +231,6 @@ export default {
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'medium_detail',
-                'minzoom': 8,
-                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
@@ -250,8 +246,6 @@ export default {
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'most_detail',
-                'minzoom': 8,
-                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
