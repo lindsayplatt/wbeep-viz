@@ -33,7 +33,7 @@
 
 <script>
     export default {
-        name: 'About',
+        name: 'Error404',
         props: {
             title: {
                 type: String,

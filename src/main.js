@@ -2,14 +2,10 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
-import VueRouter from 'vue-router'
+import router from "./router";
 import App from './App.vue'
 import uswds from 'uswds'
 import browserDetect from 'vue-browser-detect-plugin'
-
-import About from './components/About.vue'
-import MapBox from './components/MapBox.vue'
-import Error404 from './views/Error404'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -52,29 +48,7 @@ library.add(faInstagram)
 
 Vue.config.productionTip = false
 Vue.use(uswds)
-Vue.use(VueRouter)
 Vue.use(browserDetect)
-
-const router = new VueRouter({
-  base: '*',
-  routes: [
-    {
-      path: '/',
-      name: 'MapBox',
-      component: MapBox
-    },
-    {
-      path: '/about',
-      name: 'About',
-      component: About
-    },
-    {
-      path: '/*',
-      component: Error404
-    }
-  ],
-  mode: 'history'
-})
 
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
