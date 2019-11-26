@@ -34,14 +34,13 @@
               />
             </div>
             <p class="example">
-              Q: Can I compare Florida to Arizona?
+              Q: Can I compare the natural water storage values from one region to another?
             </p>
             <p class="example">
-              A: Sort Of.
+              A: Yes and no. Natural water storage is determined daily relative to past storage for that specific region.
             </p>
             <p>
-              The daily water status is determined based on the water norms of each region.
-              So, if the following were statuses for Arizona and Florida.
+              For example, if a sample area near Boise, Idaho looks like this:
             </p>
             <div id="states">
               <div
@@ -63,19 +62,8 @@
                 />
               </div>
             </div>
-            <p>Then below are incorrect and correct interpretations</p>
+            <p>Then below are correct and incorrect interpretations:</p>
             <div id="interpretations">
-              <div
-                id="incorrect"
-                class="interpretation"
-              >
-                <div class="interpretationIcon">
-                  <font-awesome-icon icon="thumbs-down" />
-                </div>
-                <div class="interpretationText">
-                  Florida has less water than Arizona.
-                </div>
-              </div>
               <div
                 id="correct"
                 class="interpretation"
@@ -86,7 +74,18 @@
                 <div
                   class="interpretationText"
                 >
-                  Florida is usually more wet than it is today, whereas Arizona is usually drier than it is today.
+                  Region 3 has more water than normal, whereas region 2 has less water than normal. Region 1 has a normal water storage value for today.
+                </div>
+              </div>
+              <div
+                id="incorrect"
+                class="interpretation"
+              >
+                <div class="interpretationIcon">
+                  <font-awesome-icon icon="thumbs-down" />
+                </div>
+                <div class="interpretationText">
+                  Region 3 has more water than regions 1 and 2.
                 </div>
               </div>
             </div>

@@ -126,7 +126,7 @@
                 bearing: 0, // starting rotation of the map from 0 to 360
                 hoveredHRUId: null,
                 maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
-                legendTitle: "Latest Available Water Status",
+                legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
                 isInternetExplorer: false
             };
