@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Make legend wider to fit title
 - Drop drop shadow on text, use plain text instead of colored
 - Remove 'No Data' category from our display and map
+- Revise legend text
 
 ## [0.0.10]
 - Set up the tiers to use tier-specific resources
