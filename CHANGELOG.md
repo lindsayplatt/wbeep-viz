@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Rivers turn on no matter the zoom
 - Changed to hash routing to accommodate the new nested folder structure on AWS
 - Added a custom 404 error page
 - Added the All USGS Google Analytics script
