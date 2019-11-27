@@ -8,16 +8,16 @@
     "IE 11"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve --mode test_tier",
-    "serve-test": "vue-cli-service serve --mode test_tier",
-    "serve-qa": "vue-cli-service serve --mode qa_tier",
-    "serve-beta": "vue-cli-service serve --mode beta_tier",
-    "serve-prod": "vue-cli-service serve --mode prod_tier",
-    "build": "vue-cli-service build --mode prod_tier",
-    "build-test": "vue-cli-service build --mode test_tier",
-    "build-qa": "vue-cli-service build --mode qa_tier",
-    "build-beta": "vue-cli-service build --mode beta_tier",
-    "build-prod": "vue-cli-service build --mode prod_tier",
+    "serve": "NODE_ENV=development vue-cli-service serve --mode test_tier",
+    "serve-test": "NODE_ENV=development vue-cli-service serve --mode test_tier",
+    "serve-qa": "NODE_ENV=development vue-cli-service serve --mode qa_tier",
+    "serve-beta": "NODE_ENV=development vue-cli-service serve --mode beta_tier",
+    "serve-prod": "NODE_ENV=development vue-cli-service serve --mode prod_tier",
+    "build": "NODE_ENV=production vue-cli-service build --mode prod_tier",
+    "build-test": "NODE_ENV=production vue-cli-service build --mode test_tier",
+    "build-qa": "NODE_ENV=production vue-cli-service build --mode qa_tier",
+    "build-beta": "NODE_ENV=production vue-cli-service build --mode beta_tier",
+    "build-prod": "NODE_ENV=production vue-cli-service build --mode prod_tier",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "vue-svg-loader": "^0.15.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^3.6.0"
   }
 }
