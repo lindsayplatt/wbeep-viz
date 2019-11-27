@@ -1,10 +1,4 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-    configureWebpack: {
-        plugins: [
-            new BundleAnalyzerPlugin()
-        ]
-    },
     publicPath: '.',
     transpileDependencies: ['vue-mapbox'],
     chainWebpack: (config) => {
