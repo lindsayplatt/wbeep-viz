@@ -119,8 +119,8 @@
                 mapStyle: mapStyles.style,
                 container: "map",
                 zoom: 3,
-                minZoom: 0,
-                maxZoom: 22,
+                minZoom: 2,
+                maxZoom: 6,
                 center: [-95.7129, 37.0902],
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
