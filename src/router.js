@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import MapBox from './components/MapBox.vue';
-import About from './components/About.vue';
+import About from './views/About.vue';
 import Error404 from "./views/Error404";
 
 
