@@ -49,9 +49,5 @@
     margin-right: auto;
     max-width: 1200px;
     padding: 2em;
-
-    .usa-banner__button {
-
-    }
   }
 </style>

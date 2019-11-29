@@ -9,31 +9,14 @@
     </div>
 
     <p>
-      <router-link to="/">
-        The National Integrated Water Availability Assessments map
-      </router-link> shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.  Natural water storage shown here includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and shallow groundwater. It does not include water in rivers or deep groundwater. Map shading indicates the current natural water storage relative to historical conditions for this time of year.
-    </p>
-
-    <p>
-      <em>Why is the &quot;latest available&quot; map not for today?</em> The latest model run requires a summary of the weather (precipitation and temperature) for a complete day. A sequence of operations begins at midnight starting with collecting observed weather data and ending several hours later with estimates of natural water storage and an updated map. For this reason, depending on the time of day relative to the latest update, the date at the top of the map will be yesterday or the day before yesterday. If the date is more than two days ago, that is an indication that some part of the update operations did not run successfully and the team is working to bring the system back online.
-    </p>
-
-    <p>
-      Estimates of natural water storage are calculated using the National Hydrologic Model (NHM) Infrastructure (Regan et al. 2019)
-      configured with the <a
-        href="https://www.usgs.gov/software/precipitation-runoff-modeling-system-prms"
-        target="_blank"
-        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for precipitation-runoff-modeling-system-prms')"
-      >Precipitation Runoff Modeling
-        System</a> (PRMS; Markstrom et al., 2015). The <a
-        href="http://www.climatologylab.org/gridmet.html"
-        target="_blank"
-        @click="runGoogleAnalytics('about page', 'click', 'clicked text link for gridMET')"
-      >gridMET</a> daily weather dataset is used to force both historical and latest-available model runs (Abatzoglou, 2013). The PRMS is a modular, deterministic, distributed-parameter, physical process-based hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the references below.
+      The National Integrated Water Availability Assessments map shows the latest available daily estimates of natural
+      water storage for approximately 110,000 regions across the conterminous U.S.  Natural water storage shown here
+      includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and
+      shallow groundwater. It does not include water in rivers or deep groundwater. Map shading indicates the current
+      natural water storage relative to historical conditions for this time of year.
     </p>
 
     <h2>About IWAAs</h2>
-
     <p>
       The <a
         href="https://www.usgs.gov/mission-areas/water-resources/science/integrated-water-availability-assessments-iwaas"
@@ -135,14 +118,13 @@
         target="_blank"
       >https://doi.org/10.3133/tm6B7</a>
     </p>
-
-    <p>
-      <router-link to="/">
-        <button @click="runGoogleAnalytics('about page', 'click', 'user clicked returned to map button')">
-          Return to map
-        </button>
-      </router-link>
-    </p>
+    <button
+      v-ga="$ga.commands.trackName.bind(this, 'Button - close about text', 'click', 'user closed the box for About text')"
+      class="usa-button--inverse"
+      @click="toggleHiddenAttribute('.sometimes-hidden')"
+    >
+      close
+    </button>
   </div>
 </template>
 
@@ -167,12 +149,17 @@
         methods: {
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.event(eventName, action, label)
-            }
+            },
+            toggleHiddenAttribute(cssClassName) {
+                let targetElement = document.querySelector(cssClassName);
+                targetElement.hidden ? targetElement.hidden = false : targetElement.hidden = true;
+            },
         }
     }
 </script>
 
 <style scoped lang="scss">
+  body { background-color: gray }
   h1 {
     font-size: 1.2rem;
   }
@@ -180,8 +167,11 @@
     font-size: 1rem;
   }
   #about {
-    margin: 1em auto;
+    background: white;
+    margin: 0em auto;
+    padding: 3em 2em 2em 2em;
     width: 85%;
+    max-width: 1200px;
   }
   button{
     margin: 0 0 10px 0;

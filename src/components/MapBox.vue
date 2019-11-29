@@ -9,17 +9,18 @@
         <h1 class="title-text">
           {{ title }} {{ developmentTier }}
         </h1>
-        <router-link
-          v-if="!isInternetExplorer"
-          to="/about"
+        <button
+          id="aboutButton"
+          @click="toggleHiddenAttribute('.sometimes-hidden')"
         >
-          <button
-            id="aboutButton"
-            v-ga="$ga.commands.trackName.bind(this, 'About Button', 'click', 'user went to about page')"
-          >
-            About
-          </button>
-        </router-link>
+          About
+        </button>
+      </div>
+      <div
+        class="sometimes-hidden"
+        hidden
+      >
+        <About />
       </div>
     </div>
     <InternetExplorerPage v-if="isInternetExplorer" />
@@ -29,7 +30,10 @@
     >
       <MapSubtitle />
       <MapAvailableDataDate />
-      <MapLegend :legend-title="legendTitle" />
+      <MapLegend
+        :legend-title="legendTitle"
+        class="sometimes-hidden"
+      />
       <MglMap
         id="mapgl"
         :container="container"
@@ -51,16 +55,18 @@
           :compact="false"
           custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         />
-        <MglScaleControl
-          position="bottom-right"
-          unit="imperial"
-        />
+
         <MglNavigationControl
           position="top-left"
           :show-compass="false"
         />
-        <MglGeolocateControl position="top-right" />
-        <MglFullscreenControl position="top-right" />
+        <QuestionControl />
+        <MglScaleControl
+          position="bottom-right"
+          unit="imperial"
+        />
+        <MglFullscreenControl position="bottom-right" />
+        <MglGeolocateControl position="bottom-right" />
         <MapLayers />
       </MglMap>
     </div>
@@ -77,6 +83,7 @@
     import MapLegend from "./MapLegend";
     import MapLayers from "./MapLayers";
     import { icon } from "@fortawesome/fontawesome-svg-core";
+    import QuestionControl from "./QuestionControl";
 
     import {
         MglMap,
@@ -87,10 +94,12 @@
         MglAttributionControl
     } from "vue-mapbox";
     import mapStyles from "../assets/mapStyles/mapStyles";
+    import About from "../views/About";
 
     export default {
         name: "MapBox",
         components: {
+            About,
             LoadingScreen,
             InternetExplorerPage,
             MglMap,
@@ -102,7 +111,8 @@
             MglScaleControl,
             MglAttributionControl,
             MapLegend,
-            MapLayers
+            MapLayers,
+            QuestionControl
         },
         props: {
             title: {
@@ -133,16 +143,20 @@
         },
         created() {
             // We are ending support for Internet Explorer, so let's test to see if the browser used is IE.
-            if (this.$browserDetect.isIE) {
-                this.isInternetExplorer = true;
-            }
+            this.$browserDetect.isIE ? this.isInternetExplorer = true : this.isInternetExplorer = false;
         },
         methods: {
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.event(eventName, action, label)
             },
+            toggleHiddenAttribute(cssClassName) {
+                let targetElements = document.querySelectorAll(cssClassName);
+                targetElements.forEach(element => element.hidden ? element.hidden = false : element.hidden = true);
+            },
+
             onMapLoaded(event) {
-                let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+                let map = event.map; // This gives us access to the map as an object but only after the map has loaded.
+
                 // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make
                 // a local variable and assign our GA event tracking method to that.
                 let googleAnalytics = this.runGoogleAnalytics;
@@ -503,7 +517,9 @@
       flex: 1;
       height: auto;
     }
-
+    .sometimes-hidden {
+      background-color: #00264c;
+    }
   }
 </style>
 <style lang="scss">

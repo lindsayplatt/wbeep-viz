@@ -47,6 +47,11 @@
       display: flex;
       flex-direction: column;
     }
-
+  }
+  /* Styles for Custom Map Controls (the button that are within the map) */
+  .mapboxgl-ctrl .icon-map-control svg {
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
   }
 </style>

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import MapBox from './components/MapBox.vue';
-import About from './views/About.vue';
+import QuestionsAndAnswers from './views/QuestionsAndAnswers.vue';
 import Error404 from "./views/Error404";
 
 Vue.use(Router);
@@ -17,9 +17,9 @@ export default new Router({
             component: MapBox
         },
         {
-            path: '/about',
-            name: 'About',
-            component: lazyLoad('About')
+            path: '/questionsandanswers',
+            name: 'QuestionsAndAnswers',
+            component: lazyLoad('QuestionsAndAnswers')
         },
         {
             path: "/404",

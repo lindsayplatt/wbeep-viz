@@ -27,7 +27,7 @@ export default {
           this.control.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
           this.button = document.createElement("button");
           this.button.id = "layersIcon";
-          this.button.className = "mapboxgl-ctrl-icon maplayersIcon";
+          this.button.className = "mapboxgl-ctrl-icon icon-map-control";
           this.button.setAttribute("aria-label", "layer select button" );
           this.button.onclick = function(e) {
               googleAnalytics('layers-icon', 'click', 'user opened layers menu');
@@ -60,10 +60,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.mapboxgl-ctrl .maplayersIcon svg {
-  width: 18px;
-  height: 18px;
-  margin-top: 4px;
-}
-</style>
