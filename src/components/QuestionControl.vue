@@ -28,7 +28,7 @@
                         this.control.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
                         this.button = document.createElement("button");
                         this.button.id = "icon-map-control-question";
-                        this.button.className = "mapboxgl-ctrl-icon icon-map-control";
+                        this.button.className = "mapboxgl-ctrl-icon icon-map-control icon-map-control-question";
                         this.button.setAttribute("aria-label", "questions" );
                         this.button.onclick = function(e) {
                             googleAnalytics('about', 'click', 'user went to about page');
