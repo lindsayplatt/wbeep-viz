@@ -3,17 +3,23 @@
     <p>
       Have feedback? Let us know by sending an email to
       <a
-        v-ga="$ga.commands.trackName.bind(this, 'feedback email', 'click', 'user selected feedback email link')"
-        href="mailto:gs-w_onhm@usgs.gov"
+        v-ga="$ga.commands.trackName.bind(this, 'feedback email-prefooter', 'click', 'user selected feedback prefooter email link')"
+        :href="feedbackEmailAddress"
       >gs-w_onhm@usgs.gov</a>
     </p>
   </div>
 </template>
 <script>
 export default {
-    name: "FooterEmail"
+    name: "FooterEmail",
+    data() {
+        return {
+            feedbackEmailAddress: process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS
+        };
+    },
 }
 </script>
+
 <style scoped lang="scss">
     #footerEmailContainer{
         padding: 2px 10px;

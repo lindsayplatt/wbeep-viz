@@ -19,6 +19,7 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faWater } from '@fortawesome/free-solid-svg-icons'
 import { faQuestion} from "@fortawesome/free-solid-svg-icons";
+import { faBackward } from "@fortawesome/free-solid-svg-icons";
 
 // social icons
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
@@ -39,6 +40,7 @@ library.add(faMinus)
 library.add(faPlus)
 library.add(faWater)
 library.add(faQuestion)
+library.add(faBackward)
 
 // social icons
 library.add(faTwitterSquare)
