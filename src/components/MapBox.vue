@@ -61,7 +61,7 @@
         />
 
         <MglNavigationControl
-          position="top-left"
+          position="top-right"
           :show-compass="false"
         />
         <QuestionControl />
@@ -224,7 +224,7 @@
                 mapLayersToggleContainer.onclick = function(e){
                     e.stopPropagation();
                 }
-                exitIcon.onclick = function(e){
+                toggleExit.onclick = function(e){
                     e.stopPropagation();
                     contentToggle(mapLayersToggleContainer);
                 }

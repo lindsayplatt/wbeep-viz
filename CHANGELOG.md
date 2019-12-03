@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 - New Legend and Legend Modal functionality
+- Fixed issue where only the icon in close box was clickable
+- Fixed issue where zoom controls were covered by layers menu
 - Added question/answers page and link on map
 - reformatted About page
 - Rivers turn on no matter the zoom
