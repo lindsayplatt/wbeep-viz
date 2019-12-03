@@ -18,9 +18,14 @@ import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faWater } from '@fortawesome/free-solid-svg-icons'
+<<<<<<< HEAD
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { faList } from '@fortawesome/free-solid-svg-icons'
+=======
+import { faQuestion} from "@fortawesome/free-solid-svg-icons";
+import { faBackward } from "@fortawesome/free-solid-svg-icons";
+>>>>>>> e00075618f065aa10bfcb5256e0cfca8752b6f28
 
 // social icons
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
@@ -40,9 +45,14 @@ library.add(faThumbsDown)
 library.add(faMinus)
 library.add(faPlus)
 library.add(faWater)
+<<<<<<< HEAD
 library.add(faAngleDown)
 library.add(faAngleLeft)
 library.add(faList)
+=======
+library.add(faQuestion)
+library.add(faBackward)
+>>>>>>> e00075618f065aa10bfcb5256e0cfca8752b6f28
 
 // social icons
 library.add(faTwitterSquare)
