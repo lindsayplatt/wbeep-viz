@@ -1,108 +1,47 @@
 <template>
-  <div id="legend">
-    <div
-      id="map_legend_container"
-      class="map-overlay expandedLegend"
-    >
-      <div id="legendTitleInfoContainer">
-        <p>{{ legendTitle }}</p>
-        <div class="legendButton">
+  <div id="legendContainer">
+  <div id="tabs" v-show="!hidden">
+      <div id="minimizeTab" class="tab">
+        <a
+          id="legendMinimize"
+          class="tabIcon"
+          aria-label="close legend dialog box"
+          @click="runGoogleAnalytics('legend', 'click', 'user reduced legend'), legendToggle()"
+        >
+          <font-awesome-icon icon="angle-down" />
+        </a>
+      </div>
+      <div id="infoTab" class="tab">
           <a
-            id="legendInfoButton"
-            class="legendIcon"
-            aria-label="open information dialog box"
-            @click="runGoogleAnalytics('legend', 'click', 'user clicked info icon')"
-          >
-            <font-awesome-icon icon="info" />
-          </a>
-          <a
-            id="legendMinus"
-            class="legendIcon"
-            aria-label="close legend dialog box"
-            @click="runGoogleAnalytics('legend', 'click', 'user reduced legend')"
-          >
-            <font-awesome-icon icon="minus" />
-          </a>
-        </div>
-        <div id="legendModal">
-          <div id="legendModalContent">
-            <div id="exitlegendModal">
-              <font-awesome-icon
-                id="legendExit"
-                icon="times"
-                aria-label="legend exit"
-              />
-            </div>
-            <p class="example">
-              Q: Can I compare the natural water storage values from one region to another?
-            </p>
-            <p class="example">
-              A: Yes and no. Natural water storage is determined daily relative to past storage for that specific region.
-            </p>
-            <p>
-              For example, if a sample area near Boise, Idaho looks like this:
-            </p>
-            <div id="states">
-              <div
-                id="florida"
-                class="state"
-              >
-                <floridaSVG
-                  id="floridaSVG"
-                  class="statesvg"
-                />
-              </div>
-              <div
-                id="arizona"
-                class="state"
-              >
-                <arizonaSVG
-                  id="arizonaSVG"
-                  class="statesvg"
-                />
-              </div>
-            </div>
-            <p>Then below are correct and incorrect interpretations:</p>
-            <div id="interpretations">
-              <div
-                id="correct"
-                class="interpretation"
-              >
-                <div class="interpretationIcon">
-                  <font-awesome-icon icon="thumbs-up" />
-                </div>
-                <div
-                  class="interpretationText"
-                >
-                  Region 3 has more water than normal, whereas region 2 has less water than normal. Region 1 has a normal water storage value for today.
-                </div>
-              </div>
-              <div
-                id="incorrect"
-                class="interpretation"
-              >
-                <div class="interpretationIcon">
-                  <font-awesome-icon icon="thumbs-down" />
-                </div>
-                <div class="interpretationText">
-                  Region 3 has more water than regions 1 and 2.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          id="legendInfoButton"
+          class="tabIcon"
+          aria-label="open information dialog box"
+          @click="runGoogleAnalytics('legend', 'click', 'user clicked info icon'), modalToggle()"
+        >
+          <font-awesome-icon icon="info" v-if="!infoShowing"/>
+          <font-awesome-icon icon="list" v-else/>
+        </a>
       </div>
     </div>
-    <div id="collapsedLegend">
-      <span>Legend</span>
-      <div class="legendButton">
+    <div id="legend" v-show="!hidden && !infoShowing">
+      <div id="legendTitle">
+        <p>{{ legendTitle }}</p>
+      </div>
+      <div id="keysAndText"></div>
+    </div>
+    <LegendModal @clickedX="modalToggle()" v-show="infoShowing && !hidden"/>
+    <div id="collapsedLegend" v-show="hidden">
+      <div id="collaspedLegendText">
+        <p>Legend</p>
+      </div>
+      <div id="collapsedLegendIcon">
         <a
           id="legendPlus"
           class="legendIcon"
           aria-label="close extended legend box"
-          @click="runGoogleAnalytics('legend', 'click', 'user expanded legend')"
+          @click="runGoogleAnalytics('legend', 'click', 'user expanded legend'), legendToggle()"
         >
-          <font-awesome-icon icon="plus" />
+          <font-awesome-icon icon="angle-left" />
         </a>
       </div>
     </div>
@@ -111,14 +50,13 @@
 
 <script>
 import mapStyles from "../assets/mapStyles/mapStyles";
-import floridaSVG from "../images/states/florida.svg";
-import arizonaSVG from "../images/states/arizona.svg";
+import LegendModal from "./LegendModal";
+
 
 export default {
   name: "MapLegend",
-  components: {
-    floridaSVG,
-    arizonaSVG
+  components:{
+    LegendModal
   },
   props: {
     legendTitle: {
@@ -128,16 +66,24 @@ export default {
   },
   data() {
     return {
-      legend: null
+      legend: null,
+      hidden: false,
+      infoShowing: false
     };
   },
   mounted() {
     this.createLegend();
   },
   methods: {
-      runGoogleAnalytics(eventName, action, label) {
-          this.$ga.event(eventName, action, label)
-      },
+    runGoogleAnalytics(eventName, action, label) {
+      this.$ga.event(eventName, action, label);
+    },
+    legendToggle(){
+      this.hidden = !this.hidden;
+    },
+    modalToggle(){
+      this.infoShowing = !this.infoShowing;
+    },
     createLegend() {
       // get the style layers from the map styles object
       let styleLayers = mapStyles.style.layers;
@@ -155,8 +101,8 @@ export default {
           let styleSheetColorLabel = null;
           for (let index = 0; index < styleSheetColorStops.length; index++) {
             // Make a label for the blank and missing data
-            
-              styleSheetColorLabel = styleSheetColorStops[index][0];
+
+            styleSheetColorLabel = styleSheetColorStops[index][0];
             legendColorValues.push(styleSheetColorStops[index][1]);
             styleSheetCategories.push(styleSheetColorLabel);
           }
@@ -164,11 +110,7 @@ export default {
       }
 
       let legend = this.legend;
-      legend = document.getElementById("map_legend_container");
-      let florida = document.getElementById("floridaSVG");
-      let arizona = document.getElementById("arizonaSVG");
-      florida.style.fill = legendColorValues[4];
-      arizona.style.fill = legendColorValues[0];
+      legend = document.getElementById("keysAndText");
 
       for (let index = 0; index < styleSheetCategories.length; index++) {
         let legendMainText = styleSheetCategories[index];
@@ -176,29 +118,24 @@ export default {
         let item = document.createElement("div");
         let keyContainer = document.createElement("div");
         let textContainer = document.createElement("div");
-        let key = document.createElement("span");
+        let key = document.createElement("div");
+        let value = document.createElement("div");
 
+        item.style.minHeight = "20px";
         item.style.display = "flex";
-        item.style.margin = "0 0 5px 0";
-        item.style.padding = "0 10px 0 0";
+
+        keyContainer.style.flex = 1;
+
+        textContainer.style.flex = 1;
+
         key.style.backgroundColor = color;
-        key.style.border = "1px solid rgb(190,190,190)"
-        key.style.margin = " 0 5px 0 10px";
-        key.style.display = "inline-block";
-        key.style.height = "30px";
-        key.style.width = "30px";
-        let value = document.createElement("span");
-        value.style.fontSize = ".8em";
+        key.style.height = "25px";
+
+        value.style.fontSize = ".85em";
         value.style.userSelect = "none";
-        let highlight = document.createElement("span");
-        let text = document.createElement("span");
-
-        highlight.style.color = color;
-        highlight.style.fontWeight = "bold";
-
-        text.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
-        value.appendChild(highlight);
-        value.appendChild(text);
+        value.style.lineHeight = "25px";
+        value.style.paddingLeft = "10px";
+        value.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
 
         keyContainer.appendChild(key);
         textContainer.appendChild(value);
@@ -213,203 +150,124 @@ export default {
 
 <style scoped lang="scss">
 $border: 1px solid rgb(200, 200, 200);
-$background: rgba(255, 255, 255, 0.9);
+$background: rgb(255, 255, 255);
 $borderRadius: 5px;
 $fontSizeMobile: 0.8em;
 $fontSizeDesktop: 0.9em;
-#legend {
+$arrowHeight: 21px;
+$arrowWidth: 21px;
+$buttonColorActive: #003366;
+$buttonActiveTextColor: #fff;
+
+#legendContainer {
+  display: flex;
+  min-height: 20px;
+  min-width: 100px;
   position: absolute;
-  z-index: 1000;
   bottom: 10px;
   left: 10px;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  background: $background;
-  margin-right: 120px;
-  border-radius: $borderRadius;
-  border: $border;
-  max-width: 280px;
+  z-index: 1000;
 
-  p {
-    margin: 0 5px 0 0;
-    line-height: 30px;
-    user-select: none;
+  p{
+    margin:0;
+  }
+
+  a{
+    display: inline-block;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
   }
 }
 
-#map_legend_container{
-  display: none;
-  width: 280px;
+#legend{
+  background: $background;
+  border: $border;
+  border-radius: $borderRadius 0 $borderRadius $borderRadius;
+  overflow: hidden;
 }
 
 #collapsedLegend{
-  width: 105px;
+  display: flex;
   background: $background;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 0 0 10px;
   border-radius: $borderRadius;
-  border: $border;
-  position: relative;
 }
 
-#legendTitleInfoContainer {
-  position: relative;
-  margin: 0 0 5px 0;
-  border-bottom: $border;
+#collaspedLegendText{
+  flex: 1;
+  padding: 5px 5px;
+  font-size:.9em;
+}
 
-  p {
-    padding: 0 0 0 10px;
+#collapsedLegendIcon{
+  width: 25px;
+  border-left: $border;
+
+  a{
+    &:active{
+      background: $buttonColorActive;
+      color: $buttonActiveTextColor;
+    }
+    svg{
+      height: $arrowHeight;
+      width: $arrowWidth;
+      margin: 4px 0 0 0;
+    }
   }
 }
 
-.legendButton {
-  width: auto;
-  height: 30px;
-  position: absolute;
-  top: 0;
-  right: 0;
+#tabs {
   display: flex;
+  flex-direction: column;
+  height: 60px;
+  width: 25px;
+  order: 2;
+  background: $background;
+  border-radius: 0 $borderRadius $borderRadius 0;
+  border-top: $border;
 }
 
-.legendIcon {
-  display: block;
-  width: 30px;
-  height: 30px;
+.tab {
+  flex: 1;
+}
+
+.tabIcon {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
   text-align: center;
-  outline: none;
-  border-left: $border;
   cursor: pointer;
 
   &:active {
-    background: #003366;
-    color: #ffffff;
+    background: $buttonColorActive;
+    color: $buttonActiveTextColor;
   }
 
   svg {
-    margin: 5px 0 0 0;
-    width: 18px;
-    height: 18px;
+    margin: 7px 0 0 0;
   }
 }
 
-#legendModal {
-  background: $background;
-  border: $border;
-  border-radius: $borderRadius;
-  min-height: 100px;
-  max-width: 280px;
-  position: absolute;
-  left: 0;
-  bottom: 40px;
-  padding: 5px 10px;
-  display: none;
+#legendMinimize{
+  border-bottom: $border;
+  svg{
+    height: $arrowHeight;
+    width: $arrowWidth;
+    margin: 3px 0 0 0;
+  }
+}
 
+#legendTitle {
+  padding: 5px 5px;
+  border-bottom: $border;
   p {
-    line-height: 1.1em;
-    font-size: $fontSizeMobile;
-    padding: 0;
-  }
-
-  .example {
-    margin: 0 0 5px 0;
-    font-weight: bold;
-    font-size: $fontSizeMobile;
+    font-size: 0.9em;
   }
 }
 
-#exitlegendModal {
-  text-align: right;
+@media screen and (min-width: 600px){
 
-  svg {
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
-#states {
-  min-height: 10px;
-  margin: 10px 0;
-  display: flex;
-  align-content: space-between;
-}
-
-.state {
-  flex: 1;
-  height: 80px;
-}
-
-#florida {
-  margin-right: 10px;
-}
-
-.statesvg {
-  height: 100%;
-  width: 100%;
-  display: block;
-  margin: auto;
-}
-
-#interpretations {
-  margin: 10px 0;
-  font-size: $fontSizeMobile;
-
-  #incorrect {
-    margin: 0 0 15px 0;
-
-    .interpretationIcon {
-      color: #e54b4b;
-    }
-  }
-
-  #correct {
-    .interpretationIcon {
-      color: #b9d7a7;
-    }
-  }
-
-  .interpretation {
-    display: flex;
-
-    .interpretationIcon {
-      width: 25px;
-      height: 25px;
-      margin: 0 5px 0 0;
-
-      svg {
-        width: 25px;
-        height: 25px;
-      }
-    }
-
-    .interpretationText {
-      flex: 1;
-    }
-  }
-}
-
-@media screen and (min-width: 600px) {
-
-  #map_legend_container{
-    display: block;
-  }
-  #collapsedLegend{
-    display: none;
-  }
-  #legendModal {
-    p {
-      font-size: $fontSizeDesktop;
-    }
-    .example {
-      font-size: $fontSizeDesktop;
-    }
-  }
-  #interpretations {
-    font-size: $fontSizeDesktop;
-  }
-
-  .state {
-    height: 100px;
-  }
+  
 }
 </style>
