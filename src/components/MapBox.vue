@@ -331,56 +331,7 @@
                     }
                     hoveredHRUId = null;
                 });
-                //Subtitle and legend information Modal functionality
-                let infoButton = document.getElementById("subtitleInfoButton");
-                let modal = document.getElementById("subtitleInfoModal");
-                let legendInfoButton = document.getElementById("legendInfoButton");
-                let legendModal = document.getElementById("legendModal");
-                let legendExit = document.getElementById("legendExit");
-                let legendCollapseButton = document.getElementById("legendMinus");
-                let legendExpandButton = document.getElementById("legendPlus");
-                let legend = document.getElementById("map_legend_container");
-                let collapsedLegend = document.getElementById("collapsedLegend");
-
-                //Info Button Click Function
-                infoButton.onclick = function() {
-                    contentToggle(modal);
-                };
-                //Legend Modal functionality
-                legendInfoButton.onclick = function() {
-                    contentToggle(legendModal);
-                };
-                legendExit.onclick = function() {
-                    contentToggle(legendModal);
-                };
-
-                legendCollapseButton.onclick = function(){
-                    legendToggle(collapsedLegend, legend)
-                };
-
-                legendExpandButton.onclick = function(){
-                    legendToggle(collapsedLegend, legend)
-                };
-
-                let contentToggle = function(name) {
-                    if (name.style.display === "block") {
-                        name.style.display = "none";
-                    } else {
-                        name.style.display = "block";
-                    }
-                };
-
-                //legendModalToggle function
-                let legendToggle = function(name, flip) {
-                    if (name.style.display === "block") {
-                        name.style.display = "none";
-                        flip.style.display = "block";
-                    } else {
-                        name.style.display = "block";
-                        flip.style.display = "none";
-                    }
-                };
-
+                
                 // Next section adds the current zoom level display to the map for development purposes.
                 // The zoom level display should only show in 'development' versions of the application
                 if (process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY && process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true') {
@@ -487,12 +438,13 @@
 
   #mapContainer {
     position: relative;
-    height: 80vh;
+    height: 90vh;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 600px) and (min-height: 850px) {
     #viz_container {
       flex: 1;
       display: flex;

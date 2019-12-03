@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Removed subtitle modal functionality from MapBox and got it in its own component
+- New Legend and Legend Modal functionality
 - Fixed issue where only the icon in close box was clickable
 - Fixed issue where zoom controls were covered by layers menu
 - Added question/answers page and link on map
