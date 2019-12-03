@@ -348,9 +348,6 @@
                     }
                     hoveredHRUId = null;
                 });
-                //Subtitle and legend information Modal functionality
-                let infoButton = document.getElementById("subtitleInfoButton");
-                let modal = document.getElementById("subtitleInfoModal");
                 let legendInfoButton = document.getElementById("legendInfoButton");
                 let legendModal = document.getElementById("legendModal");
                 let legendExit = document.getElementById("legendExit");
@@ -359,10 +356,6 @@
                 let legend = document.getElementById("map_legend_container");
                 let collapsedLegend = document.getElementById("collapsedLegend");
 
-                //Info Button Click Function
-                infoButton.onclick = function() {
-                    contentToggle(modal);
-                };
                 //Legend Modal functionality
                 legendInfoButton.onclick = function() {
                     contentToggle(legendModal);
@@ -377,14 +370,6 @@
 
                 legendExpandButton.onclick = function(){
                     legendToggle(collapsedLegend, legend)
-                };
-
-                let contentToggle = function(name) {
-                    if (name.style.display === "block") {
-                        name.style.display = "none";
-                    } else {
-                        name.style.display = "block";
-                    }
                 };
 
                 //legendModalToggle function
