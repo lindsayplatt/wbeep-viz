@@ -242,8 +242,6 @@ $buttonActiveTextColor: #fff;
 }
 
 #tabs {
-  display: flex;
-  flex-direction: column;
   height: 60px;
   width: 25px;
   order: 2;
@@ -253,7 +251,7 @@ $buttonActiveTextColor: #fff;
 }
 
 .tab {
-  flex: 1;
+  height: 30px;
 }
 
 .tabIcon {
@@ -269,7 +267,7 @@ $buttonActiveTextColor: #fff;
   }
 
   svg {
-    margin: 7px 0 0 0;
+    margin: 7px 0 0 0
   }
 }
 
@@ -283,8 +281,10 @@ $buttonActiveTextColor: #fff;
 }
 
 #legendTitle {
-  padding: 5px 5px;
+  padding: 0 5px;
   border-bottom: $border;
+  height: 30px;
+  line-height: 30px;
   p {
     font-size: 0.9em;
   }
