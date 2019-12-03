@@ -289,9 +289,4 @@ $buttonActiveTextColor: #fff;
     font-size: 0.9em;
   }
 }
-
-@media screen and (min-width: 600px){
-
-  
-}
 </style>
