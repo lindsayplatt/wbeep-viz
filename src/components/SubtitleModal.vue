@@ -1,7 +1,13 @@
 <template>
   <div id="subtitleInfoModal">
     <div id="infoContainer">
-      <a id="exit" href="javascript:void(0);" aria-label="close more information box" class="icon" @click="handleClick">
+      <a
+        id="exit"
+        href="javascript:void(0);"
+        aria-label="close more information box"
+        class="icon"
+        @click="handleClick"
+      >
         <font-awesome-icon icon="times" />
       </a>
       <h2>About This Map</h2>
@@ -12,7 +18,9 @@
       <router-link to="/questionsandanswers">
         <button
           @click="runGoogleAnalytics('subtitle', 'click', 'user went to about page')"
-        >Learn More</button>
+        >
+          Learn More
+        </button>
       </router-link>
     </div>
   </div>

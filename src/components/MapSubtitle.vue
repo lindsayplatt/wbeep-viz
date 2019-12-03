@@ -17,7 +17,10 @@
       </div>
     </div>
     <div id="data-date-div" />
-    <SubtitleModal @clickedExit="subtitleModalToggle()" v-if="modalShowing"/>
+    <SubtitleModal
+      v-if="modalShowing"
+      @clickedExit="subtitleModalToggle()"
+    />
   </div>
 </template>
 
