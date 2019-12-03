@@ -1,33 +1,54 @@
 <template>
-    <div id="legendModal">
-        <div id="legendModalExit">
-            <a id="modalExitIcon">
-                <font-awesome-icon id="legendExit" icon="times" aria-label="legend exit" @click="handleClick()" />
-            </a>
-        </div>
-        <div id="legendModalContent">
-            <p class="bold">Q: Can I compare the natural water storage value from one region to another?</p>
-            <p class="bold">A: Yes and no.  Natural water storage is determined daily relative to past storage for that specific region.</p>
-            <hruSVG id="hruSVG"/>
-            <p>Below are correct and incorrect interpretations:</p>
-            <div id="correct" class="possibleInterpretation">
-                <div class="icon" id="thumbsUp">
-                    <font-awesome-icon icon="thumbs-up" />
-                </div>
-                <div class="interpretation">
-                    <p>Region 3 has more water than normal, whereas region 2 has less water than normal.  Region 1 has a normal water storage value for today.</p>
-                </div>
-            </div>
-            <div id="incorrect" class="possibleInterpretation">
-                <div class="icon" id="thumbsDown">
-                    <font-awesome-icon icon="thumbs-down" />
-                </div>
-                <div class="interpretation">
-                    <p>Region 3 has more water than regions 1 and 2.</p>
-                </div>
-            </div>
-        </div>
+  <div id="legendModal">
+    <div id="legendModalExit">
+      <a id="modalExitIcon">
+        <font-awesome-icon
+          id="legendExit"
+          icon="times"
+          aria-label="legend exit"
+          @click="handleClick()"
+        />
+      </a>
     </div>
+    <div id="legendModalContent">
+      <p class="bold">
+        Q: Can I compare the natural water storage value from one region to another?
+      </p>
+      <p class="bold">
+        A: Yes and no.  Natural water storage is determined daily relative to past storage for that specific region.
+      </p>
+      <hruSVG id="hruSVG" />
+      <p>Below are correct and incorrect interpretations:</p>
+      <div
+        id="correct"
+        class="possibleInterpretation"
+      >
+        <div
+          id="thumbsUp"
+          class="icon"
+        >
+          <font-awesome-icon icon="thumbs-up" />
+        </div>
+        <div class="interpretation">
+          <p>Region 3 has more water than normal, whereas region 2 has less water than normal.  Region 1 has a normal water storage value for today.</p>
+        </div>
+      </div>
+      <div
+        id="incorrect"
+        class="possibleInterpretation"
+      >
+        <div
+          id="thumbsDown"
+          class="icon"
+        >
+          <font-awesome-icon icon="thumbs-down" />
+        </div>
+        <div class="interpretation">
+          <p>Region 3 has more water than regions 1 and 2.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import hruSVG from "../images/states/example.svg"

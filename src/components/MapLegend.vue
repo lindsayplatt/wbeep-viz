@@ -1,7 +1,13 @@
 <template>
   <div id="legendContainer">
-  <div id="tabs" v-show="!hidden">
-      <div id="minimizeTab" class="tab">
+    <div
+      v-show="!hidden"
+      id="tabs"
+    >
+      <div
+        id="minimizeTab"
+        class="tab"
+      >
         <a
           id="legendMinimize"
           class="tabIcon"
@@ -11,26 +17,44 @@
           <font-awesome-icon icon="angle-down" />
         </a>
       </div>
-      <div id="infoTab" class="tab">
-          <a
+      <div
+        id="infoTab"
+        class="tab"
+      >
+        <a
           id="legendInfoButton"
           class="tabIcon"
           aria-label="open information dialog box"
           @click="runGoogleAnalytics('legend', 'click', 'user clicked info icon'), modalToggle()"
         >
-          <font-awesome-icon icon="info" v-if="!infoShowing"/>
-          <font-awesome-icon icon="list" v-else/>
+          <font-awesome-icon
+            v-if="!infoShowing"
+            icon="info"
+          />
+          <font-awesome-icon
+            v-else
+            icon="list"
+          />
         </a>
       </div>
     </div>
-    <div id="legend" v-show="!hidden && !infoShowing">
+    <div
+      v-show="!hidden && !infoShowing"
+      id="legend"
+    >
       <div id="legendTitle">
         <p>{{ legendTitle }}</p>
       </div>
-      <div id="keysAndText"></div>
+      <div id="keysAndText" />
     </div>
-    <LegendModal @clickedX="modalToggle()" v-show="infoShowing && !hidden"/>
-    <div id="collapsedLegend" v-show="hidden">
+    <LegendModal
+      v-show="infoShowing && !hidden"
+      @clickedX="modalToggle()"
+    />
+    <div
+      v-show="hidden"
+      id="collapsedLegend"
+    >
       <div id="collaspedLegendText">
         <p>Legend</p>
       </div>
