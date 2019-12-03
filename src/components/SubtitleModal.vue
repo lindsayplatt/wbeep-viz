@@ -6,7 +6,7 @@
         href="javascript:void(0);"
         aria-label="close more information box"
         class="icon"
-        @click="handleClick"
+        @click="$emit('clickedExit')"
       >
         <font-awesome-icon icon="times" />
       </a>
@@ -27,12 +27,7 @@
 </template>
 <script>
 export default {
-    name: "SubTitleModal",
-    methods:{
-        handleClick(){
-            this.$emit('clickedExit');
-        }
-    }
+    name: "SubTitleModal"
 };
 </script>
 <style scoped lang="scss">

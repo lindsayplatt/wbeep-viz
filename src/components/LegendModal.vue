@@ -6,7 +6,7 @@
           id="legendExit"
           icon="times"
           aria-label="legend exit"
-          @click="handleClick()"
+          @click="$emit('clickedX')"
         />
       </a>
     </div>
@@ -56,11 +56,6 @@ export default {
     name: "LegendModal",
     components:{
         hruSVG
-    },
-    methods:{
-        handleClick: function(){
-            this.$emit('clickedX');
-        }
     }
 }
 </script>

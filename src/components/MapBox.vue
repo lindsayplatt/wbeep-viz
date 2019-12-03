@@ -216,6 +216,13 @@
                         contentToggle(mapLayersToggleContainer);
                     }
                 }
+                let contentToggle = function(name) {
+                    if (name.style.display === "block") {
+                        name.style.display = "none";
+                    } else {
+                        name.style.display = "block";
+                    }
+                };
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
