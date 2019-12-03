@@ -121,7 +121,7 @@
     <button
       v-ga="$ga.commands.trackName.bind(this, 'Button - close about text', 'click', 'user closed the box for About text')"
       class="usa-button--inverse"
-      @click="toggleHiddenAttribute('.sometimes-hidden')"
+      @click="closeAboutText"
     >
       close
     </button>
@@ -150,16 +150,17 @@
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.event(eventName, action, label)
             },
-            toggleHiddenAttribute(cssClassName) {
-                let targetElement = document.querySelector(cssClassName);
-                targetElement.hidden ? targetElement.hidden = false : targetElement.hidden = true;
-            },
+            closeAboutText() {
+                this.$emit('close-about-text')
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
-  body { background-color: gray }
+  body {
+    background-color: gray
+  }
   h1 {
     font-size: 1.2rem;
   }
@@ -168,7 +169,7 @@
   }
   #about {
     background: white;
-    margin: 0em auto;
+    margin: 0 auto;
     padding: 3em 2em 2em 2em;
     width: 85%;
     max-width: 1200px;

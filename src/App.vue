@@ -29,7 +29,7 @@
   body{
     margin: 0;
     padding: 0;
-    
+
     .icon-map-control-question {
       transition: transform 1s;
       transform: skew(0deg, 0deg);

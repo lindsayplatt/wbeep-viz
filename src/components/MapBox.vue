@@ -11,16 +11,16 @@
         </h1>
         <button
           id="aboutButton"
-          @click="toggleHiddenAttribute('.sometimes-hidden')"
+          @click="toggleAboutText"
         >
           About
         </button>
       </div>
       <div
-        class="sometimes-hidden"
-        hidden
+        v-show="isAboutTextShowing"
+        id="about-div"
       >
-        <About />
+        <About @close-about-text="toggleAboutText" />
       </div>
     </div>
     <InternetExplorerPage v-if="isInternetExplorer" />
@@ -28,11 +28,15 @@
       v-if="!isInternetExplorer"
       id="mapContainer"
     >
-      <MapSubtitle />
-      <MapAvailableDataDate />
+      <MapSubtitle
+        v-show="!isAboutTextShowing"
+      />
+      <MapAvailableDataDate
+        v-show="!isAboutTextShowing"
+      />
       <MapLegend
+        v-show="!isAboutTextShowing"
         :legend-title="legendTitle"
-        class="sometimes-hidden"
       />
       <MglMap
         id="mapgl"
@@ -138,7 +142,8 @@
                 maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
-                isInternetExplorer: false
+                isInternetExplorer: false,
+                isAboutTextShowing: false
             };
         },
         created() {
@@ -149,11 +154,9 @@
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.event(eventName, action, label)
             },
-            toggleHiddenAttribute(cssClassName) {
-                let targetElements = document.querySelectorAll(cssClassName);
-                targetElements.forEach(element => element.hidden ? element.hidden = false : element.hidden = true);
+            toggleAboutText() {
+                this.isAboutTextShowing === false ? this.isAboutTextShowing = true : this.isAboutTextShowing = false;
             },
-
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded.
 
@@ -516,9 +519,6 @@
     #mapContainer {
       flex: 1;
       height: auto;
-    }
-    .sometimes-hidden {
-      background-color: #00264c;
     }
   }
 </style>
