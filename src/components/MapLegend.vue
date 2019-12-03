@@ -267,7 +267,7 @@ $buttonActiveTextColor: #fff;
   }
 
   svg {
-    margin: 7px 0 0 0
+    margin: 7px 0 0 0;
   }
 }
 
