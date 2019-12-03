@@ -348,23 +348,7 @@
                     }
                     hoveredHRUId = null;
                 });
-                //Subtitle and legend information Modal functionality
-                let infoButton = document.getElementById("subtitleInfoButton");
-                let modal = document.getElementById("subtitleInfoModal");
-
-                //Info Button Click Function
-                infoButton.onclick = function() {
-                    contentToggle(modal);
-                };
-
-                let contentToggle = function(name) {
-                    if (name.style.display === "block") {
-                        name.style.display = "none";
-                    } else {
-                        name.style.display = "block";
-                    }
-                };
-
+                
                 // Next section adds the current zoom level display to the map for development purposes.
                 // The zoom level display should only show in 'development' versions of the application
                 if (process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY && process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true') {

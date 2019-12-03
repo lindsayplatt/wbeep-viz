@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="subTitleContainer">
     <div id="subtitle">
       <div id="subtitleText">
         <p>An Indicator of Natural Water Storage</p>
@@ -10,47 +10,38 @@
           href="javascript:void(0);"
           aria-label="more information link"
           class="icon"
-          @click="runGoogleAnalytics('subtitle', 'click', 'user opened about text box')"
+          @click="runGoogleAnalytics('subtitle', 'click', 'user opened about text box'), subtitleModalToggle()"
         >
           <font-awesome-icon icon="info" />
         </a>
-        <div id="subtitleInfoModal">
-          <div id="infoContainer">
-            <a
-              id="exit"
-              href="javascript:void(0);"
-              aria-label="close more information box"
-              class="icon"
-            >
-              <font-awesome-icon
-                icon="times"
-              />
-            </a>
-
-            <h2>About This Map</h2>
-            <p>
-              This map shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.
-              Map shading indicates the current natural water storage relative to historical conditions for this time of year.
-            </p>
-            <router-link to="/about">
-              <button @click="runGoogleAnalytics('subtitle', 'click', 'user went to about page')">
-                Learn More
-              </button>
-            </router-link>
-          </div>
-        </div>
       </div>
     </div>
     <div id="data-date-div" />
+    <SubtitleModal
+      v-if="modalShowing"
+      @clickedExit="subtitleModalToggle()"
+    />
   </div>
 </template>
 
 <script>
+import SubtitleModal from "./SubtitleModal"
   export default {
     name: "MapSubtitle",
+    components:{
+      SubtitleModal
+    },
+    data(){
+      return{
+        modalShowing: false
+      }
+    },
     methods: {
         runGoogleAnalytics(eventName, action, label) {
             this.$ga.event(eventName, action, label)
+        },
+        subtitleModalToggle(){
+          this.modalShowing = !this.modalShowing;
         }
     }
   };
@@ -61,14 +52,18 @@ h2 {
   font-size: 1.1rem;
 }
 
-#subtitle {
-  background: rgb(255, 255, 255);
-  background: rgba(255, 255, 255, 0.7);
+#subTitleContainer{
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+}
+
+#subtitle {
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.7);
+  position: relative;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -118,56 +113,7 @@ h2 {
       }
     }
   }
-  #subtitleInfoModal{
-    display: none;
-    min-height: 30px;
-    position: absolute;
-    top: 65px;
-    right: 0;
-    border-radius: 5px;
-    border: 1px solid rgb(200,200,200);
-    background: rgb(255,255,255);
-    background: rgba(255,255,255,.8);
-    
-    #infoContainer{
-      min-height: 20px;
-      width: 270px;
-      position: relative;
-      padding: 25px 10px 0 10px;
-
-      #exit{
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        right: 0;
-        top: 0;
-      }
-
-      p{
-        text-align: left;
-        margin: 0 0 10px 0;
-      }
-      
-      h3{
-        font-size: 1.1em;
-        font-weight: bold;
-        padding: 0;
-        margin: 8px 0;
-      }
-
-      button{
-        margin: 0 0 10px 0;
-        background: #003366;
-        color: #ffffff;
-        border: none;
-        outline: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: .9em;
-        font-weight: bold;
-      }
-    }
-  }
+  
 }
 
 @media screen and (min-width: 600px){
