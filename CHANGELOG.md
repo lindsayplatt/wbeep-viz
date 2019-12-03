@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- New Legend and Legend Modal functionality
 - Added question/answers page and link on map
 - reformatted About page
 - Rivers turn on no matter the zoom
