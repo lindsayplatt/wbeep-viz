@@ -1,8 +1,6 @@
 <template>
-  <div
-    id="container-questions-answers"
-    class="usa-prose"
-  >
+  <div>
+    
     <h1>Got Questions? We're Here to Provide Answers. {{ developmentTier }}</h1>
     <h6>
       General
@@ -13,8 +11,7 @@
           v-ga="$ga.commands.trackName.bind(this, 'button - back', 'click', 'user went from about page to map')"
           class="usa-button--inverse"
         >
-          <font-awesome-icon icon="backward" />
-          map
+          return to map
         </button>
       </router-link>
     </h6>
@@ -130,8 +127,7 @@
           v-ga="$ga.commands.trackName.bind(this, 'button - back', 'click', 'user went from about page to map')"
           class="usa-button--inverse"
         >
-          <font-awesome-icon icon="backward" />
-          map
+          return to map
         </button>
       </router-link>
     </h6>
@@ -296,8 +292,7 @@
           v-ga="$ga.commands.trackName.bind(this, 'button - back', 'click', 'user went from about page to map')"
           class="usa-button--inverse"
         >
-          <font-awesome-icon icon="backward" />
-          map
+          return to map
         </button>
       </router-link>
     </h6>
@@ -532,7 +527,7 @@
     margin: 0em auto;
     padding: 3em 2em 2em 2em;
     width: 85%;
-    max-width: 1200px;
+    max-width: 612px;
 
     .usa-button--inverse {
       float: right;
