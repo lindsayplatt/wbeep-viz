@@ -4,7 +4,7 @@
       Have feedback? Let us know by sending an email to
       <a
         v-ga="$ga.commands.trackName.bind(this, 'feedback email-prefooter', 'click', 'user selected feedback prefooter email link')"
-        :href="feedbackEmailAddress"
+        :href="'mailto:' + feedbackEmailAddress"
       >gs-w_onhm@usgs.gov</a>
     </p>
   </div>
