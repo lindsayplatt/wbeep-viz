@@ -7,7 +7,7 @@
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
-          {{ title }} {{ developmentTier }}
+          {{ title }}{{ titleSuffix }} {{ developmentTier }}
         </h1>
       </div>
     </div>
@@ -108,6 +108,10 @@
             title: {
                 type: String,
                 default: process.env.VUE_APP_TITLE
+            },
+            titleSuffix: {
+                  type: String,
+                  default: process.env.VUE_APP_TITLE_SUFFIX
             },
             developmentTier: {
                 type: String,
