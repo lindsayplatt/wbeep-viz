@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
     <div
       v-for="reference in references"
-      :key="reference"
+      :key="reference.reference"
     >
       <p class="about-ref">
         {{ reference.reference }}

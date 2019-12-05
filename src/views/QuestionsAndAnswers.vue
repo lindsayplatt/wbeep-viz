@@ -7,28 +7,21 @@
     <p>
       {{ pageContents.introText }}
     </p>
-    <p>
-      Contact Us:
-      <a
-        v-ga="$ga.commands.trackName.bind(this, 'feedback email-answer page', 'click', 'user selected feedback email link on answers page')"
-        :href="'mailto:' + feedbackEmailAddress"
-      >
-        {{ feedbackEmailAddress }}
-      </a>
-    </p>
+
+    <ContactUs />
 
     <hr>
 
     <div
       v-for="section in pageContents.accordionSections"
-      :key="section"
+      :key="section.sectionTitle"
     >
       <h6 class="section-title">{{ section.sectionTitle }}</h6>
 
       <div class="usa-accordion usa-accordion--bordered">
         <div
           v-for="question in section.questionsAndAnswers"
-          :key="question"
+          :key="question.question"
         >
           <h2 class="usa-accordion__heading">
             <button
@@ -55,6 +48,7 @@
 </template>
 
 <script>
+    import ContactUs from "../components/ContactUs";
     import References from "../components/References";
 
     import questionsAndAnswers from "../assets/questionsAndAnswers/questionsAndAnswers";
@@ -63,6 +57,7 @@
     export default {
         name: "QuestionsAndAnswers",
         components: {
+            ContactUs,
             References
         },
         props: {
