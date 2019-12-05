@@ -12,7 +12,7 @@ export default {
                     },
                     {
                        "question": "What is the meaning of \"natural water storage\"?",
-                       "answer": "<p style=\"color:red\">NEED THIS UPDATED: Natural water storage shown here includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and shallow groundwater. It does not include water in rivers or deep groundwater.<p></p>"
+                       "answer": "Natural water storage shown here includes water present on the landscape such as standing water and water on trees, snowpack, soil water, and shallow groundwater. It does not include water in rivers or deep groundwater."
                     },
                     {
                         "question": "Why is the \"latest available\" map not for today?",
@@ -44,23 +44,23 @@ export default {
                 "questionsAndAnswers": [
                     {
                         "question": "Where does the " + process.env.VUE_APP_TITLE + " map get the data it is representing?",
-                        "answer": "        <p>\n" +
-                                "          Estimates of natural water storage are calculated using the National Hydrologic Model (NHM) Infrastructure (Regan et al. 2019)\n" +
-                                "          configured with the <a\n" +
-                                "            href=\"https://www.usgs.gov/software/precipitation-runoff-modeling-system-prms\"\n" +
-                                "            target=\"_blank\"\n" +
-                                "            @click=\"runGoogleAnalytics('about page', 'click', 'clicked text link for precipitation-runoff-modeling-system-prms')\"\n" +
-                                "          >Precipitation Runoff Modeling\n" +
-                                "            System</a> (PRMS; Markstrom et al., 2015). The <a\n" +
-                                "            href=\"http://www.climatologylab.org/gridmet.html\"\n" +
-                                "            target=\"_blank\"\n" +
-                                "            @click=\"runGoogleAnalytics('about page', 'click', 'clicked text link for gridMET')\"\n" +
-                                "          >gridMET</a> daily weather dataset is used to force both historical and latest-available model runs (Abatzoglou, 2013). The PRMS is a modular, deterministic, distributed-parameter, physical process-based hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the references below.\n" +
-                                "        </p>"
+                        "answer": "<p>\n" +
+                                "Estimates of natural water storage are calculated using the National Hydrologic Model (NHM) Infrastructure (Regan et al. 2019)\n" +
+                                "configured with the <a\n" +
+                                "href=\"https://www.usgs.gov/software/precipitation-runoff-modeling-system-prms\"\n" +
+                                "target=\"_blank\"\n" +
+                                "@click=\"runGoogleAnalytics('about page', 'click', 'clicked text link for precipitation-runoff-modeling-system-prms')\"\n" +
+                                ">Precipitation Runoff Modeling\n" +
+                                "System</a> (PRMS; Markstrom et al., 2015). The <a\n" +
+                                "href=\"http://www.climatologylab.org/gridmet.html\"\n" +
+                                "target=\"_blank\"\n" +
+                                "@click=\"runGoogleAnalytics('about page', 'click', 'clicked text link for gridMET')\"\n" +
+                                ">gridMET</a> daily weather dataset is used to force both historical and latest-available model runs (Abatzoglou, 2013). The PRMS is a modular, deterministic, distributed-parameter, physical process-based hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the references below.\n" +
+                                "</p>"
                     },
                     {
                         "question": "Why was \"natural water storage\" used as an indicator of water availability?",
-                        "answer": "Still need to answer: Why is \"natural water storage\" important? Why do I need to know this information? How does it relate to water in streams, reservoirs and aquifers --- which is what most will think about when thinking of water availability?"
+                        "answer": "<p style=\"color:red\">Still need to answer: Why is \"natural water storage\" important? Why do I need to know this information? How does it relate to water in streams, reservoirs and aquifers --- which is what most will think about when thinking of water availability?</p>"
                     },
                     {
                         "question": "Why would a region with a wetland or water body have a lower daily natural water storage than one without?",

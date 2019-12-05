@@ -22,7 +22,7 @@
           v-ga="$ga.commands.trackName.bind(this, 'button-return', 'click', 'user returned to map from questions and answers')"
           to="/"
         >
-          <button class="usa-button--inverse">
+          <button>
             back to map
           </button>
         </router-link>
@@ -106,17 +106,21 @@
       font-size: larger;
 
       button {
-        margin-bottom: 0.5em;
-        font-size: smaller;
+        float: right;
+        margin: 0 0 10px 0;
+        background: #003366;
+        color: #ffffff;
+        border: none;
+        outline: none;
+        padding: 2px 10px 5px 10px;
+        border-radius: 5px;
+        font-size: .9em;
+        font-weight: bold;
       }
     }
 
     hr {
       margin: 1em 0 1em 0;
-    }
-
-    .usa-button--inverse {
-      float: right;
     }
   }
 </style>
