@@ -9,18 +9,6 @@
         <h1 class="title-text">
           {{ title }} {{ developmentTier }}
         </h1>
-        <button
-          id="aboutButton"
-          @click="toggleAboutText"
-        >
-          About
-        </button>
-      </div>
-      <div
-        v-show="isAboutTextShowing"
-        id="about-div"
-      >
-        <About @close-about-text="toggleAboutText" />
       </div>
     </div>
     <InternetExplorerPage v-if="isInternetExplorer" />
@@ -98,12 +86,10 @@
         MglAttributionControl
     } from "vue-mapbox";
     import mapStyles from "../assets/mapStyles/mapStyles";
-    import About from "../views/About";
 
     export default {
         name: "MapBox",
         components: {
-            About,
             LoadingScreen,
             InternetExplorerPage,
             MglMap,
@@ -153,9 +139,6 @@
         methods: {
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.event(eventName, action, label)
-            },
-            toggleAboutText() {
-                this.isAboutTextShowing === false ? this.isAboutTextShowing = true : this.isAboutTextShowing = false;
             },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded.
