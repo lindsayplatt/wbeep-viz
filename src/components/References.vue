@@ -1,5 +1,8 @@
 <template>
-  <div id="referencesContainer" class="usa-prose">
+  <div
+    id="referencesContainer"
+    class="usa-prose"
+  >
     <h2>{{ title }}</h2>
     <div
       v-for="reference in references"
@@ -8,8 +11,8 @@
       <p class="about-ref">
         {{ reference.reference }}
         <a
-            :href="reference.href"
-            target="_blank"
+          :href="reference.href"
+          target="_blank"
         >
           <span v-html="reference.href" />
         </a>

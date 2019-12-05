@@ -16,13 +16,15 @@
       v-for="section in pageContents.accordionSections"
       :key="section.sectionTitle"
     >
-      <h6 class="section-title">{{ section.sectionTitle }}
+      <h6 class="section-title">
+        {{ section.sectionTitle }}
         <router-link
-            to="/"
-            v-ga="$ga.commands.trackName.bind(this, 'button-return', 'click', 'user returned to map from questions and answers')"
+          v-ga="$ga.commands.trackName.bind(this, 'button-return', 'click', 'user returned to map from questions and answers')"
+          to="/"
         >
-          <button class="usa-button--inverse">back to map</button>
-
+          <button class="usa-button--inverse">
+            back to map
+          </button>
         </router-link>
       </h6>
 
@@ -51,7 +53,6 @@
     </div>
 
     <References />
-
   </div>
 </template>
 
