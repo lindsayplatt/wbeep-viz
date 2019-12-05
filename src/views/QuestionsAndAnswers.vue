@@ -16,7 +16,15 @@
       v-for="section in pageContents.accordionSections"
       :key="section.sectionTitle"
     >
-      <h6 class="section-title">{{ section.sectionTitle }}</h6>
+      <h6 class="section-title">{{ section.sectionTitle }}
+        <router-link
+            to="/"
+            v-ga="$ga.commands.trackName.bind(this, 'button-return', 'click', 'user returned to map from questions and answers')"
+        >
+          <button class="usa-button--inverse">back to map</button>
+
+        </router-link>
+      </h6>
 
       <div class="usa-accordion usa-accordion--bordered">
         <div
@@ -95,6 +103,11 @@
     .section-title {
       margin: 0.5em 0 0.5em 0;
       font-size: larger;
+
+      button {
+        margin-bottom: 0.5em;
+        font-size: smaller;
+      }
     }
 
     hr {

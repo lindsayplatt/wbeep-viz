@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Set up questions answers page to auto-generate via JSON
 - Removed subtitle modal functionality from MapBox and got it in its own component
 - New Legend and Legend Modal functionality
 - Fixed issue where only the icon in close box was clickable
