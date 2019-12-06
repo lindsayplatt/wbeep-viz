@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Set the 'About the Map' information box to by open on page load
 - Set up questions answers page to auto-generate via JSON
 - Removed subtitle modal functionality from MapBox and got it in its own component
 - New Legend and Legend Modal functionality

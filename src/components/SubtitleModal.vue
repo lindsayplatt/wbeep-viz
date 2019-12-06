@@ -17,7 +17,7 @@
       </p>
       <router-link to="/questionsandanswers">
         <button
-          @click="runGoogleAnalytics('subtitle', 'click', 'user went to about page')"
+          v-ga="$ga.commands.trackName.bind(this, 'button-subtitle', 'click', 'user went to questions and answers page')"
         >
           Learn More
         </button>

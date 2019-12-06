@@ -7,10 +7,11 @@
       <div id="subtitleInfoButton">
         <a
           id="subtitleIcon"
+          v-ga="$ga.commands.trackName.bind(this, 'button-subtitle', 'click', 'user opened about text box')"
           href="javascript:void(0);"
           aria-label="more information link"
           class="icon"
-          @click="runGoogleAnalytics('subtitle', 'click', 'user opened about text box'), subtitleModalToggle()"
+          @click="$emit('clickedInfoIcon')"
         >
           <font-awesome-icon icon="info" />
         </a>
@@ -18,8 +19,8 @@
     </div>
     <div id="data-date-div" />
     <SubtitleModal
-      v-if="modalShowing"
-      @clickedExit="subtitleModalToggle()"
+      v-if="isAboutMapInfoBoxOpen"
+      @clickedExit="$emit('clickedInfoIcon')"
     />
   </div>
 </template>
@@ -31,18 +32,12 @@ import SubtitleModal from "./SubtitleModal"
     components:{
       SubtitleModal
     },
-    data(){
-      return{
-        modalShowing: false
+    props: {
+      isAboutMapInfoBoxOpen: {
+          type:Boolean,
+          required: true,
+          default: true
       }
-    },
-    methods: {
-        runGoogleAnalytics(eventName, action, label) {
-            this.$ga.event(eventName, action, label)
-        },
-        subtitleModalToggle(){
-          this.modalShowing = !this.modalShowing;
-        }
     }
   };
 </script>
@@ -113,7 +108,6 @@ h2 {
       }
     }
   }
-  
 }
 
 @media screen and (min-width: 600px){
@@ -129,7 +123,5 @@ h2 {
       }
     }
   }
-  
-  
 }
 </style>
