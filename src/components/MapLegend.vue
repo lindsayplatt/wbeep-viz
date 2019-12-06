@@ -216,6 +216,7 @@ $buttonActiveTextColor: #fff;
   display: flex;
   background: $background;
   border-radius: $borderRadius;
+  overflow: hidden;
 }
 
 #collaspedLegendText{
@@ -297,5 +298,14 @@ $buttonActiveTextColor: #fff;
       color: $buttonActiveTextColor;
     }
   }
+
+  #collapsedLegendIcon{
+  a{
+    &:hover{
+      background: $buttonColorActive;
+      color: $buttonActiveTextColor;
+    }
+  }
+}
 }
 </style>
