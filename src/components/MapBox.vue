@@ -106,22 +106,11 @@
             MapLayers,
             QuestionControl
         },
-        props: {
-            title: {
-                type: String,
-                default: process.env.VUE_APP_TITLE
-            },
-            titleSuffix: {
-                  type: String,
-                  default: process.env.VUE_APP_TITLE_SUFFIX
-            },
-            developmentTier: {
-                type: String,
-                default: process.env.VUE_APP_TIER
-            }
-        },
         data() {
             return {
+                title: process.env.VUE_APP_TITLE,
+                titleSuffix: process.env.VUE_APP_TITLE_SUFFIX,
+                developmentTier: process.env.VUE_APP_TIER,
                 mapStyle: mapStyles.style,
                 container: "map",
                 zoom: 3,
