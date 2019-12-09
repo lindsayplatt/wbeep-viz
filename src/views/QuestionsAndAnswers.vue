@@ -19,7 +19,6 @@
       <h6 class="section-title">
         {{ section.sectionTitle }}
         <router-link
-          v-ga="$ga.commands.trackName.bind(this, 'button-return', 'click', 'user returned to map from questions and answers')"
           to="/"
         >
           <button>
@@ -84,11 +83,6 @@
                 feedbackEmailAddress: process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS,
                 pageContents: questionsAndAnswers.pageContents
             };
-        },
-        methods: {
-            runGoogleAnalytics(eventName, action, label) {
-                this.$ga.event(eventName, action, label)
-            }
         }
     }
 </script>

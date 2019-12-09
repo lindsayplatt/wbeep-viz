@@ -1,9 +1,13 @@
 <template>
-  <div id="viz_container">
+  <div
+    id="viz_container"
+    @click.once="toggleAboutMapInfoBox"
+  >
     <LoadingScreen
       v-if="!isInternetExplorer"
       :is-loading="isLoading"
     />
+
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
@@ -17,13 +21,11 @@
       id="mapContainer"
     >
       <MapSubtitle
-        v-show="!isAboutTextShowing"
+        :is-about-map-info-box-open="isAboutMapInfoBoxOpen"
+        @clickedInfoIcon="toggleAboutMapInfoBox()"
       />
-      <MapAvailableDataDate
-        v-show="!isAboutTextShowing"
-      />
+      <MapAvailableDataDate />
       <MapLegend
-        v-show="!isAboutTextShowing"
         :legend-title="legendTitle"
       />
       <MglMap
@@ -133,7 +135,7 @@
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
                 isInternetExplorer: false,
-                isAboutTextShowing: false
+                isAboutMapInfoBoxOpen: true,
             };
         },
         created() {
@@ -143,6 +145,9 @@
         methods: {
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.event(eventName, action, label)
+            },
+            toggleAboutMapInfoBox() {
+                this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
             },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded.
@@ -363,6 +368,21 @@
   $blue: #4574a3;
   $border: 1px solid #fff;
   $borderGray: 1px solid rgb(100, 100, 100);
+
+  #overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
   .header-container {
     background-color: #fff;
   }

@@ -4,6 +4,7 @@
     <HeaderUSGS />
     <router-view />
     <FooterEmail />
+    <ProvisionalStatement />
     <FooterUSGS />
   </div>
 </template>
@@ -13,6 +14,7 @@
     import HeaderUSGS from './components/HeaderUSGS'
     import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
+    import ProvisionalStatement from "./components/ProvisionalStatement"
 
     export default {
         name: 'App',
@@ -20,6 +22,7 @@
             HeaderUSWDSBanner,
             HeaderUSGS,
             FooterEmail,
+            ProvisionalStatement,
             FooterUSGS
         }
     }
