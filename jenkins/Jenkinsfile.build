@@ -64,7 +64,7 @@ pipeline {
                     }
                 }
                 sh """
-                    aws s3 rm "${targetDomain}" --recursive --exclude "tiles/*" --exclude "/estimated-availability/tiles/*" --exclude "date/*"  --exclude "/estimated-availability/date/*"
+                    aws s3 rm "${targetDomain}" --recursive --exclude "tiles/*" --exclude "estimated-availability/tiles/*" --exclude "date/*"  --exclude "estimated-availability/date/*"
                     aws s3 cp "$WORKSPACE/dist" "${targetDomain}"/estimated-availability --recursive
                 """
             }
