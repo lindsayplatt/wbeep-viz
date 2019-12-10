@@ -1,14 +1,14 @@
 export default {
     pageContents: {
         title: "Got Questions? We're Here to Provide Answers. ",
-        introText: "So you have a question about the National Integrated Water Availability Assessments (IWAAs) application, but you don't see it listed here? No problem!",
+        introText: "So you have a question about the National Integrated Water Availability Assessments (IWAAs) map, but you don't see it listed here? No problem!",
         accordionSections: [
             {
                 "sectionTitle": "About the Map",
                 "questionsAndAnswers": [
                     {
                         "question": "What does this map show me?",
-                        "answer": "The " + process.env.VUE_APP_TITLE + " shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the lower forty-eight states. Map shading indicates the current natural water storage relative to historical conditions for this time of year."
+                        "answer": "The " + process.env.VUE_APP_TITLE + " shows the latest available daily estimate of natural water storage for approximately 110,000 regions across the lower forty-eight states. Map shading indicates the current natural water storage relative to historical conditions for this time of year."
                     },
                     {
                        "question": "What is the meaning of \"natural water storage\"?",
@@ -16,19 +16,19 @@ export default {
                     },
                     {
                         "question": "Why is the \"latest available\" map not for today?",
-                        "answer": "The latest model run requires a summary of the weather (precipitation and temperature) for a complete day. A sequence of operations begins at midnight starting with collecting observed weather data and ending several hours later with estimates of natural water storage and an updated map. For this reason, depending on the time of day relative to the latest update, the date at the top of the map will be yesterday or the day before yesterday. If the date is more than two days ago, that is an indication that some part of the update operations did not run successfully and the team is working to bring the system back online."
+                        "answer": "The latest model run requires a summary of the weather (precipitation and temperature) for a complete day. A sequence of operations begin at midnight starting with collecting observed weather data and ending several hours later with estimates of natural water storage and an updated map. For this reason, depending on the time of day relative to the latest update, the date at the top of the map will be yesterday or the day before yesterday. If the date is more than two days ago, that is an indication that some part of the update operations did not run successfully and the team is working to bring the system back online."
                     },
                     {
                         "question": "What is being highlighted when I move my mouse on the map?",
-                        "answer": "Highlighted modeling units or regions are called a Hydrologic Response Unit (HRU). Each watershed is broken up into these regions in order to estimate the daily natural water storage. The boundaries are based on the area that flows to the left or right side of a river between an upstream and downstream location."
+                        "answer": "Highlighted modeling units or regions are called Hydrologic Response Units (HRUs). Each watershed is broken up into these regions in order to estimate the daily natural water storage. The units are based on the area that flows to the left or right side of a river between an upstream and downstream location."
                     },
                     {
                         "question": "How can I see a previous day’s natural water storage value for my region?",
-                        "answer": "We do not currently provide a way for users to view maps for previous days. In the future, we may provide this capability."
+                        "answer": "There is not currently a way for users to view maps for previous days. In the future, this may be a capability."
                     },
                     {
                         "question": "I live in Hawaii, why do I not see any natural water storage data there?",
-                        "answer": "The model used currently only has the data it needs in order to calculate the daily natural water storage for the coterminous US. In the future we are aiming to expand the model to include Hawaii, Alaska and Puerto Rico."
+                        "answer": "The model used currently only has the data it needs in order to calculate daily natural water storage for the coterminous US. In the future, the goal is to expand the model to include Hawaii, Alaska and Puerto Rico."
                     },
                     {
                         "question": "How can I print or save this map?",
@@ -36,7 +36,7 @@ export default {
                     },
                     {
                         "question": "Will there be improvements to this map in the future?",
-                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the continental US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
+                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the continental US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of future water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
                                 "v-ga=\"$ga.commands.trackName.bind(this, 'feedback email-prefooter', 'click', 'user selected feedback prefooter email link')\"\n" +
                                 "href=\"'mailto:'" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "\"\n" +
                                 ">" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "</a>"
@@ -64,7 +64,7 @@ export default {
                     },
                     {
                         "question": "Why was \"natural water storage\" used as an indicator of water availability?",
-                        "answer": "For the first phase of operationalizing a national hydrologic model to indicate water availability across CONUS, the model focused only on natural flows. As the model matures, additional hydrologic parameters will be produced by the operational model and additional indicators of water availability will be included on this map."
+                        "answer": "For the first phase of operationalizing a national hydrologic model to indicate water availability across CONUS, the model focused only on natural flows (without human modification from reservoirs and withdrawals). As the model matures, additional hydrologic parameters will be produced by the operational model and additional indicators of water availability will be included on this map."
                     },
                     {
                         "question": "Why would a region with a wetland or water body have a lower daily natural water storage than one without?",
