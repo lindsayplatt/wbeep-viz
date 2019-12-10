@@ -20,7 +20,11 @@ export default {
                     },
                     {
                         "question": "What is being highlighted when I move my mouse on the map?",
-                        "answer": "Highlighted modeling units or regions are called Hydrologic Response Units (HRU). Each watershed is broken up into these regions in order to model the daily natural water storage. The boundaries are based on the area that flows to the left or right side of a river between an upstream and downstream location."
+                        "answer": "Highlighted modeling units or regions are called a Hydrologic Response Unit (HRU). Each watershed is broken up into these regions in order to estimate the daily natural water storage. The boundaries are based on the area that flows to the left or right side of a river between an upstream and downstream location."
+                    },
+                    {
+                        "question": "How can I see a previous day’s natural water storage value for my region?",
+                        "answer": "We do not currently provide a way for users to view maps for previous days. In the future, we may provide this capability."
                     },
                     {
                         "question": "I live in Hawaii, why do I not see any natural water storage data there?",
@@ -32,7 +36,7 @@ export default {
                     },
                     {
                         "question": "Will there be improvements to this map in the future?",
-                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the continental US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as, predictions of water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
+                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the continental US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
                                 "v-ga=\"$ga.commands.trackName.bind(this, 'feedback email-prefooter', 'click', 'user selected feedback prefooter email link')\"\n" +
                                 "href=\"'mailto:'" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "\"\n" +
                                 ">" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "</a>"
@@ -60,7 +64,7 @@ export default {
                     },
                     {
                         "question": "Why was \"natural water storage\" used as an indicator of water availability?",
-                        "answer": "<p style=\"color:red\">Still need to answer: Why is \"natural water storage\" important? Why do I need to know this information? How does it relate to water in streams, reservoirs and aquifers --- which is what most will think about when thinking of water availability?</p>"
+                        "answer": "For the first phase of operationalizing a national hydrologic model to indicate water availability across CONUS, the model focused only on natural flows. As the model matures, additional hydrologic parameters will be produced by the operational model and additional indicators of water availability will be included on this map."
                     },
                     {
                         "question": "Why would a region with a wetland or water body have a lower daily natural water storage than one without?",
@@ -70,7 +74,8 @@ export default {
                         "question": "How are the categories for availability determined?",
                         "answer": "Over 30 years of data were used to calculate percentiles for natural water storage for each modeling unit. When looking at today’s value for a region compared to over 30 years of data for that region: \n" +
                                 "<ul>\n" +
-                                "<li>\"Very High\" means that today’s value is greater than 90% of all historic values for that region,\n\"High\" means that the value is greater than 75% of all historic values,</li>\n" +
+                                "<li>\"Very High\" means that today’s value is greater than 90% of all historic values for that region,</li>\n" + 
+                                "<li>\"High\" means that the value is greater than 75% of all historic values,</li>\n" +
                                 "<li>\"Normal\" means that the value is greater than 25% but less than 75% of all historic values,</li>\n" +
                                 "<li>\"Low\" means that the value is lower than 75% of all historic values for the region, and</li>\n" +
                                 "<li>\"Very Low\" means that the value is lower than 90% of all historic values for the region.</li></ul>"
