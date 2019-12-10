@@ -25,7 +25,7 @@ export default {
                     {
                         "question": "How can I see a previous day’s natural water storage value for my region?",
                         "answer": "We do not currently provide a way for users to view maps for previous days. In the future, we may provide this capability."
-                    }.
+                    },
                     {
                         "question": "I live in Hawaii, why do I not see any natural water storage data there?",
                         "answer": "The model used currently only has the data it needs in order to calculate the daily natural water storage for the coterminous US. In the future we are aiming to expand the model to include Hawaii, Alaska and Puerto Rico."
