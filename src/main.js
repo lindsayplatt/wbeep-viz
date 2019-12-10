@@ -32,36 +32,40 @@ import { faFlickr } from '@fortawesome/free-brands-svg-icons'
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-library.add(faInfo)
-library.add(faLayerGroup)
-library.add(faTimes)
-library.add(faThumbsUp)
-library.add(faThumbsDown)
-library.add(faMinus)
-library.add(faPlus)
-library.add(faWater)
-library.add(faAngleDown)
-library.add(faAngleLeft)
-library.add(faList)
-library.add(faQuestion)
-library.add(faBackward)
+library.add(faInfo);
+library.add(faLayerGroup);
+library.add(faTimes);
+library.add(faThumbsUp);
+library.add(faThumbsDown);
+library.add(faMinus);
+library.add(faPlus);
+library.add(faWater);
+library.add(faAngleDown);
+library.add(faAngleLeft);
+library.add(faList);
+library.add(faQuestion);
+library.add(faBackward);
 
 // social icons
-library.add(faTwitterSquare)
-library.add(faFacebookSquare)
-library.add(faGithub)
-library.add(faFlickr)
-library.add(faYoutubeSquare)
-library.add(faInstagram)
+library.add(faTwitterSquare);
+library.add(faFacebookSquare);
+library.add(faGithub);
+library.add(faFlickr);
+library.add(faYoutubeSquare);
+library.add(faInstagram);
 
-Vue.config.productionTip = false
-Vue.use(uswds)
-Vue.use(browserDetect)
+Vue.config.productionTip = false;
+Vue.use(uswds);
+Vue.use(browserDetect);
 
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
+  set: [
+    { field: 'sessionId', value: 'test1' },
+    { field: 'timestamp', value: 'test2' },
+  ],
   commands: {
     trackName (eventName, action, label) {
       this.$ga.event(eventName, action, label)

@@ -68,18 +68,10 @@
             ContactUs,
             References
         },
-        props: {
-            title: {
-                type: String,
-                default: process.env.VUE_APP_TITLE
-            },
-            developmentTier: {
-                type: String,
-                default: process.env.VUE_APP_TIER
-            }
-        },
         data() {
             return {
+                title: process.env.VUE_APP_TITLE,
+                developmentTier: process.env.VUE_APP_TIER,
                 feedbackEmailAddress: process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS,
                 pageContents: questionsAndAnswers.pageContents
             };
@@ -90,7 +82,7 @@
 <style scoped lang="scss">
   #container-questions-answers {
     background: white;
-    margin: 0em auto;
+    margin: 0 auto;
     padding: 3em 2em 2em 2em;
     width: 85%;
     max-width: 50em;
