@@ -47,6 +47,16 @@ export default {
                 "sectionTitle": "Deep in the Science",
                 "questionsAndAnswers": [
                     {
+                        "question": "How are the categories for availability determined?",
+                        "answer": "Over 30 years of data were used to calculate percentiles for natural water storage for each modeling unit. When looking at today’s value for a region compared to over 30 years of data for that region: \n" +
+                                "<ul>\n" +
+                                "<li>\"Very High\" means that today’s value is greater than 90% of all historic values for that region,</li>\n" + 
+                                "<li>\"High\" means that the value is greater than 75% of all historic values,</li>\n" +
+                                "<li>\"Normal\" means that the value is greater than 25% but less than 75% of all historic values,</li>\n" +
+                                "<li>\"Low\" means that the value is lower than 75% of all historic values for the region, and</li>\n" +
+                                "<li>\"Very Low\" means that the value is lower than 90% of all historic values for the region.</li></ul>"
+                    },
+                    {
                         "question": "Where does the " + process.env.VUE_APP_TITLE + " map get the data it is representing?",
                         "answer": "<p>\n" +
                                 "Estimates of natural water storage are calculated using the National Hydrologic Model (NHM) Infrastructure (Regan et al. 2019)\n" +
@@ -69,16 +79,6 @@ export default {
                     {
                         "question": "Why would a region with a wetland or water body have a lower daily natural water storage than one without?",
                         "answer": "Even if a lake or wetland is in a region, the natural water storage could be considered low for those regions compared to their historic norms."
-                    },
-                    {
-                        "question": "How are the categories for availability determined?",
-                        "answer": "Over 30 years of data were used to calculate percentiles for natural water storage for each modeling unit. When looking at today’s value for a region compared to over 30 years of data for that region: \n" +
-                                "<ul>\n" +
-                                "<li>\"Very High\" means that today’s value is greater than 90% of all historic values for that region,</li>\n" + 
-                                "<li>\"High\" means that the value is greater than 75% of all historic values,</li>\n" +
-                                "<li>\"Normal\" means that the value is greater than 25% but less than 75% of all historic values,</li>\n" +
-                                "<li>\"Low\" means that the value is lower than 75% of all historic values for the region, and</li>\n" +
-                                "<li>\"Very Low\" means that the value is lower than 90% of all historic values for the region.</li></ul>"
                     },
                     {
                         "question": "What are IWAAs?",
