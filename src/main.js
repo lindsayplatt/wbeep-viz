@@ -1,26 +1,26 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import Vue from 'vue'
-import VueAnalytics from 'vue-analytics'
+import Vue from 'vue';
+import VueAnalytics from 'vue-analytics';
 import router from "./router";
-import App from './App.vue'
-import uswds from 'uswds'
-import browserDetect from 'vue-browser-detect-plugin'
+import App from './App.vue';
+import uswds from 'uswds';
+import browserDetect from 'vue-browser-detect-plugin';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import { faInfo } from '@fortawesome/free-solid-svg-icons'
-import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
-import { faMinus } from '@fortawesome/free-solid-svg-icons'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { faWater } from '@fortawesome/free-solid-svg-icons'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-import { faList } from '@fortawesome/free-solid-svg-icons'
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faWater } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 import { faQuestion} from "@fortawesome/free-solid-svg-icons";
 import { faBackward } from "@fortawesome/free-solid-svg-icons";
 
@@ -63,8 +63,10 @@ Vue.use(browserDetect);
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
   set: [
-    { field: 'sessionId', value: 'test1' },
-    { field: 'timestamp', value: 'test2' },
+    // { field: 'sessionId', value: this.$ga.sessionId },
+    // { field: 'timestamp', value: this.$ga.timestamp },
+    { field: 'dimension1', value: 'a test' },
+    { field: 'dimension2', value: 'test2' },
   ],
   commands: {
     trackName (eventName, action, label) {

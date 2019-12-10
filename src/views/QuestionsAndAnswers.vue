@@ -12,52 +12,17 @@
 
     <hr>
 
-    <div
-      v-for="section in pageContents.accordionSections"
-      :key="section.sectionTitle"
-    >
-      <h6 class="section-title">
-        {{ section.sectionTitle }}
-        <router-link
-          to="/"
-        >
-          <button>
-            back to map
-          </button>
-        </router-link>
-      </h6>
-
-      <div class="usa-accordion usa-accordion--bordered">
-        <div
-          v-for="question in section.questionsAndAnswers"
-          :key="question.question"
-        >
-          <h2 class="usa-accordion__heading">
-            <button
-              class="usa-accordion__button"
-              aria-expanded="true"
-              :aria-controls="question.question"
-            >
-              {{ question.question }}
-            </button>
-          </h2>
-          <div
-            :id="question.question"
-            class="usa-accordion__content usa-prose"
-          >
-            <p><span v-html="question.answer" /></p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <QuestionsAnswersAccordion />
 
     <References />
+
   </div>
 </template>
 
 <script>
     import ContactUs from "../components/ContactUs";
     import References from "../components/References";
+    import QuestionsAnswersAccordion from "../components/QuestionsAnswersAccordion";
 
     import questionsAndAnswers from "../assets/questionsAndAnswers/questionsAndAnswers";
 
@@ -66,14 +31,16 @@
         name: "QuestionsAndAnswers",
         components: {
             ContactUs,
-            References
+            References,
+            QuestionsAnswersAccordion
         },
         data() {
             return {
                 title: process.env.VUE_APP_TITLE,
                 developmentTier: process.env.VUE_APP_TIER,
                 feedbackEmailAddress: process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS,
-                pageContents: questionsAndAnswers.pageContents
+                pageContents: questionsAndAnswers.pageContents,
+                rerender: false
             };
         }
     }

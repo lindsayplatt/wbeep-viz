@@ -7,6 +7,7 @@
     >
       Attention! This information is PRELIMINARY and/or PROVISIONAL.
       <button
+        v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-enlarge', 'click', 'user enlarged the provisional statement')"
         @click="toggleProvisionalStatement"
       >
         Learn More
@@ -20,7 +21,10 @@
       for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and
       is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages
       resulting from the authorized or unauthorized use of the information.
-      <button @click="toggleProvisionalStatement">
+      <button
+          v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-reduce', 'click', 'user reduced the provisional statement')"
+          @click="toggleProvisionalStatement"
+      >
         I understand
       </button>
     </h5>
