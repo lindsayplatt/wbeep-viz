@@ -124,7 +124,7 @@
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
                 isInternetExplorer: false,
-                isAboutMapInfoBoxOpen: true,
+                isAboutMapInfoBoxOpen: true
             };
         },
         created() {
