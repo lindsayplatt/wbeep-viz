@@ -1,13 +1,13 @@
 <template>
   <div>
     <div
-        v-for="section in pageContents.accordionSections"
-        :key="section.sectionTitle"
+      v-for="section in pageContents.accordionSections"
+      :key="section.sectionTitle"
     >
       <h6 class="section-title">
         {{ section.sectionTitle }}
         <router-link
-            to="/"
+          to="/"
         >
           <button>
             back to map
@@ -17,21 +17,21 @@
 
       <div class="usa-accordion usa-accordion--bordered">
         <div
-            v-for="question in section.questionsAndAnswers"
-            :key="question.question"
+          v-for="question in section.questionsAndAnswers"
+          :key="question.question"
         >
           <h2 class="usa-accordion__heading">
             <button
-                class="usa-accordion__button"
-                aria-expanded="true"
-                :aria-controls="question.question"
+              class="usa-accordion__button"
+              aria-expanded="true"
+              :aria-controls="question.question"
             >
               {{ question.question }}
             </button>
           </h2>
           <div
-              :id="question.question"
-              class="usa-accordion__content usa-prose"
+            :id="question.question"
+            class="usa-accordion__content usa-prose"
           >
             <p><span v-html="question.answer" /></p>
           </div>

@@ -15,7 +15,6 @@
     <QuestionsAnswersAccordion />
 
     <References />
-
   </div>
 </template>
 

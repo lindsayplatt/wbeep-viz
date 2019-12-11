@@ -60,13 +60,26 @@ Vue.config.productionTip = false;
 Vue.use(uswds);
 Vue.use(browserDetect);
 
+
+// create a unique ID that can be used to identify user sessions
+// Note: this section is borrowed code with Public Domain/MIT licensing
+const sessionID = function() {
+  var d = new Date().getTime();
+  if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
+    d += performance.now(); //use high-precision timer if available
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = (d + Math.random() * 16) % 16 | 0;
+    d = Math.floor(d / 16);
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+};
+
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
   set: [
-    // { field: 'sessionId', value: this.$ga.sessionId },
-    // { field: 'timestamp', value: this.$ga.timestamp },
-    { field: 'dimension1', value: 'a test' },
-    { field: 'dimension2', value: 'test2' },
+    { field: 'dimension1', value: sessionID() },
+    { field: 'dimension2', value: Date.now() },
   ],
   commands: {
     trackName (eventName, action, label) {
@@ -74,9 +87,9 @@ Vue.use(VueAnalytics, {
     }
   },
   router
-})
+});
 
 const app = new Vue({
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
