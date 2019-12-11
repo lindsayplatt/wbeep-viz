@@ -106,6 +106,13 @@
             MapLayers,
             QuestionControl
         },
+        props: {
+            isInternetExplorer: {
+                type: Boolean,
+                required: true,
+                default: false
+            }
+        },
         data() {
             return {
                 title: process.env.VUE_APP_TITLE,
@@ -123,13 +130,8 @@
                 maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
-                isInternetExplorer: false,
                 isAboutMapInfoBoxOpen: true
             };
-        },
-        created() {
-            // We are ending support for Internet Explorer, so let's test to see if the browser used is IE.
-            this.$browserDetect.isIE ? this.isInternetExplorer = true : this.isInternetExplorer = false;
         },
         methods: {
             runGoogleAnalytics(eventName, action, label) {
