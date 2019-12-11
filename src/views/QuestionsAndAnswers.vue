@@ -38,8 +38,7 @@
                 title: process.env.VUE_APP_TITLE,
                 developmentTier: process.env.VUE_APP_TIER,
                 feedbackEmailAddress: process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS,
-                pageContents: questionsAndAnswers.pageContents,
-                rerender: false
+                pageContents: questionsAndAnswers.pageContents
             };
         }
     }
