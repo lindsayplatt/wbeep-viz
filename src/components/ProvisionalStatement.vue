@@ -3,7 +3,7 @@
     <div v-show="!isFullProvisionalStatementShowing">
       <div class="statement-condensed">
         <p>
-          This information is PRELIMINARY and/or PROVISIONAL
+          This information is PRELIMINARY and PROVISIONAL
         </p>
         <button
           v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-enlarge', 'click', 'user enlarged the provisional statement')"
@@ -57,6 +57,8 @@
     margin: auto;
     padding: 0.2em;
     max-width: 70em;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-weight: 400;
 
     button {
       margin: 3px 0 0 10px;
