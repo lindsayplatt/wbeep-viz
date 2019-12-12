@@ -2,9 +2,11 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <router-view />
+    <router-view :is-internet-explorer="isInternetExplorer"/>
     <FooterEmail />
-    <ProvisionalStatement />
+    <ProvisionalStatement
+        v-if="!isInternetExplorer"
+    />
     <FooterUSGS />
   </div>
 </template>
@@ -24,6 +26,15 @@
             FooterEmail,
             ProvisionalStatement,
             FooterUSGS
+        },
+        data() {
+            return {
+                isInternetExplorer: false,
+            }
+        },
+        created() {
+            // We are ending support for Internet Explorer, so let's test to see if the browser used is IE.
+            this.$browserDetect.isIE ? this.isInternetExplorer = true : this.isInternetExplorer = false;
         }
     }
 </script>
