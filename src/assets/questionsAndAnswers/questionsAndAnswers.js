@@ -36,7 +36,7 @@ export default {
                     },
                     {
                         "question": "Will there be improvements to this map in the future?",
-                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the continental US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of future water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
+                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the coterminous US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of future water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
                                 "v-ga=\"$ga.commands.trackName.bind(this, 'feedback email-prefooter', 'click', 'user selected feedback prefooter email link')\"\n" +
                                 "href=\"'mailto:'" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "\"\n" +
                                 ">" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "</a>"
@@ -69,7 +69,7 @@ export default {
                                 "href=\"http://www.climatologylab.org/gridmet.html\"\n" +
                                 "target=\"_blank\"\n" +
                                 "@click=\"runGoogleAnalytics('about page', 'click', 'clicked text link for gridMET')\"\n" +
-                                ">gridMET</a> daily weather dataset is used to force both historical and latest-available model runs (Abatzoglou, 2013). The PRMS is a modular, deterministic, distributed-parameter, physical process-based hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on hydrologic response at the watershed scale  (Regan et al., 2018).The PRMS application of the NHM (NHM-PRMS) is used here to represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the references below.\n" +
+                                ">gridMET</a> daily weather dataset is used to force both historical and latest-available model runs (Abatzoglou, 2013). The PRMS is a modular, deterministic, distributed-parameter, physical process-based hydrologic simulation code that can be used to evaluate the effects of various combinations of climate and landscape on hydrologic response at the watershed scale  (Regan et al., 2018). The PRMS application of the NHM (NHM-PRMS) is used here to represent the daily water balance across the diverse range of landscapes of the conterminous U.S. Further information on the NHM Infrastructure, the PRMS model, and the NHM-PRMS application can be found in the references below.\n" +
                                 "</p>"
                     },
                     {
