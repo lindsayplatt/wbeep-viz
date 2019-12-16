@@ -5,14 +5,13 @@
         <span>
           This information is PRELIMINARY and PROVISIONAL 
           <button
-          v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-enlarge', 'click', 'user enlarged the provisional statement')"
-          aria-label="learn more about provisional statement"
-          @click="toggleProvisionalStatement"
-        >
-          Learn More
-        </button>
+            v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-enlarge', 'click', 'user enlarged the provisional statement')"
+            aria-label="learn more about provisional statement"
+            @click="toggleProvisionalStatement"
+          >
+            Learn More
+          </button>
         </span>
-        
       </div>
     </div>
     <div v-show="isFullProvisionalStatementShowing">
