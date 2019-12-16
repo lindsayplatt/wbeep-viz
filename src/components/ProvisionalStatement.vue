@@ -74,7 +74,6 @@
 
     .statement-condensed  {
        display: flex;
-       width: auto;
       span {
         margin: 5px;
         padding-bottom: 2px;
