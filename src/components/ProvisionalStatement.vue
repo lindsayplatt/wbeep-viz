@@ -2,16 +2,17 @@
   <div class="usa-prose provisional-statement">
     <div v-show="!isFullProvisionalStatementShowing">
       <div class="statement-condensed">
-        <p>
-          This information is PRELIMINARY and PROVISIONAL
-        </p>
-        <button
+        <span>
+          This information is PRELIMINARY and PROVISIONAL 
+          <button
           v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-enlarge', 'click', 'user enlarged the provisional statement')"
           aria-label="learn more about provisional statement"
           @click="toggleProvisionalStatement"
         >
           Learn More
         </button>
+        </span>
+        
       </div>
     </div>
     <div v-show="isFullProvisionalStatementShowing">
@@ -52,13 +53,13 @@
 
 <style scoped lang="scss">
   .provisional-statement {
-    text-align: center;
     font-size: 0.8em;
     margin: auto;
     padding: 0.2em;
     max-width: 70em;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-weight: 400;
+    text-align: center;
 
     button {
       margin: 3px 0 0 10px;
@@ -72,13 +73,12 @@
     }
 
     .statement-condensed  {
-      P {
-        float: left;
+       display: flex;
+       width: auto;
+      span {
         margin: 5px;
         padding-bottom: 2px;
-      }
-      button {
-        float: left;
+        flex: 5;
       }
     }
 
