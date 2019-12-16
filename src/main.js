@@ -75,6 +75,8 @@ const sessionID = function() {
   });
 };
 
+// Next two sections are for Google Analytics
+// First section --  code to get the ClientId from the Google Analytics Cookie
 const clientID = function() {
   let returnValue;
   try {
@@ -86,7 +88,9 @@ const clientID = function() {
   }
   return returnValue;
 };
-
+// Second section -- code to run Vue Analytics plugin
+// Note: to add additional custom dimensions, you must first register the new dimension on the analytics dash board. Then
+// you can set the dimension's value using the plugin.
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
   debug: {
@@ -107,6 +111,7 @@ Vue.use(VueAnalytics, {
   },
   router
 });
+
 
 const app = new Vue({
   router,
