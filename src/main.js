@@ -78,7 +78,7 @@ const sessionID = function() {
 const clientID = function() {
   let returnValue;
   try {
-    returnValue = window.ga.getAll()[10].get('clientId');
+    returnValue = window.ga.getAll()[0].get('clientId');
   }
   catch(error) {
     console.error('failed to get the ClientId from Google Analytics Cookie, format of Cookie may have changed ');
