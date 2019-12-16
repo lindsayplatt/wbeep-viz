@@ -36,7 +36,7 @@ export default {
                     },
                     {
                         "question": "Will there be improvements to this map in the future?",
-                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the continental US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of future water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
+                        "answer": "Yes! This is the first iteration of a USGS product that displays a near real-time indicator of water availability across the coterminous US. Future plans include additional indicators of near real-time water availability (beyond natural water storage), as well as predictions of future water availability. If you’re interested in contributing ideas or learning more, please reach out to       <a\n" +
                                 "v-ga=\"$ga.commands.trackName.bind(this, 'feedback email-prefooter', 'click', 'user selected feedback prefooter email link')\"\n" +
                                 "href=\"'mailto:'" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "\"\n" +
                                 ">" + process.env.VUE_APP_FEEDBACK_EMAIL_ADDRESS + "</a>"
