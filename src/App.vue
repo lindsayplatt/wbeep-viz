@@ -2,10 +2,10 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <router-view :is-internet-explorer="isInternetExplorer"/>
+    <router-view :is-internet-explorer="isInternetExplorer" />
     <FooterEmail />
     <ProvisionalStatement
-        v-if="!isInternetExplorer"
+      v-if="!isInternetExplorer"
     />
     <FooterUSGS />
   </div>

@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added ClientId as a custom dimension for Google Analytics
 
 ## [0.1.0]
 - refined the provisional statement

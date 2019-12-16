@@ -75,19 +75,43 @@ const sessionID = function() {
   });
 };
 
+// Next two sections are for Google Analytics
+// First section --  code to get the ClientId from the Google Analytics Cookie
+const clientID = function() {
+  let returnValue;
+  try {
+    returnValue = window.ga.getAll()[0].get('clientId');
+  }
+  catch(error) {
+    console.error('failed to get the ClientId from Google Analytics Cookie, format of Cookie may have changed ');
+    returnValue = null;
+  }
+  return returnValue;
+};
+// Second section -- code to run Vue Analytics plugin
+// Note: to add additional custom dimensions, you must first register the new dimension on the analytics dash board. Then
+// you can set the dimension's value using the plugin.
 Vue.use(VueAnalytics, {
   id: 'UA-149352326-1',
+  debug: {
+    enabled: false, // default value is 'false'; for more complete output set to true. Just remember to turn it back to 'false' before putting into production.
+    trace: false, // default value is 'false'; for more complete output set to true. Just remember to turn it back to 'false' before putting into production.
+    sendHitTask: true // default value is true. Just leave it as 'true' all the time.
+  },
   set: [
-    { field: 'dimension1', value: sessionID() },
-    { field: 'dimension2', value: Date.now() },
+    { field: 'anonymizeIp', value: true },
+    { field: 'dimension1', value: sessionID() }
   ],
   commands: {
-    trackName (eventName, action, label) {
-      this.$ga.event(eventName, action, label)
+    trackName(eventName, action, label) {
+      this.$ga.set({ dimension2: Date.now() });
+      this.$ga.set({ dimension3: clientID() });
+      this.$ga.event(eventName, action, label);
     }
   },
   router
 });
+
 
 const app = new Vue({
   router,
