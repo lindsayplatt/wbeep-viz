@@ -100,7 +100,8 @@ Vue.use(VueAnalytics, {
   },
   set: [
     { field: 'anonymizeIp', value: true },
-    { field: 'dimension1', value: sessionID() }
+    { field: 'dimension1', value: sessionID() },
+    { field: 'dimension2', value: Date.now() }
   ],
   commands: {
     trackName(eventName, action, label) {
