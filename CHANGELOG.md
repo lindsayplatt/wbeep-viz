@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- modify svg to drop xlink:href to png image which is unnecessary
 
 ## [0.1.1]
 - Added ClientId as a custom dimension for Google Analytics
