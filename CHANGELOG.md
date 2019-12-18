@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+
+## [0.1.2]
 - modify svg to drop xlink:href to png image which is unnecessary
 
 ## [0.1.1]
@@ -130,8 +133,9 @@ All notable changes to this project will be documented in this file.
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
 
-[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.1...master
-[0.1.0]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.0...v0.1.1
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.2...master
+[0.1.2]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.10...v0.1.0
 [0.0.10]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.8...v0.0.9
