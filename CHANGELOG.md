@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-
+- New Flexible Mobile Subtitle
 
 ## [0.1.2]
 - modify svg to drop xlink:href to png image which is unnecessary
