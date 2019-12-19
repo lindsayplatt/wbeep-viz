@@ -18,7 +18,10 @@
       </div>
     </div>
     <div id="data-date-div" />
-    <SubtitleModal v-if="isAboutMapInfoBoxOpen" @clickedExit="$emit('clickedInfoIcon')" />
+    <SubtitleModal
+      v-if="isAboutMapInfoBoxOpen"
+      @clickedExit="$emit('clickedInfoIcon')"
+    />
   </div>
 </template>
 

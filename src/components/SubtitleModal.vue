@@ -20,7 +20,9 @@
       <router-link to="/questionsandanswers">
         <button
           v-ga="$ga.commands.trackName.bind(this, 'button-subtitle', 'click', 'user went to questions and answers page')"
-        >Learn More</button>
+        >
+          Learn More
+        </button>
       </router-link>
     </div>
   </div>
