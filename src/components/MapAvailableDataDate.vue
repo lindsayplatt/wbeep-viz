@@ -4,7 +4,7 @@
     class="subtitle"
   >
     <div class="subtitleText">
-      <p>Showing Latest Available Data: {{ dataDate }}</p>
+      <p>Showing Latest Available Data: <span class="nowrap"><strong>{{ dataDate }}</strong></span></p>
     </div>
   </div>
 </template>
@@ -34,9 +34,9 @@
 <style scoped lang="scss">
   .subtitle {
     background: rgb(255, 255, 255);
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
     position: absolute;
-    top: 43px;
+    top: 47px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -45,7 +45,8 @@
     flex-direction: row;
     text-align: center;
     border: 1px solid rgb(200, 200, 200);
-    width:270px;
+    width: 70%;
+    max-width: 260px;
 
 
     p {
@@ -54,10 +55,21 @@
       font-size: .75em;
     }
 
+    .nowrap{
+      white-space: pre;
+    }
+
     .subtitleText {
       flex: 1;
-      line-height: 25px;
-      padding: 0;
+      line-height: 20px;
+      padding: 2px;
     }
   }
+  @media screen and (min-width: 600px) {
+  .subtitle {
+    p {
+      font-size: 0.8em;
+    }
+  }
+}
 </style>

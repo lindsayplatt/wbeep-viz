@@ -462,8 +462,8 @@
 
   #mapContainer {
     position: relative;
-    height: 90vh;
-    min-height: 600px;
+    height: 80vh;
+    min-height: 550px;
     display: flex;
     flex-direction: column;
   }
