@@ -18,109 +18,114 @@
       </div>
     </div>
     <div id="data-date-div" />
-    <SubtitleModal
-      v-if="isAboutMapInfoBoxOpen"
-      @clickedExit="$emit('clickedInfoIcon')"
-    />
+    <SubtitleModal v-if="isAboutMapInfoBoxOpen" @clickedExit="$emit('clickedInfoIcon')" />
   </div>
 </template>
 
 <script>
-import SubtitleModal from "./SubtitleModal"
-  export default {
-    name: "MapSubtitle",
-    components:{
-      SubtitleModal
-    },
-    props: {
-      isAboutMapInfoBoxOpen: {
-          type:Boolean,
-          required: true,
-          default: true
-      }
+import SubtitleModal from "./SubtitleModal";
+export default {
+  name: "MapSubtitle",
+  components: {
+    SubtitleModal
+  },
+  props: {
+    isAboutMapInfoBoxOpen: {
+      type: Boolean,
+      required: true,
+      default: true
     }
-  };
+  }
+};
 </script>
 
 <style scoped lang="scss">
-h2 {
-  font-size: 1.1rem;
-}
-
-#subTitleContainer{
+#subTitleContainer {
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+  width: 70%;
+  max-width: 260px;
 }
 
 #subtitle {
   background: rgb(255, 255, 255);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   position: relative;
   border-radius: 5px;
   display: flex;
-  flex-direction: row;
   text-align: center;
   border: 1px solid rgb(200, 200, 200);
-  width:270px;
 
   p {
     margin: 0;
     user-select: none;
-    font-size:.8em;
+    font-size: 0.75em;
   }
 
   #subtitleText {
-    flex: 1;
-    line-height: 30px;
-    padding: 0 0 0 10px;
+    flex: 9;
+    p {
+      padding: 5px 5px;
+    }
   }
 
   #subtitleInfoButton {
-    margin: 0 0 0 10px;
-    width: 30px;
-    height: 30px;
-    position: relative;
-    border-left: 1px solid rgb(200,200,200);
+    border-left: 1px solid rgb(200, 200, 200);
+    flex: 1;
 
-    a{
+    #subtitleIcon {
+      display: inline-block;
+      border-radius: 0 5px 5px 0;
+      width: 100%;
+      height: 100%;
       color: #000;
       outline: none;
-    }
 
-    #subtitleIcon{
-      display: block;
-      height: 100%;
-      border-radius: 0 5px 5px 0;
+      &:hover{
+        color:#fff;
+        background: #003366;
+      }
 
-      &:active{
+      &:active {
         background: #003366;
         color: #ffffff;
       }
-      
 
-      svg{
+      svg {
         width: 18px;
         height: 18px;
-        margin: 5px 0 0 0;
+        margin: 9px 0 0 0;
       }
     }
   }
 }
 
-@media screen and (min-width: 600px){
-  #subtitle{
-    width: 320px;
-
-    p{
-      font-size: .9em;
-    }
-    #subtitleInfoModal{
-      #infoContainer{
-        width: 320px;
+@media screen and (min-width: 360px) {
+  #subtitle {
+    #subtitleText {
+      line-height: 30px;
+      p {
+        padding: 0 5px;
       }
+    }
+
+    #subtitleInfoButton {
+      #subtitleIcon {
+        svg {
+          margin: 5px 0 0 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  #subtitle {
+    p {
+      font-size: 0.8em;
     }
   }
 }
