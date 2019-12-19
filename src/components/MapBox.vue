@@ -22,7 +22,7 @@
     >
       <MapSubtitle
         :is-about-map-info-box-open="isAboutMapInfoBoxOpen"
-        @clickedInfoIcon="clickAnywhereToCloseMapInfoBox()"
+        @clickedInfoIcon="toggleMapInfoBox()"
         @clickedExit="toggleMapInfoBox()"
       />
       <MapAvailableDataDate />
