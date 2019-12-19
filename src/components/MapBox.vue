@@ -139,6 +139,7 @@
                 this.$ga.event(eventName, action, label);
             },
             toggleAboutMapInfoBox() {
+                console.log('ran the toggle')
                 this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
             },
             onMapLoaded(event) {
