@@ -1,7 +1,7 @@
 <template>
   <div
     id="viz_container"
-    @click.once="toggleAboutMapInfoBox"
+    @click.once="clickAnywhereToCloseMapInfoBox"
   >
     <LoadingScreen
       v-if="!isInternetExplorer"
@@ -22,7 +22,8 @@
     >
       <MapSubtitle
         :is-about-map-info-box-open="isAboutMapInfoBoxOpen"
-        @clickedInfoIcon="toggleAboutMapInfoBox()"
+        @clickedInfoIcon="toggleMapInfoBox()"
+        @clickedExit="toggleMapInfoBox()"
       />
       <MapAvailableDataDate />
       <MapLegend
@@ -130,7 +131,8 @@
                 maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
-                isAboutMapInfoBoxOpen: true
+                isAboutMapInfoBoxOpen: true,
+                isFirstClick: true
             };
         },
         methods: {
@@ -138,8 +140,14 @@
                 this.$ga.set({ dimension2: Date.now() });
                 this.$ga.event(eventName, action, label);
             },
-            toggleAboutMapInfoBox() {
+            clickAnywhereToCloseMapInfoBox() {
                 this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
+                this.isFirstClick = false;
+            },
+            toggleMapInfoBox() {
+                if (!this.isFirstClick) {
+                    this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
+                }
             },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded.
