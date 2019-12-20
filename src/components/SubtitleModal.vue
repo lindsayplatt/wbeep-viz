@@ -14,7 +14,7 @@
       </div>
       <h2>About This Map</h2>
       <p>
-        This map shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the conterminous U.S.
+        This map shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the lower 48 U.S.
         Map shading indicates the current natural water storage relative to historical conditions for this time of year.
       </p>
       <router-link to="/questionsandanswers">
