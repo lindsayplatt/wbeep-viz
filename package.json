@@ -29,7 +29,7 @@
     "dns": "^0.2.2",
     "mapbox-gl": "^1.6.1",
     "uswds": "^2.4.0",
-    "vue": "^2.6.10",
+    "vue": "^2.6.11",
     "vue-analytics": "^5.20.1",
     "vue-browser-detect-plugin": "^0.1.5",
     "vue-mapbox": "^0.4.1",
