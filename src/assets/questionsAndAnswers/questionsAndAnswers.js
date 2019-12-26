@@ -74,7 +74,7 @@ export default {
                     },
                     {
                         "question": "Why was \"natural water storage\" used as an indicator of water availability?",
-                        "answer": "For the first phase of operationalizing a national hydrologic model to indicate water availability across CONUS, the model focused only on natural flows (without human modification from reservoirs and withdrawals). As the model matures, additional hydrologic parameters will be produced by the operational model and additional indicators of water availability will be included on this map."
+                        "answer": "For the first phase of operationalizing a national hydrologic model to indicate water availability across the lower forty-eight states, the model focused only on natural flows (without human modification from reservoirs and withdrawals). As the model matures, additional hydrologic parameters will be produced by the operational model and additional indicators of water availability will be included on this map."
                     },
                     {
                         "question": "Why would a region with a wetland or water body have a lower daily natural water storage than one without?",
