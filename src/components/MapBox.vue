@@ -121,14 +121,14 @@
                 developmentTier: process.env.VUE_APP_TIER,
                 mapStyle: mapStyles.style,
                 container: "map",
-                zoom: 3,
+                zoom: 2,
                 minZoom: 2,
-                maxZoom: 6,
+                maxZoom: 5.99,
                 center: [-95.7129, 37.0902],
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
                 hoveredHRUId: null,
-                maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
+                maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
                 isAboutMapInfoBoxOpen: true,
