@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 - Map Bounding Box For Mobile 
 - Fixed bug requiring double click on info text close box
 - New Flexible Mobile Subtitle
+- Improve plain language on Q&A page
 
 ## [0.1.2]
 - modify svg to drop xlink:href to png image which is unnecessary
