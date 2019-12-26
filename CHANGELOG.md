@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Quick Map BG Appearing Fix
 - Map Bounding Box For Mobile 
 - Fixed bug requiring double click on info text close box
 - New Flexible Mobile Subtitle
