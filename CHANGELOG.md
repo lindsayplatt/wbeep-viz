@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.1.3]
 - Quick Map BG Appearing Fix
 - Map Bounding Box For Mobile 
 - Fixed bug requiring double click on info text close box
@@ -137,7 +139,8 @@ All notable changes to this project will be documented in this file.
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
 
-[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.2...master
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.3...master
+[0.1.3]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.0.10...v0.1.0
