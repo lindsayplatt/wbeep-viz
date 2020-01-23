@@ -322,14 +322,14 @@ export default {
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'counties',
-                'minzoom': 6,
+                'minzoom': 4,
                 'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgb(0,0,0)',
-                    'line-dasharray': [4, 3]
+                    'line-dasharray': [2, 4]
                 },
                 'showButtonLayerToggle': true
             },
