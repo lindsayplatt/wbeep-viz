@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+-fixed zoom level issue that prevented county lines from showing
 
 ## [0.1.3]
 - Quick Map BG Appearing Fix
