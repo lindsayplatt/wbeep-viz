@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+
+## [0.1.4]
 -fixed zoom level issue that prevented county lines from showing
 
 ## [0.1.3]
@@ -140,7 +143,8 @@ All notable changes to this project will be documented in this file.
 - Added appropriate changes to the style variable in the Mapbox.vue to style the map the way I chose to
 - Added USWDS components, Added title, removed component not needed
 
-[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.3...master
+[Unreleased]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.4...master
+[0.1.3]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/usgs-makerspace/wbeep-viz/compare/v0.1.0...v0.1.1
