@@ -322,7 +322,7 @@ export default {
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'counties',
-                'minzoom': 4,
+                'minzoom': 0,
                 'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
