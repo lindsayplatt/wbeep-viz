@@ -59,6 +59,10 @@
     font-weight: 400;
     text-align: center;
 
+    strong{
+      color: #003366;
+    }
+
     button {
       margin: 3px 0 0 10px;
       background: #003366;
