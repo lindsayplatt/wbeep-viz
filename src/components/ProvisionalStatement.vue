@@ -3,7 +3,7 @@
     <div v-show="!isFullProvisionalStatementShowing">
       <div class="statement-condensed">
         <span>
-          This information is PRELIMINARY and PROVISIONAL 
+          <strong>This is a demonstration map and is not for decision making</strong>
           <button
             v-ga="$ga.commands.trackName.bind(this, 'button-provisionalStatement-enlarge', 'click', 'user enlarged the provisional statement')"
             aria-label="learn more about provisional statement"
@@ -17,8 +17,7 @@
     <div v-show="isFullProvisionalStatementShowing">
       <div class="statement-expanded">
         <p>
-          This information is preliminary or provisional and is subject to revision. It is being provided to meet the need
-          for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and
+          This information is preliminary or provisional and is subject to revision. The information has not received final approval by the U.S. Geological Survey (USGS) and
           is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages
           resulting from the authorized or unauthorized use of the information.
         </p>
@@ -59,6 +58,10 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-weight: 400;
     text-align: center;
+
+    strong{
+      color: #003366;
+    }
 
     button {
       margin: 3px 0 0 10px;
