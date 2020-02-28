@@ -136,6 +136,10 @@
             };
         },
         methods: {
+            addZoomLevelIndicator() {
+                const map = this.$store.map;
+                document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + map.getZoom() ;
+            },
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.set({ dimension2: Date.now() });
                 this.$ga.event(eventName, action, label);
@@ -150,26 +154,17 @@
                 }
             },
             onMapLoaded(event) {
-                let map = event.map; // This gives us access to the map as an object but only after the map has loaded.
+                this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
+                const map = this.$store.map;
+                let googleAnalytics = this.runGoogleAnalytics; // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make a local variable and assign our GA event tracking method to that.
+                map.resize(); //This solves the mysterious whitespace by resizing the map to the correct size.
+                map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
+                map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
+                map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
+                setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
+                // Next line adds the current zoom level display. The zoom level should only show in 'development' versions of the application.
+                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;
 
-                // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make
-                // a local variable and assign our GA event tracking method to that.
-                let googleAnalytics = this.runGoogleAnalytics;
-
-                //This solves the mysterious whitespace by resizing the map to the correct size.
-                map.resize();
-
-                // pinch to zoom for touch devices
-                map.touchZoomRotate.enable();
-                // disable the rotation functionality, but keep pinch to zoom
-                map.touchZoomRotate.disableRotation();
-
-                // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
-                map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
-                //set timeout to make sure the fitbounds is completely done before fadeaway
-                setTimeout(() => {
-                    this.isLoading = false;
-                }, 200);
 
                 //Create elements and give them specific ids
                 //Div that the map uses to display things fullscreen
@@ -347,16 +342,6 @@
                     }
                     hoveredHRUId = null;
                 });
-                
-                // Next section adds the current zoom level display to the map for development purposes.
-                // The zoom level display should only show in 'development' versions of the application
-                if (process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY && process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true') {
-                    function onZoomend() {
-                        let currentZoom = map.getZoom();
-                        document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + currentZoom ;
-                    }
-                    map.on("zoomend", onZoomend);
-                }
             }
         }
     };
