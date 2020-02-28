@@ -136,6 +136,35 @@
             };
         },
         methods: {
+            activeHighlightOnHover() {
+                const map = this.$store.map;
+                let hoveredHRUId = this.hoveredHRUId;
+
+                map.on("mousemove", "HRUs", function(e) {
+                    if (e.features.length > 0) {
+                        if (hoveredHRUId) {
+                            map.setFeatureState(
+                                    { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
+                                    { hover: false }
+                            );
+                        }
+                        hoveredHRUId = e.features[0].id;
+                        map.setFeatureState(
+                                { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
+                                { hover: true }
+                        );
+                    }
+                });
+                map.on("mouseleave", "HRUS Fill Colors", function() {
+                    if (hoveredHRUId) {
+                        map.setFeatureState(
+                                { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
+                                { hover: false }
+                        );
+                    }
+                    hoveredHRUId = null;
+                });
+            },
             addZoomLevelIndicator() {
                 const map = this.$store.map;
                 document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + map.getZoom() ;
@@ -149,9 +178,7 @@
                 this.isFirstClick = false;
             },
             toggleMapInfoBox() {
-                if (!this.isFirstClick) {
-                    this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
-                }
+                !this.isFirstClick ? this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen : null;
             },
             onMapLoaded(event) {
                 this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
@@ -162,8 +189,7 @@
                 map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
                 setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
-                // Next line adds the current zoom level display. The zoom level should only show in 'development' versions of the application.
-                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;
+                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;  // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
 
 
                 //Create elements and give them specific ids
@@ -210,59 +236,71 @@
 
                 mapLayersToggleContainer.onclick = function(e){
                     e.stopPropagation();
-                }
+                };
                 toggleExit.onclick = function(e){
                     e.stopPropagation();
                     contentToggle(mapLayersToggleContainer);
-                }
+                };
                 document.body.onclick = function(){
                     if(mapLayersToggleContainer.style.display === "block"){
                         contentToggle(mapLayersToggleContainer);
                     }
-                }
+                };
                 let contentToggle = function(name) {
-                    if (name.style.display === "block") {
-                        name.style.display = "none";
-                    } else {
-                        name.style.display = "block";
-                    }
+                    name.style.display === "block" ? name.style.display = "none" : name.style.display = "block";
                 };
 
-                // Next section gives us names for the layer toggle buttons
-                let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
-
+                const styleLayers =  Object.values(mapStyles.style.layers);
                 let toggleableLayerIds = [];
                 let layersTurnedOffAtStart = [];
                 let toggleableStreamsIds = [];
                 let streamsTurnedOffAtStart = [];
+                // Next section gives us names for the layer toggle buttons
+                styleLayers.forEach(function(layer) {
+                    if (layer.showButtonLayerToggle === true) {
+                        // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
+                        toggleableLayerIds.push(layer.id);
+
+                        // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
+                        // These layers that are off by default have a visibility of 'none' in the style sheet.
+                        if (layer.layout.visibility === "none") {
+                            layersTurnedOffAtStart.push(layer.id);
+                        }
+                    }
+                    if (layer.showButtonStreamToggle === true) {
+                        toggleableStreamsIds.push(layer.id);
+                        if (layer.layout.visibility === 'none') {
+                            streamsTurnedOffAtStart.push(layer.id);
+                        }
+                    }
+                });
 
                 let assembledIdSets = [];
                 let assembledOffAtStartSets = [];
 
-                for (let index = 0; index < styleLayers.length; index++) {
-                    if (styleLayers[index].showButtonLayerToggle === true) {
+                styleLayers.forEach(function (layer) {
+                    if (layer.showButtonLayerToggle === true) {
                         // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
-                        toggleableLayerIds.push(styleLayers[index].id);
+                        toggleableLayerIds.push(layer.id);
 
                         // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
                         // These layers that are off by default have a visibility of 'none' in the style sheet.
-                        if (styleLayers[index].layout.visibility === "none") {
-                            layersTurnedOffAtStart.push(styleLayers[index].id);
+                        if (layer.layout.visibility === "none") {
+                            layersTurnedOffAtStart.push(layer.id);
                         }
                     }
-                    if (styleLayers[index].showButtonStreamToggle === true) {
-                        toggleableStreamsIds.push(styleLayers[index].id);
-                        if (styleLayers[index].layout.visibility === 'none') {
-                            streamsTurnedOffAtStart.push(styleLayers[index].id);
+                    if (layer.showButtonStreamToggle === true) {
+                        toggleableStreamsIds.push(layer.id);
+                        if (layer.layout.visibility === 'none') {
+                            streamsTurnedOffAtStart.push(layer.id);
                         }
                     }
-                }
+                });
+
                 assembledIdSets.push(toggleableLayerIds);
                 assembledIdSets.push(toggleableStreamsIds);
-
                 assembledOffAtStartSets.push(layersTurnedOffAtStart);
                 assembledOffAtStartSets.push(streamsTurnedOffAtStart);
-
 
                 let elementTargets = ["mapLayers", "streams"];
                 let countup = 0;
@@ -275,11 +313,8 @@
                         link.href = "#";
                         // If the layer is not set to visible when first loaded, then do not mark it as active.
                         // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
-                        if (assembledOffAtStartSets[countup].includes(id)) {
-                            link.className = "";
-                        } else {
-                            link.className = "active";
-                        }
+                        assembledOffAtStartSets[countup].includes(id) ? link.className = "" : link.className = "active";
+
                         // Set the wording (label) for the layer toggle button to match the 'id' listed in the style sheet
                         link.textContent = id;
                         // Creates a click event for each button so that when clicked by the user, the visibility property
@@ -315,33 +350,7 @@
                     countup++;
                 });
 
-                // next section controls the HRU hover effect
-                let hoveredHRUId = this.hoveredHRUId;
-
-                map.on("mousemove", "HRUs", function(e) {
-                    if (e.features.length > 0) {
-                        if (hoveredHRUId) {
-                            map.setFeatureState(
-                                    { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
-                                    { hover: false }
-                            );
-                        }
-                        hoveredHRUId = e.features[0].id;
-                        map.setFeatureState(
-                                { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
-                                { hover: true }
-                        );
-                    }
-                });
-                map.on("mouseleave", "HRUS Fill Colors", function() {
-                    if (hoveredHRUId) {
-                        map.setFeatureState(
-                                { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
-                                { hover: false }
-                        );
-                    }
-                    hoveredHRUId = null;
-                });
+                this.activeHighlightOnHover();
             }
         }
     };
