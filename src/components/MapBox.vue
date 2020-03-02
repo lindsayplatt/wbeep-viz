@@ -169,29 +169,51 @@
                 const map = this.$store.map;
                 document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + map.getZoom() ;
             },
-            runGoogleAnalytics(eventName, action, label) {
-                this.$ga.set({ dimension2: Date.now() });
-                this.$ga.event(eventName, action, label);
-            },
             clickAnywhereToCloseMapInfoBox() {
                 this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
                 this.isFirstClick = false;
             },
-            toggleMapInfoBox() {
-                !this.isFirstClick ? this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen : null;
+            contentToggle(elementToToggle) {
+                elementToToggle.style.display === "block" ? elementToToggle.style.display = "none" : elementToToggle.style.display = "block";
             },
-            onMapLoaded(event) {
-                this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
+            createLayerButtons(elementIds, idsOfButtonsOffWhenPageFirstLoads, elementTarget, googleAnalytics) {
                 const map = this.$store.map;
-                let googleAnalytics = this.runGoogleAnalytics; // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make a local variable and assign our GA event tracking method to that.
-                map.resize(); //This solves the mysterious whitespace by resizing the map to the correct size.
-                map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
-                map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
-                map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
-                setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
-                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;  // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
 
-
+                elementIds.forEach(function(elementId) {
+                    let mapLayerButton = document.createElement("a");
+                    mapLayerButton.href = "#";
+                    // If the layer is not set to visible when first loaded, then do not mark it as active.
+                    // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
+                    idsOfButtonsOffWhenPageFirstLoads.includes(elementId) ? mapLayerButton.className = "" : mapLayerButton.className = "active";
+                    mapLayerButton.textContent = elementId; // Set the wording (label) for the layer toggle button to match the 'elementId' listed in the style sheet
+                    mapLayerButton.onclick = function(e) {  // Creates a click event for each button so that when clicked by the user, the visibility property is changed as is the class (color) of the button
+                        googleAnalytics('layers-menu', 'click', 'user clicked ' + elementId);
+                        let clickedLayer = this.textContent;
+                        let clickedLayerParent = this.parentElement;
+                        let clickedLayerParentKids = clickedLayerParent.children;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        let visibility = map.getLayoutProperty(clickedLayer, "visibility");
+                        if (visibility === "visible") {
+                            map.setLayoutProperty(clickedLayer, "visibility", "none");
+                            this.className = "";
+                        } else {
+                            if(clickedLayerParent.elementId === "streams"){
+                                for(let i = 0; i < clickedLayerParentKids.length; i++){
+                                    clickedLayerParentKids[i].className = "";
+                                    map.setLayoutProperty(clickedLayerParentKids[i].textContent, "visibility", "none");
+                                }
+                            }
+                            this.className = "active";
+                            map.setLayoutProperty(clickedLayer, "visibility", "visible");
+                        }
+                    };
+                    let layerToggleList = document.getElementById(elementTarget);
+                    layerToggleList.appendChild(mapLayerButton);
+                });
+            },
+            createLayerMenu() {
+                const self = this;
                 //Create elements and give them specific ids
                 //Div that the map uses to display things fullscreen
                 let correctDiv = document.getElementById("map");
@@ -239,117 +261,64 @@
                 };
                 toggleExit.onclick = function(e){
                     e.stopPropagation();
-                    contentToggle(mapLayersToggleContainer);
+                    self.contentToggle(mapLayersToggleContainer);
                 };
                 document.body.onclick = function(){
                     if(mapLayersToggleContainer.style.display === "block"){
-                        contentToggle(mapLayersToggleContainer);
+                        self.contentToggle(mapLayersToggleContainer);
                     }
                 };
-                let contentToggle = function(name) {
-                    name.style.display === "block" ? name.style.display = "none" : name.style.display = "block";
-                };
+            },
+            getIdListFromStyleLayersBasedOnTargetProperty(styleLayers, targetPropertyFromStylesheet) {
+                let layerIds = [];
 
-                const styleLayers =  Object.values(mapStyles.style.layers);
-                let toggleableLayerIds = [];
-                let layersTurnedOffAtStart = [];
-                let toggleableStreamsIds = [];
-                let streamsTurnedOffAtStart = [];
-                // Next section gives us names for the layer toggle buttons
                 styleLayers.forEach(function(layer) {
-                    if (layer.showButtonLayerToggle === true) {
-                        // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
-                        toggleableLayerIds.push(layer.id);
-
-                        // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
-                        // These layers that are off by default have a visibility of 'none' in the style sheet.
-                        if (layer.layout.visibility === "none") {
-                            layersTurnedOffAtStart.push(layer.id);
-                        }
-                    }
-                    if (layer.showButtonStreamToggle === true) {
-                        toggleableStreamsIds.push(layer.id);
-                        if (layer.layout.visibility === 'none') {
-                            streamsTurnedOffAtStart.push(layer.id);
-                        }
+                    if (layer[targetPropertyFromStylesheet]) {
+                        layerIds.push(layer.id);
                     }
                 });
+                return layerIds
+            },
+            getSortedIdsForLayersOffWhenPageLoads(styleLayers, targetPropertyFromStylesheet) {
+                let layerIds = [];
 
-                let assembledIdSets = [];
-                let assembledOffAtStartSets = [];
-
-                styleLayers.forEach(function (layer) {
-                    if (layer.showButtonLayerToggle === true) {
-                        // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
-                        toggleableLayerIds.push(layer.id);
-
-                        // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
-                        // These layers that are off by default have a visibility of 'none' in the style sheet.
-                        if (layer.layout.visibility === "none") {
-                            layersTurnedOffAtStart.push(layer.id);
-                        }
-                    }
-                    if (layer.showButtonStreamToggle === true) {
-                        toggleableStreamsIds.push(layer.id);
-                        if (layer.layout.visibility === 'none') {
-                            streamsTurnedOffAtStart.push(layer.id);
-                        }
+                styleLayers.forEach(function(layer) {
+                    if (layer[targetPropertyFromStylesheet] && layer.layout.visibility === "none") {
+                        layerIds.push(layer.id);
                     }
                 });
+                return layerIds;
+            },
+            populateLayerMenuGroupsAndButtons(googleAnalytics) {
+                const styleLayers =  Object.values(mapStyles.style.layers);
+                const toggleableLayerIds = this.getIdListFromStyleLayersBasedOnTargetProperty(styleLayers, 'showButtonLayerToggle');
+                const toggleableStreamsIds = this.getIdListFromStyleLayersBasedOnTargetProperty(styleLayers, 'showButtonStreamToggle');
+                const layersTurnedOffAtStart = this.getSortedIdsForLayersOffWhenPageLoads(styleLayers, 'showButtonLayerToggle');
+                const streamsTurnedOffAtStart = this.getSortedIdsForLayersOffWhenPageLoads(styleLayers, 'showButtonStreamToggle');
 
-                assembledIdSets.push(toggleableLayerIds);
-                assembledIdSets.push(toggleableStreamsIds);
-                assembledOffAtStartSets.push(layersTurnedOffAtStart);
-                assembledOffAtStartSets.push(streamsTurnedOffAtStart);
+                this.createLayerButtons(toggleableLayerIds, layersTurnedOffAtStart, 'mapLayers',  googleAnalytics);
+                this.createLayerButtons(toggleableStreamsIds, streamsTurnedOffAtStart, 'streams', googleAnalytics);
+            },
+            runGoogleAnalytics(eventName, action, label) {
+                this.$ga.set({ dimension2: Date.now() });
+                this.$ga.event(eventName, action, label);
+            },
+            toggleMapInfoBox() {
+                !this.isFirstClick ? this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen : null;
+            },
+            onMapLoaded(event) {
+                this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
+                const map = this.$store.map;
+                let googleAnalytics = this.runGoogleAnalytics; // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make a local variable and assign our GA event tracking method to that.
+                map.resize(); //This solves the mysterious whitespace by resizing the map to the correct size.
+                map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
+                map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
+                map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
+                setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
+                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;  // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
 
-                let elementTargets = ["mapLayers", "streams"];
-                let countup = 0;
-
-                assembledIdSets.forEach(function(idSet) {
-                    // Go through each layer id that is in the array and make a button element for it
-                    for (let index = 0; index < idSet.length; index++) {
-                        let id = idSet[index];
-                        let link = document.createElement("a");
-                        link.href = "#";
-                        // If the layer is not set to visible when first loaded, then do not mark it as active.
-                        // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
-                        assembledOffAtStartSets[countup].includes(id) ? link.className = "" : link.className = "active";
-
-                        // Set the wording (label) for the layer toggle button to match the 'id' listed in the style sheet
-                        link.textContent = id;
-                        // Creates a click event for each button so that when clicked by the user, the visibility property
-                        // is changed as is the class (color) of the button
-                        link.onclick = function(e) {
-                            googleAnalytics('layers-menu', 'click', 'user clicked ' + id);
-                            let clickedLayer = this.textContent;
-                            let clickedLayerParent = this.parentElement;
-                            let clickedLayerParentKids = clickedLayerParent.children;
-                            e.preventDefault();
-                            e.stopPropagation();
-                            let visibility = map.getLayoutProperty(
-                                    clickedLayer,
-                                    "visibility"
-                            );
-                            if (visibility === "visible") {
-                                map.setLayoutProperty(clickedLayer, "visibility", "none");
-                                this.className = "";
-                            } else {
-                                if(clickedLayerParent.id === "streams"){
-                                    for(let i = 0; i < clickedLayerParentKids.length; i++){
-                                        clickedLayerParentKids[i].className = "";
-                                        map.setLayoutProperty(clickedLayerParentKids[i].textContent, "visibility", "none");
-                                    }
-                                }
-                                this.className = "active";
-                                map.setLayoutProperty(clickedLayer, "visibility", "visible");
-                            }
-                        };
-                        let layerToggleList = document.getElementById(elementTargets[countup]);
-                        layerToggleList.appendChild(link);
-                    }
-                    countup++;
-                });
-
+                this.createLayerMenu();
+                this.populateLayerMenuGroupsAndButtons(googleAnalytics());
                 this.activeHighlightOnHover();
             }
         }
