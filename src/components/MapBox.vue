@@ -132,7 +132,8 @@
                 legendTitle: "Latest Natural Water Storage",
                 isLoading: true,
                 isAboutMapInfoBoxOpen: true,
-                isFirstClick: true
+                isFirstClick: true,
+                activeFlowDetailLayer: null
             };
         },
         methods: {
@@ -198,11 +199,12 @@
                             map.setLayoutProperty(clickedLayer, "visibility", "none");
                             this.className = "";
                         } else {
-                            if(clickedLayerParent.elementId === "streams"){
-                                for(let i = 0; i < clickedLayerParentKids.length; i++){
-                                    clickedLayerParentKids[i].className = "";
-                                    map.setLayoutProperty(clickedLayerParentKids[i].textContent, "visibility", "none");
-                                }
+                            // We don't want the user to have more than one Flow Detail layer showing at time, so we need to turn off any Flow Detail layers before loading a new one.
+                            if (clickedLayerParent.id === "streams") {
+                                clickedLayerParentKids.forEach(function(kid) {
+                                    kid.className = "";
+                                    map.setLayoutProperty(kid.innerHTML, "visibility", "none");
+                                });
                             }
                             this.className = "active";
                             map.setLayoutProperty(clickedLayer, "visibility", "visible");
@@ -214,8 +216,7 @@
             },
             createLayerMenu() {
                 const self = this;
-                //Create elements and give them specific ids
-                //Div that the map uses to display things fullscreen
+
                 let correctDiv = document.getElementById("map");
                 let mapLayersToggleContainer = document.createElement("div");
                 let toggleOptions = document.createElement("div");
@@ -245,7 +246,6 @@
                 flowDetail.innerHTML = "Flow Detail";
                 mapLayersToggleContainer.style.display = "none";
 
-                //Append elements
                 toggleExit.appendChild(exitIcon);
                 toggleTitleContainer.appendChild(toggleTitle);
                 toggleTitleContainer.appendChild(toggleExit);
@@ -318,7 +318,7 @@
                 process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;  // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
 
                 this.createLayerMenu();
-                this.populateLayerMenuGroupsAndButtons(googleAnalytics());
+                this.populateLayerMenuGroupsAndButtons(googleAnalytics);
                 this.activeHighlightOnHover();
             }
         }
