@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- added Vuex to allow easy access to map object in child components
+- Changed to allow only one Flow Detail Layer to show at a time
+- refactored code to remove logic from Mapbox.vue map.onload function and modernized code
+- Removed depreciated System.import
 
 ## [0.1.5]
 - added text to explain the limitations of the visualization at this time 

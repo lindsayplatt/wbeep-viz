@@ -6,7 +6,7 @@ import Error404 from "./views/Error404";
 
 Vue.use(Router);
 function lazyLoad(view){
-    return() => System.import(`@/views/${view}.vue`)
+    return() => import(`@/views/${view}.vue`)
 }
 
 export default new Router({
