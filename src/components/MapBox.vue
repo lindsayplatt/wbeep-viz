@@ -133,7 +133,9 @@
                 isLoading: true,
                 isAboutMapInfoBoxOpen: true,
                 isFirstClick: true,
-                activeFlowDetailLayer: null
+                activeFlowDetailLayer: null,
+                currentZoom: null,
+                mapLayerIdsForZoomDependentButtons: ['Least Detail', 'Medium Detail', 'Most Detail']
             };
         },
         methods: {
@@ -168,7 +170,33 @@
             },
             addZoomLevelIndicator() {
                 const map = this.$store.map;
-                document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + map.getZoom() ;
+                this.currentZoom = map.getZoom();
+                this.changeButtonStateBasedOnZoomLevel();
+                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ?
+                        document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + this.currentZoom : null;
+            },
+            filterLayersForButtons: function(targetId) {
+                const map = this.$store.map;
+
+                let filteredMapLayer = map.getStyle().layers.filter(function(mapStyleLayer) {
+                    return  mapStyleLayer.id === targetId;
+                });
+
+                return filteredMapLayer;
+            },
+            changeButtonStateBasedOnZoomLevel() {
+                const map = this.$store.map;
+                const self = this;
+                this.mapLayerIdsForZoomDependentButtons.forEach(function(buttonId) {
+                    let layerToChange = self.filterLayersForButtons(buttonId);
+                    console.log('max zoom ', layerToChange[0].maxzoom)
+                    console.log('current ', self.currentZoom)
+                    if (layerToChange[0].maxzoom < self.currentZoom) {
+                        console.log('button not active. ')
+                    } else {
+                        console.log('button is active')
+                    }
+                });
             },
             clickAnywhereToCloseMapInfoBox() {
                 this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
@@ -315,8 +343,7 @@
                 map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
                 setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
-                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;  // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
-
+                map.on("zoomend", this.addZoomLevelIndicator); // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
                 this.createLayerMenu();
                 this.populateLayerMenuGroupsAndButtons(googleAnalytics);
                 this.activeHighlightOnHover();
