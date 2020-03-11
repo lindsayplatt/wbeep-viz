@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- change the layers menu to be zoom level sensitive
 - added Vuex to allow easy access to map object in child components
 - Changed to allow only one Flow Detail Layer to show at a time
 - refactored code to remove logic from Mapbox.vue map.onload function and modernized code
