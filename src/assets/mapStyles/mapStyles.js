@@ -109,6 +109,7 @@ export default {
                 'source-layer': 'transportation',
                 'type': 'line',
                 'minzoom': 5,
+                'maxzoom': 24,
                 'showButtonLayerToggle': true
             },
             {
@@ -216,8 +217,8 @@ export default {
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'least_detail',
-                'minzoom': 0,
-                'maxzoom': 4,
+                'minzoom': 3,
+                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
@@ -233,8 +234,8 @@ export default {
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'medium_detail',
-                'minzoom': 0,
-                'maxzoom': 4,
+                'minzoom': 4,
+                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
@@ -250,8 +251,8 @@ export default {
                 'type': 'line',
                 'source': 'nhd_streams_grouped',
                 'source-layer': 'most_detail',
-                'minzoom': 0,
-                'maxzoom': 4,
+                'minzoom': 5,
+                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
@@ -267,6 +268,8 @@ export default {
                 'type': 'line',
                 'source': 'HRU',
                 'source-layer': 'hrus',
+                'minzoom': 5,
+                'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'
                 },
@@ -322,7 +325,7 @@ export default {
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'counties',
-                'minzoom': 0,
+                'minzoom': 4.5,
                 'maxzoom': 24,
                 'layout': {
                     'visibility': 'none'

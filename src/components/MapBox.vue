@@ -135,7 +135,7 @@
                 isFirstClick: true,
                 activeFlowDetailLayer: null,
                 currentZoom: null,
-                mapLayerIdsForZoomDependentButtons: ['Least Detail', 'Medium Detail', 'Most Detail']
+                mapLayerIdsForZoomDependentButtons: ['Roads', 'Hydrologic Response Unit', 'Terrain', 'Counties', 'Least Detail', 'Medium Detail', 'Most Detail']
             };
         },
         methods: {
@@ -189,12 +189,21 @@
                 const self = this;
                 this.mapLayerIdsForZoomDependentButtons.forEach(function(buttonId) {
                     let layerToChange = self.filterLayersForButtons(buttonId);
-                    console.log('max zoom ', layerToChange[0].maxzoom)
-                    console.log('current ', self.currentZoom)
-                    if (layerToChange[0].maxzoom < self.currentZoom) {
-                        console.log('button not active. ')
+                    buttonId = buttonId.replace(/\s/g, ""); // Note: Element IDs cannot have white space so we know that we shouldn't look for any with white space
+                    const targetElement = document.getElementById(`${buttonId}-button`);
+
+                    if (layerToChange[0].minzoom > self.currentZoom) {
+                        targetElement.className = 'unavailable';
+                        targetElement.disabled = true;
                     } else {
-                        console.log('button is active')
+
+                        if (targetElement.className === 'unavailable') {
+                            console.log('ran the other thing for ', targetElement)
+                            targetElement.className = '';
+                            targetElement.disabled = false;
+                            console.log('target after ', targetElement)
+                        }
+
                     }
                 });
             },
@@ -211,6 +220,7 @@
                 elementIds.forEach(function(elementId) {
                     let mapLayerButton = document.createElement("a");
                     mapLayerButton.href = "#";
+                    mapLayerButton.id = `${elementId.replace(/\s/g, "")}-button`; // Note, Element IDs cannot have white space, so let's remove (replace) any that is there
                     // If the layer is not set to visible when first loaded, then do not mark it as active.
                     // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
                     idsOfButtonsOffWhenPageFirstLoads.includes(elementId) ? mapLayerButton.className = "" : mapLayerButton.className = "active";
@@ -560,6 +570,12 @@
       background: #003366;
       opacity: .7;
       color: #fff;
+    }
+
+    .unavailable {
+      background: #7f8da3;
+      opacity: .7;
+      color: #a0aec4;
     }
   }
 
