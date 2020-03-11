@@ -72,13 +72,13 @@
 </template>
 <script>
     import LoadingScreen from './LoadingScreen';
-    import InternetExplorerPage from "./InternetExplorerPage";
-    import MapSubtitle from "./MapSubtitle";
-    import MapAvailableDataDate from "./MapAvailableDataDate";
-    import MapLegend from "./MapLegend";
-    import MapLayers from "./MapLayers";
-    import { icon } from "@fortawesome/fontawesome-svg-core";
-    import QuestionControl from "./QuestionControl";
+    import InternetExplorerPage from './InternetExplorerPage';
+    import MapSubtitle from './MapSubtitle';
+    import MapAvailableDataDate from './MapAvailableDataDate';
+    import MapLegend from './MapLegend';
+    import MapLayers from './MapLayers';
+    import { icon } from '@fortawesome/fontawesome-svg-core';
+    import QuestionControl from './QuestionControl';
 
     import {
         MglMap,
@@ -87,11 +87,11 @@
         MglFullscreenControl,
         MglScaleControl,
         MglAttributionControl
-    } from "vue-mapbox";
-    import mapStyles from "../assets/mapStyles/mapStyles";
+    } from 'vue-mapbox';
+    import mapStyles from '../assets/mapStyles/mapStyles';
 
     export default {
-        name: "MapBox",
+        name: 'MapBox',
         components: {
             LoadingScreen,
             InternetExplorerPage,
@@ -120,7 +120,7 @@
                 titleSuffix: process.env.VUE_APP_TITLE_SUFFIX,
                 developmentTier: process.env.VUE_APP_TIER,
                 mapStyle: mapStyles.style,
-                container: "map",
+                container: 'map',
                 zoom: 2,
                 minZoom: 2,
                 maxZoom: 5.99,
@@ -129,11 +129,13 @@
                 bearing: 0, // starting rotation of the map from 0 to 360
                 hoveredHRUId: null,
                 maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
-                legendTitle: "Latest Natural Water Storage",
+                legendTitle: 'Latest Natural Water Storage',
                 isLoading: true,
                 isAboutMapInfoBoxOpen: true,
                 isFirstClick: true,
-                activeFlowDetailLayer: null
+                activeFlowDetailLayer: null,
+                currentZoom: null,
+                mapLayerIdsForZoomDependentButtons: ['Roads', 'Hydrologic Response Unit', 'Terrain', 'Counties', 'Least Detail', 'Medium Detail', 'Most Detail']
             };
         },
         methods: {
@@ -141,25 +143,25 @@
                 const map = this.$store.map;
                 let hoveredHRUId = this.hoveredHRUId;
 
-                map.on("mousemove", "HRUs", function(e) {
+                map.on('mousemove', 'HRUs', function(e) {
                     if (e.features.length > 0) {
                         if (hoveredHRUId) {
                             map.setFeatureState(
-                                    { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
+                                    { source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId },
                                     { hover: false }
                             );
                         }
                         hoveredHRUId = e.features[0].id;
                         map.setFeatureState(
-                                { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
+                                { source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId },
                                 { hover: true }
                         );
                     }
                 });
-                map.on("mouseleave", "HRUS Fill Colors", function() {
+                map.on('mouseleave', 'HRUS Fill Colors', function() {
                     if (hoveredHRUId) {
                         map.setFeatureState(
-                                { source: "HRU", sourceLayer: "hrus", id: hoveredHRUId },
+                                { source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId },
                                 { hover: false }
                         );
                     }
@@ -168,46 +170,79 @@
             },
             addZoomLevelIndicator() {
                 const map = this.$store.map;
-                document.getElementById("zoom-level-div").innerHTML = 'Current Zoom Level (listed for development purposes): ' + map.getZoom() ;
+                this.currentZoom = map.getZoom();
+                this.changeButtonStateBasedOnZoomLevel();
+                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ?
+                        document.getElementById('zoom-level-div').innerHTML = 'Current Zoom Level (listed for development purposes): ' + this.currentZoom : null;
+            },
+            filterLayersForButtons: function(targetId) {
+                const map = this.$store.map;
+
+                let filteredMapLayer = map.getStyle().layers.filter(function(mapStyleLayer) {
+                    return  mapStyleLayer.id === targetId;
+                });
+
+                return filteredMapLayer;
+            },
+            changeButtonStateBasedOnZoomLevel() {
+                const map = this.$store.map;
+                const self = this;
+                this.mapLayerIdsForZoomDependentButtons.forEach(function(buttonId) {
+                    let layerToChange = self.filterLayersForButtons(buttonId);
+                    buttonId = buttonId.replace(/\s/g, ''); // Note: Element IDs cannot have white space so we know that we shouldn't look for any with white space
+                    const targetElement = document.getElementById(`${buttonId}-button`);
+
+                    if (layerToChange[0].minzoom > self.currentZoom) {
+                        targetElement.className = 'unavailable';
+                        targetElement.disabled = true;
+                    } else if (targetElement.className === 'unavailable') {
+                            targetElement.className = '';
+                            targetElement.disabled = false;
+                    }
+                });
             },
             clickAnywhereToCloseMapInfoBox() {
                 this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
                 this.isFirstClick = false;
             },
             contentToggle(elementToToggle) {
-                elementToToggle.style.display === "block" ? elementToToggle.style.display = "none" : elementToToggle.style.display = "block";
+                elementToToggle.style.display === 'block' ? elementToToggle.style.display = 'none' : elementToToggle.style.display = 'block';
             },
             createLayerButtons(elementIds, idsOfButtonsOffWhenPageFirstLoads, elementTarget, googleAnalytics) {
                 const map = this.$store.map;
 
                 elementIds.forEach(function(elementId) {
-                    let mapLayerButton = document.createElement("a");
-                    mapLayerButton.href = "#";
+                    let mapLayerButton = document.createElement('a');
+                    mapLayerButton.href = '#';
+                    mapLayerButton.id = `${elementId.replace(/\s/g, '')}-button`; // Note, Element IDs cannot have white space, so let's remove (replace) any that is there
                     // If the layer is not set to visible when first loaded, then do not mark it as active.
                     // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
-                    idsOfButtonsOffWhenPageFirstLoads.includes(elementId) ? mapLayerButton.className = "" : mapLayerButton.className = "active";
+                    idsOfButtonsOffWhenPageFirstLoads.includes(elementId) ? mapLayerButton.className = '' : mapLayerButton.className = 'active';
                     mapLayerButton.textContent = elementId; // Set the wording (label) for the layer toggle button to match the 'elementId' listed in the style sheet
                     mapLayerButton.onclick = function(e) {  // Creates a click event for each button so that when clicked by the user, the visibility property is changed as is the class (color) of the button
                         googleAnalytics('layers-menu', 'click', 'user clicked ' + elementId);
                         let clickedLayer = this.textContent;
                         let clickedLayerParent = this.parentElement;
                         let clickedLayerParentKids = clickedLayerParent.children;
+                        const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
                         e.preventDefault();
                         e.stopPropagation();
-                        let visibility = map.getLayoutProperty(clickedLayer, "visibility");
-                        if (visibility === "visible") {
-                            map.setLayoutProperty(clickedLayer, "visibility", "none");
-                            this.className = "";
-                        } else {
+
+                        if (visibility === 'visible' && !this.classList.contains('unavailable')) {
+                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                            this.className = '';
+                        } else if (!this.classList.contains('unavailable')) {
                             // We don't want the user to have more than one Flow Detail layer showing at time, so we need to turn off any Flow Detail layers before loading a new one.
-                            if (clickedLayerParent.id === "streams") {
+                            if (clickedLayerParent.id === 'streams') {
                                 clickedLayerParentKids.forEach(function(kid) {
-                                    kid.className = "";
-                                    map.setLayoutProperty(kid.innerHTML, "visibility", "none");
+                                    if (!kid.classList.contains('unavailable')) { // Don't change anything if the button is unavailable (leave it unavailable)
+                                        kid.className = '';
+                                        map.setLayoutProperty(kid.innerHTML, 'visibility', 'none');
+                                    }
                                 });
                             }
-                            this.className = "active";
-                            map.setLayoutProperty(clickedLayer, "visibility", "visible");
+                            this.className = 'active';
+                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
                         }
                     };
                     let layerToggleList = document.getElementById(elementTarget);
@@ -217,34 +252,34 @@
             createLayerMenu() {
                 const self = this;
 
-                let correctDiv = document.getElementById("map");
-                let mapLayersToggleContainer = document.createElement("div");
-                let toggleOptions = document.createElement("div");
-                let toggleTitleContainer = document.createElement("div");
-                let toggleTitle = document.createElement("div");
-                let toggleExit = document.createElement("div");
-                let exitIcon = document.createElement("span");
-                exitIcon.innerHTML = icon({ prefix: "fas", iconName: "times" }).html;
-                let mapLayers = document.createElement("div");
-                let flowDetail = document.createElement("div");
-                let streams = document.createElement("div");
+                let correctDiv = document.getElementById('map');
+                let mapLayersToggleContainer = document.createElement('div');
+                let toggleOptions = document.createElement('div');
+                let toggleTitleContainer = document.createElement('div');
+                let toggleTitle = document.createElement('div');
+                let toggleExit = document.createElement('div');
+                let exitIcon = document.createElement('span');
+                exitIcon.innerHTML = icon({ prefix: 'fas', iconName: 'times' }).html;
+                let mapLayers = document.createElement('div');
+                let flowDetail = document.createElement('div');
+                let streams = document.createElement('div');
                 //Add ids and classes
-                mapLayersToggleContainer.id = "mapLayersToggleContainer";
-                toggleTitleContainer.id = "toggleTitleContainer";
-                toggleTitleContainer.className = "layersTitle";
-                toggleTitle.id = "toggleTitle";
-                toggleExit.id = "toggleExit";
-                toggleOptions.id = "toggleOptions";
-                mapLayers.id = "mapLayers";
-                flowDetail.id = "flowDetail";
-                flowDetail.className = "layersTitle";
-                mapLayers.className = "options";
-                streams.id = "streams";
-                streams.className = "options";
+                mapLayersToggleContainer.id = 'mapLayersToggleContainer';
+                toggleTitleContainer.id = 'toggleTitleContainer';
+                toggleTitleContainer.className = 'layersTitle';
+                toggleTitle.id = 'toggleTitle';
+                toggleExit.id = 'toggleExit';
+                toggleOptions.id = 'toggleOptions';
+                mapLayers.id = 'mapLayers';
+                flowDetail.id = 'flowDetail';
+                flowDetail.className = 'layersTitle';
+                mapLayers.className = 'options';
+                streams.id = 'streams';
+                streams.className = 'options';
 
-                toggleTitle.innerHTML = "Map Options";
-                flowDetail.innerHTML = "Flow Detail";
-                mapLayersToggleContainer.style.display = "none";
+                toggleTitle.innerHTML = 'Map Options';
+                flowDetail.innerHTML = 'Flow Detail';
+                mapLayersToggleContainer.style.display = 'none';
 
                 toggleExit.appendChild(exitIcon);
                 toggleTitleContainer.appendChild(toggleTitle);
@@ -264,7 +299,7 @@
                     self.contentToggle(mapLayersToggleContainer);
                 };
                 document.body.onclick = function(){
-                    if(mapLayersToggleContainer.style.display === "block"){
+                    if(mapLayersToggleContainer.style.display === 'block'){
                         self.contentToggle(mapLayersToggleContainer);
                     }
                 };
@@ -283,7 +318,7 @@
                 let layerIds = [];
 
                 styleLayers.forEach(function(layer) {
-                    if (layer[targetPropertyFromStylesheet] && layer.layout.visibility === "none") {
+                    if (layer[targetPropertyFromStylesheet] && layer.layout.visibility === 'none') {
                         layerIds.push(layer.id);
                     }
                 });
@@ -315,8 +350,7 @@
                 map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
                 setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
-                process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ? map.on("zoomend", this.addZoomLevelIndicator) : null;  // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
-
+                map.on('zoomend', this.addZoomLevelIndicator); // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
                 this.createLayerMenu();
                 this.populateLayerMenuGroupsAndButtons(googleAnalytics);
                 this.activeHighlightOnHover();
@@ -325,8 +359,8 @@
     };
 </script>
 
-<style scoped lang="scss">
-  @import "~mapbox-gl/dist/mapbox-gl.css";
+<style scoped lang='scss'>
+  @import '~mapbox-gl/dist/mapbox-gl.css';
   $color: #fff;
   $blue: #4574a3;
   $border: 1px solid #fff;
@@ -451,7 +485,7 @@
     }
   }
 </style>
-<style lang="scss">
+<style lang='scss'>
   $color: #fff;
   $blue: #4574a3;
   $border: 1px solid rgb(200, 200, 200);
@@ -533,6 +567,12 @@
       background: #003366;
       opacity: .7;
       color: #fff;
+    }
+
+    .unavailable {
+      background: #7f8da3;
+      opacity: .7;
+      color: #a0aec4;
     }
   }
 
