@@ -7,7 +7,6 @@
       v-if="!isInternetExplorer"
       :is-loading="isLoading"
     />
-
     <div class="header-container">
       <div class="usa-prose">
         <h1 class="title-text">
@@ -15,6 +14,7 @@
         </h1>
       </div>
     </div>
+
     <InternetExplorerPage v-if="isInternetExplorer" />
     <div
       v-if="!isInternetExplorer"

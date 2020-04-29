@@ -2,6 +2,7 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
+    <ApplicationFeatureSelection />
     <router-view :is-internet-explorer="isInternetExplorer" />
     <FooterEmail />
     <ProvisionalStatement
@@ -18,6 +19,8 @@
     import FooterUSGS from './components/FooterUSGS'
     import ProvisionalStatement from "./components/ProvisionalStatement"
 
+    import ApplicationFeatureSelection from "./components/ApplicationFeatureSelection";
+
     export default {
         name: 'App',
         components: {
@@ -25,7 +28,8 @@
             HeaderUSGS,
             FooterEmail,
             ProvisionalStatement,
-            FooterUSGS
+            FooterUSGS,
+            ApplicationFeatureSelection
         },
         data() {
             return {
