@@ -4,7 +4,12 @@
 
 <script>
     export default {
-        name: 'WUQuestions'
+        name: 'WUQuestions',
+        data() {
+            return {
+                featureName: 'Water Use'
+            }
+        }
     }
 </script>
 

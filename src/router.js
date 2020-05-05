@@ -1,6 +1,5 @@
-import Vue from "vue";
-import Router from "vue-router";
-import MapBox from '@/components/MapBox.vue';
+import Vue from 'vue';
+import Router from 'vue-router';
 
 Vue.use(Router);
 
@@ -8,8 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'MapBox',
-            component: MapBox
+            redirect: { name: 'WaterStorage' }
         },
         {
             path: '/questionsandanswers',
@@ -54,14 +52,14 @@ export default new Router({
                     import('@/views/waterTemperature/WTQuestionsAnswers.vue')
         },
         {
-            path: "/404",
-            name: "Error404",
+            path: '/404',
+            name: 'Error404',
             component: () =>
                     import('@/views/Error404.vue')
         },
         {
-            path: "*",
-            redirect: { name: "Error404" }
+            path: '*',
+            redirect: { name: 'Error404' }
         }
     ]
 });

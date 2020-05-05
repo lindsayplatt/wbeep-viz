@@ -59,7 +59,7 @@
     font-weight: 400;
     text-align: center;
 
-    strong{
+    strong {
       color: #003366;
     }
 
@@ -92,7 +92,6 @@
       button {
         margin: 0;
       }
-
     }
   }
 </style>
