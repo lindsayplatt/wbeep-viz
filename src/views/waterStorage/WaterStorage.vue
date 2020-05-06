@@ -108,6 +108,12 @@
           MapLayers,
           QuestionControl
       },
+      props: {
+          isInternetExplorer: {
+              type: Boolean,
+              required: true
+          }
+      },
       data() {
           return {
               title: process.env.VUE_APP_TITLE,
