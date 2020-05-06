@@ -7,7 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: { name: 'WaterStorage' }
+            redirect: { name: 'waterStorage' }
         },
         {
             path: '/questionsandanswers',
@@ -17,19 +17,19 @@ export default new Router({
         },
         {
             path: '/water-storage',
-            name: 'WaterStorage',
+            name: 'waterStorage',
             component: () =>
                     import('@/views/waterStorage/WaterStorage.vue')
         },
         {
             path: '/water-storage/questions-answers',
-            name: 'WSQuestionsAnswers',
+            name: 'wsQuestionsAnswers',
             component: () =>
                     import('@/views/waterStorage/WSQuestionsAnswers.vue')
         },
         {
             path: '/water-use',
-            name: 'WaterUse',
+            name: 'waterUse',
             component: () =>
                     import('@/views/waterUse/WaterUse.vue')
         },
@@ -41,25 +41,25 @@ export default new Router({
         },
         {
             path: '/water-temperature',
-            name: 'WaterTemperature',
+            name: 'waterTemperature',
             component: () =>
                     import('@/views/waterTemperature/WaterTemperature.vue')
         },
         {
             path: '/water-temperature/questions-answers',
-            name: 'WTQuestionsAnswers',
+            name: 'wtQuestionsAnswers',
             component: () =>
                     import('@/views/waterTemperature/WTQuestionsAnswers.vue')
         },
         {
             path: '/404',
-            name: 'Error404',
+            name: 'error404',
             component: () =>
                     import('@/views/Error404.vue')
         },
         {
             path: '*',
-            redirect: { name: 'Error404' }
+            redirect: { name: 'error404' }
         }
     ]
 });

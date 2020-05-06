@@ -60,9 +60,6 @@
                 featureName: 'Water Use',
                 developmentTier: process.env.VUE_APP_TIER
             }
-        },
-        created() {
-            this.$store.dispatch('changeActiveFeatureTab',  'waterUse')
         }
     }
 </script>

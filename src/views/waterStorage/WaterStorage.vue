@@ -131,7 +131,6 @@
               hoveredHRUId: null,
               maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
               legendTitle: 'Latest Natural Water Storage',
-              isInternetExplorer:  false,
               isLoading: true,
               isAboutMapInfoBoxOpen: true,
               isFirstClick: true,
@@ -139,9 +138,6 @@
               currentZoom: null,
               mapLayerIdsForZoomDependentButtons: ['Roads', 'Hydrologic Response Unit', 'Terrain', 'Counties', 'Least Detail', 'Medium Detail', 'Most Detail']
           };
-      },
-      created() {
-          this.$store.dispatch('changeActiveFeatureTab',  'waterStorage')
       },
       methods: {
           activeHighlightOnHover() {

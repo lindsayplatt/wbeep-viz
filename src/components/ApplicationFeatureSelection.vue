@@ -4,22 +4,21 @@
       <router-link
         id="waterStorage"
         class="feature-link"
-        :to="{name: 'WaterStorage'}"
+        :to="{name: 'waterStorage'}"
       >
         water storage
       </router-link>
       <router-link
         id="waterUse"
         class="feature-link"
-        :to="{name: 'WaterUse'}"
+        :to="{name: 'waterUse'}"
       >
         water use
       </router-link>
       <router-link
         id="waterTemperature"
         class="feature-link"
-        :to="{name: 'WaterTemperature'}"
-        @click="activeFeatureTab()"
+        :to="{name: 'waterTemperature'}"
       >
         water temperature
       </router-link>
@@ -33,14 +32,18 @@
 
   export default {
     name: 'ApplicationFeatureSelection',
-    computed: mapState(['activeFeatureTab']),
+    computed: {
+        currentRouteName: function() {
+            return this.$route.name;
+        }
+    },
     watch: {
-        activeFeatureTab(newValue, oldValue) {
+        currentRouteName: function (newValue, oldValue) {
             this.changeActiveFeatureTab(newValue);
         }
     },
     methods: {
-      changeActiveFeatureTab(activeFeatureName) {
+      changeActiveFeatureTab(activeFeatureName) { // this highlights the correct application feature tab
           const linkElements = document.querySelectorAll('.feature-link');
           linkElements.forEach(function (link) {
               link.style.backgroundColor = 'white';

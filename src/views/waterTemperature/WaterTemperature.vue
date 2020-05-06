@@ -1,7 +1,7 @@
 <template>
   <div id="water-temperature-container">
     <LoadingScreen
-        v-if="!isInternetExplorer"
+      v-if="!isInternetExplorer"
     />
     <div class="header-container">
       <div class="usa-prose">
@@ -60,9 +60,6 @@
               featureName: 'Water Temperature',
               developmentTier: process.env.VUE_APP_TIER
           }
-      },
-      created() {
-          this.$store.dispatch('changeActiveFeatureTab',  'waterTemperature')
       }
   }
 </script>
