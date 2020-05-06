@@ -2,7 +2,13 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <router-view :is-internet-explorer="isInternetExplorer" />
+    <ApplicationFeatureSelection
+      v-if="showNewFeatureTabs"
+    />
+    <router-view
+      :is-internet-explorer="isInternetExplorer"
+      :show-new-feature-tabs="showNewFeatureTabs"
+    />
     <FooterEmail />
     <ProvisionalStatement
       v-if="!isInternetExplorer"
@@ -14,15 +20,19 @@
 <script>
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
+    import ApplicationFeatureSelection from "./components/ApplicationFeatureSelection";
     import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
     import ProvisionalStatement from "./components/ProvisionalStatement"
+
+
 
     export default {
         name: 'App',
         components: {
             HeaderUSWDSBanner,
             HeaderUSGS,
+            ApplicationFeatureSelection,
             FooterEmail,
             ProvisionalStatement,
             FooterUSGS
@@ -30,6 +40,7 @@
         data() {
             return {
                 isInternetExplorer: false,
+                showNewFeatureTabs: JSON.parse(process.env.VUE_APP_SHOW_NEW_FEATURE_TABS) // remember all env variables are strings, so let's convert this true/false value to a boolean
             }
         },
         created() {
@@ -88,6 +99,11 @@
   .icon-map-control-question:hover {
     transition: transform 1s;
     transform: skew(-15deg, 10deg);
+  }
+
+  .usa-banner__inner {
+    margin-left: 10px;
+    padding-left: 5px;
   }
 
 </style>

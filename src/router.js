@@ -1,34 +1,65 @@
-import Vue from "vue";
-import Router from "vue-router";
-import MapBox from './components/MapBox.vue';
-import QuestionsAndAnswers from './views/QuestionsAndAnswers.vue';
-import Error404 from "./views/Error404";
+import Vue from 'vue';
+import Router from 'vue-router';
 
 Vue.use(Router);
-function lazyLoad(view){
-    return() => import(`@/views/${view}.vue`)
-}
 
 export default new Router({
     routes: [
         {
             path: '/',
-            name: 'MapBox',
-            component: MapBox
+            redirect: { name: 'waterStorage' }
         },
         {
             path: '/questionsandanswers',
             name: 'QuestionsAndAnswers',
-            component: lazyLoad('QuestionsAndAnswers')
+            component: () =>
+                    import('@/views/QuestionsAndAnswers.vue')
         },
         {
-            path: "/404",
-            name: "Error404",
-            component: lazyLoad('Error404')
+            path: '/water-storage',
+            name: 'waterStorage',
+            component: () =>
+                    import('@/views/waterStorage/WaterStorage.vue')
         },
         {
-            path: "*",
-            redirect: { name: "Error404" }
+            path: '/water-storage/questions-answers',
+            name: 'wsQuestionsAnswers',
+            component: () =>
+                    import('@/views/waterStorage/WSQuestionsAnswers.vue')
+        },
+        {
+            path: '/water-use',
+            name: 'waterUse',
+            component: () =>
+                    import('@/views/waterUse/WaterUse.vue')
+        },
+        {
+            path: '/water-use/questions-answers',
+            name: 'WUQuestionAnswers',
+            component: () =>
+                    import('@/views/waterUse/WUQuestionAnswers.vue')
+        },
+        {
+            path: '/water-temperature',
+            name: 'waterTemperature',
+            component: () =>
+                    import('@/views/waterTemperature/WaterTemperature.vue')
+        },
+        {
+            path: '/water-temperature/questions-answers',
+            name: 'wtQuestionsAnswers',
+            component: () =>
+                    import('@/views/waterTemperature/WTQuestionsAnswers.vue')
+        },
+        {
+            path: '/404',
+            name: 'error404',
+            component: () =>
+                    import('@/views/Error404.vue')
+        },
+        {
+            path: '*',
+            redirect: { name: 'error404' }
         }
     ]
 });

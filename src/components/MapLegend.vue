@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import mapStyles from "../assets/mapStyles/mapStyles";
+import mapStyles from "../assets/mapStyles/waterStorage/mapStyles";
 import LegendModal from "./LegendModal";
 
 

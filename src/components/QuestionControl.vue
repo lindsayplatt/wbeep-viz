@@ -5,7 +5,7 @@
     import { icon } from "@fortawesome/fontawesome-svg-core";
 
     export default {
-        name: "MapLayers",
+        name: "QuestionControl",
         inject: ["mapbox", "map", "actions"],
         data() {
             return {
