@@ -1,7 +1,7 @@
 <template>
   <div id="water-temperature-container">
     <LoadingScreen
-      v-if="!isInternetExplorer"
+        v-if="!isInternetExplorer"
     />
     <div class="header-container">
       <div class="usa-prose">
@@ -13,9 +13,20 @@
 
     <InternetExplorerPage v-if="isInternetExplorer" />
     <div v-if="!isInternetExplorer">
+      <div v-if="!showNewFeatureTabs">
+        <p class="usa-prose">
+          Hello User! While we are not sure how you got here, we are glad to see you. The page you are viewing will
+          soon be home to the {{ title }} {{ featureName }} feature. Right now, this page is under construction
+          and is not publicly available. Any information presented here is for placeholder purposes during construction.
+          <strong>DO NOT</strong> use it for any purpose. If you have an interest in seeing a working product, check out
+          our
+          <a href="https://labs.waterdata.usgs.gov/estimated-availability/#/">Natural Water Storage</a>
+          map.
+        </p>
+      </div>
       <div>
         <p class="usa-prose">
-          placeholder element for {{ featureName }}
+          Placeholder for {{ featureName }}
         </p>
       </div>
     </div>
@@ -32,13 +43,22 @@
         LoadingScreen,
         InternetExplorerPage
       },
+      props: {
+          isInternetExplorer: {
+              type: Boolean,
+              required: true
+          },
+          showNewFeatureTabs: {
+              type: Boolean,
+              required: true
+          }
+      },
       data() {
           return {
               title: process.env.VUE_APP_TITLE,
               titleSuffix: process.env.VUE_APP_TITLE_SUFFIX,
               featureName: 'Water Temperature',
-              developmentTier: process.env.VUE_APP_TIER,
-              isInternetExplorer: false
+              developmentTier: process.env.VUE_APP_TIER
           }
       },
       created() {
