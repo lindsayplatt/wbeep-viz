@@ -94,4 +94,9 @@
     transform: skew(-15deg, 10deg);
   }
 
+  .usa-banner__inner {
+    margin-left: 10px;
+    padding-left: 5px;
+  }
+
 </style>

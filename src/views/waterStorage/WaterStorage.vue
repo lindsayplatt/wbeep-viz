@@ -569,11 +569,6 @@
     }
   }
 
-  .usa-banner__inner {
-    margin-left: 10px;
-    padding-left: 5px;
-  }
-
   @media screen and (min-width: 960px){
     #mapLayersToggleContainer{
       width: 25%;

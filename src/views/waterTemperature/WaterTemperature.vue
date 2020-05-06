@@ -13,7 +13,11 @@
 
     <InternetExplorerPage v-if="isInternetExplorer" />
     <div v-if="!isInternetExplorer">
-      <h3>place holder for water temperature</h3>
+      <div>
+        <p class="usa-prose">
+          placeholder element for {{ featureName }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -45,10 +49,16 @@
 
 <style scoped lang="scss">
 #water-temperature-container {
+  border: solid black;
+  border-width: 0 1px 1px 1px;
+  margin-top: 0;
+  position: relative;
+  top: -2px;
   .usa-prose {
+    margin-left: 10px;
     h1 {
       font-size: 1rem;
-      margin-left: 10px;
+      padding-top: 0.2em;
     }
   }
 }
