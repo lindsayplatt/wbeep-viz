@@ -2,14 +2,15 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
+    <InternetExplorerPage v-if="isInternetExplorer" />
     <ApplicationFeatureSelection
-      v-if="showNewFeatureTabs"
+      v-if="showNewFeatureTabs && !isInternetExplorer"
     />
     <router-view
-      :is-internet-explorer="isInternetExplorer"
+      v-if="!isInternetExplorer"
       :show-new-feature-tabs="showNewFeatureTabs"
     />
-    <FooterEmail />
+    <FooterEmail v-if="!isInternetExplorer" />
     <ProvisionalStatement
       v-if="!isInternetExplorer"
     />
@@ -24,6 +25,7 @@
     import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
     import ProvisionalStatement from "./components/ProvisionalStatement"
+    import InternetExplorerPage from "./components/InternetExplorerPage";
 
 
 
@@ -35,7 +37,8 @@
             ApplicationFeatureSelection,
             FooterEmail,
             ProvisionalStatement,
-            FooterUSGS
+            FooterUSGS,
+            InternetExplorerPage
         },
         data() {
             return {

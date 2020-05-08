@@ -4,7 +4,6 @@
     @click.once="clickAnywhereToCloseMapInfoBox"
   >
     <LoadingScreen
-      v-if="!isInternetExplorer"
       :is-loading="isLoading"
     />
     <div class="header-container">
@@ -15,11 +14,7 @@
       </div>
     </div>
 
-    <InternetExplorerPage v-if="isInternetExplorer" />
-    <div
-      v-if="!isInternetExplorer"
-      id="mapContainer"
-    >
+    <div id="mapContainer">
       <MapSubtitle
         :is-about-map-info-box-open="isAboutMapInfoBoxOpen"
         @clickedInfoIcon="toggleMapInfoBox()"
@@ -73,7 +68,6 @@
 
 <script>
   import LoadingScreen from "../../components/LoadingScreen";
-  import InternetExplorerPage from "../../components/InternetExplorerPage";
   import MapSubtitle from "../../components/MapSubtitle";
   import MapAvailableDataDate from "../../components/MapAvailableDataDate";
   import MapLegend from "../../components/MapLegend";
@@ -95,7 +89,6 @@
       name: 'WaterStorage',
       components: {
           LoadingScreen,
-          InternetExplorerPage,
           MglMap,
           MapSubtitle,
           MapAvailableDataDate,
@@ -107,12 +100,6 @@
           MapLegend,
           MapLayers,
           QuestionControl
-      },
-      props: {
-          isInternetExplorer: {
-              type: Boolean,
-              required: true
-          }
       },
       data() {
           return {

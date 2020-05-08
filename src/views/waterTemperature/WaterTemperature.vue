@@ -1,8 +1,6 @@
 <template>
   <div id="water-temperature-container">
-    <LoadingScreen
-      v-if="!isInternetExplorer"
-    />
+    <LoadingScreen />
     <div class="header-container">
       <div class="usa-prose">
         <h1>
@@ -10,44 +8,34 @@
         </h1>
       </div>
     </div>
-
-    <InternetExplorerPage v-if="isInternetExplorer" />
-    <div v-if="!isInternetExplorer">
-      <div v-if="!showNewFeatureTabs">
-        <p class="usa-prose">
-          Hello User! While we are not sure how you got here, we are glad to see you. The page you are viewing will
-          soon be home to the {{ title }} {{ featureName }} feature. Right now, this page is under construction
-          and is not publicly available. Any information presented here is for placeholder purposes during construction.
-          <strong>DO NOT</strong> use it for any purpose. If you have an interest in seeing a working product, check out
-          our
-          <a href="https://labs.waterdata.usgs.gov/estimated-availability/#/">Natural Water Storage</a>
-          map.
-        </p>
-      </div>
-      <div>
-        <p class="usa-prose">
-          Placeholder for {{ featureName }}
-        </p>
-      </div>
+    <div v-if="!showNewFeatureTabs">
+      <p class="usa-prose">
+        Hello User! While we are not sure how you got here, we are glad to see you. The page you are viewing will
+        soon be home to the {{ title }} {{ featureName }} feature. Right now, this page is under construction
+        and is not publicly available. Any information presented here is for placeholder purposes during construction.
+        <strong>DO NOT</strong> use it for any purpose. If you have an interest in seeing a working product, check out
+        our
+        <a href="https://labs.waterdata.usgs.gov/estimated-availability/#/">Natural Water Storage</a>
+        map.
+      </p>
+    </div>
+    <div>
+      <p class="usa-prose">
+        Placeholder for {{ featureName }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
   import LoadingScreen from "../../components/LoadingScreen";
-  import InternetExplorerPage from "../../components/InternetExplorerPage";
 
   export default {
       name: 'WaterTemperature',
       components: {
-        LoadingScreen,
-        InternetExplorerPage
+        LoadingScreen
       },
       props: {
-          isInternetExplorer: {
-              type: Boolean,
-              required: true
-          },
           showNewFeatureTabs: {
               type: Boolean,
               required: true
