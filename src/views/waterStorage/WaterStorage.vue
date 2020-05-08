@@ -25,7 +25,7 @@
         :legend-title="legendTitle"
       />
       <MglMap
-        id="mapgl"
+        id="mapgl-water-storage-mapbox-map"
         :container="container"
         :map-style="mapStyle"
         :zoom="zoom"
