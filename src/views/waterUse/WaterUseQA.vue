@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: 'WUQuestions',
+        name: 'WaterUseQA',
         data() {
             return {
                 featureName: 'Water Use'

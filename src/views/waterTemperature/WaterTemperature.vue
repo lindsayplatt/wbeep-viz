@@ -13,34 +13,34 @@
 
     <div id="mapContainer">
       <MglMap
-          id="mapgl-water-temperature-mapbox-map"
-          :container="container"
-          :map-style="mapStyle"
-          :zoom="zoom"
-          :min-zoom="minZoom"
-          :max-zoom="maxZoom"
-          :center="center"
-          :pitch="pitch"
-          :bearing="bearing"
-          :pitch-with-rotate="false"
-          :drag-rotate="false"
-          :touch-zoom-rotate="false"
-          :max-bounds="maxBounds"
-          @load="onMapLoaded"
+        id="mapgl-water-temperature-mapbox-map"
+        :container="container"
+        :map-style="mapStyle"
+        :zoom="zoom"
+        :min-zoom="minZoom"
+        :max-zoom="maxZoom"
+        :center="center"
+        :pitch="pitch"
+        :bearing="bearing"
+        :pitch-with-rotate="false"
+        :drag-rotate="false"
+        :touch-zoom-rotate="false"
+        :max-bounds="maxBounds"
+        @load="onMapLoaded"
       >
         <MglAttributionControl
-            position="bottom-right"
-            :compact="false"
-            custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+          position="bottom-right"
+          :compact="false"
+          custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         />
         <MglNavigationControl
-            position="top-right"
-            :show-compass="false"
+          position="top-right"
+          :show-compass="false"
         />
-        <QuestionControl />
+        <QuestionControl :feature-name="featureName"/>
         <MglScaleControl
-            position="bottom-right"
-            unit="imperial"
+          position="bottom-right"
+          unit="imperial"
         />
         <MglFullscreenControl position="bottom-right" />
         <MglGeolocateControl position="bottom-right" />
@@ -69,7 +69,7 @@
         MglScaleControl,
         MglAttributionControl
     } from 'vue-mapbox';
-    import mapStyles from "../../assets/mapStyles/waterStorage/mapStyles";
+    import mapStyles from "../../assets/mapStyles/waterTemperature/mapStyles";
 
     export default {
         name: 'WaterStorage',

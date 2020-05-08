@@ -37,11 +37,14 @@
     },
     watch: {
         currentRouteName: function (newValue, oldValue) {
+            console.log('old ', oldValue)
+            console.log('new ', newValue)
             this.changeActiveFeatureTab(newValue);
         }
     },
     methods: {
       changeActiveFeatureTab(activeFeatureName) { // this highlights the correct application feature tab
+          if(activeFeatureName !== 'QuestionsAndAnswers') {
           const linkElements = document.querySelectorAll('.feature-link');
           linkElements.forEach(function (link) {
               link.style.backgroundColor = 'white';
@@ -54,6 +57,7 @@
           activeLink.style.borderBottomColor = '#003366';
           activeLink.style.borderWidth = '1px 1px 2px 1px';
           activeLink.style.color = 'white';
+      }
       }
     }
   }

@@ -1,10 +1,10 @@
 <template>
-  <h1>Temp questions will go here</h1>
+  <h1>Storage questions will go here</h1>
 </template>
 
 <script>
     export default {
-        name: 'WTQuestions'
+        name: 'WaterStorageQA'
     }
 </script>
 
