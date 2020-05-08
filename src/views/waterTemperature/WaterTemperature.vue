@@ -1,5 +1,5 @@
 <template>
-  <div id="viz_container">
+  <div id="temperature_viz_container">
     <LoadingScreen
         :is-loading="isLoading"
     />
@@ -12,7 +12,6 @@
     </div>
 
     <div id="mapContainer">
-
       <MglMap
           id="mapgl-water-temperature-mapbox-map"
           :container="container"
@@ -34,7 +33,6 @@
             :compact="false"
             custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         />
-
         <MglNavigationControl
             position="top-right"
             :show-compass="false"
@@ -78,14 +76,11 @@
         components: {
             LoadingScreen,
             MglMap,
-
-
             MglNavigationControl,
             MglGeolocateControl,
             MglFullscreenControl,
             MglScaleControl,
             MglAttributionControl,
-
             MapLayers,
             QuestionControl
         },
@@ -121,138 +116,10 @@
                 process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ?
                         document.getElementById('zoom-level-div').innerHTML = 'Current Zoom Level (listed for development purposes): ' + this.currentZoom : null;
             },
-
-            createLayerButtons(elementIds, idsOfButtonsOffWhenPageFirstLoads, elementTarget, googleAnalytics) {
-                const map = this.$store.map;
-
-                elementIds.forEach(function(elementId) {
-                    let mapLayerButton = document.createElement('a');
-                    mapLayerButton.href = '#';
-                    mapLayerButton.id = `${elementId.replace(/\s/g, '')}-button`; // Note, Element IDs cannot have white space, so let's remove (replace) any that is there
-                    // If the layer is not set to visible when first loaded, then do not mark it as active.
-                    // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
-                    idsOfButtonsOffWhenPageFirstLoads.includes(elementId) ? mapLayerButton.className = '' : mapLayerButton.className = 'active';
-                    mapLayerButton.textContent = elementId; // Set the wording (label) for the layer toggle button to match the 'elementId' listed in the style sheet
-                    mapLayerButton.onclick = function(e) {  // Creates a click event for each button so that when clicked by the user, the visibility property is changed as is the class (color) of the button
-                        googleAnalytics('layers-menu', 'click', 'user clicked ' + elementId);
-                        let clickedLayer = this.textContent;
-                        let clickedLayerParent = this.parentElement;
-                        let clickedLayerParentKids = clickedLayerParent.children;
-                        const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        if (visibility === 'visible' && !this.classList.contains('unavailable')) {
-                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                            this.className = '';
-                        } else if (!this.classList.contains('unavailable')) {
-                            // We don't want the user to have more than one Flow Detail layer showing at time, so we need to turn off any Flow Detail layers before loading a new one.
-                            if (clickedLayerParent.id === 'streams') {
-                                clickedLayerParentKids.forEach(function(kid) {
-                                    if (!kid.classList.contains('unavailable')) { // Don't change anything if the button is unavailable (leave it unavailable)
-                                        kid.className = '';
-                                        map.setLayoutProperty(kid.innerHTML, 'visibility', 'none');
-                                    }
-                                });
-                            }
-                            this.className = 'active';
-                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-                        }
-                    };
-                    let layerToggleList = document.getElementById(elementTarget);
-                    layerToggleList.appendChild(mapLayerButton);
-                });
-            },
-            createLayerMenu() {
-                const self = this;
-
-                let correctDiv = document.getElementById('map');
-                let mapLayersToggleContainer = document.createElement('div');
-                let toggleOptions = document.createElement('div');
-                let toggleTitleContainer = document.createElement('div');
-                let toggleTitle = document.createElement('div');
-                let toggleExit = document.createElement('div');
-                let exitIcon = document.createElement('span');
-                exitIcon.innerHTML = icon({ prefix: 'fas', iconName: 'times' }).html;
-                let mapLayers = document.createElement('div');
-                let flowDetail = document.createElement('div');
-                let streams = document.createElement('div');
-                //Add ids and classes
-                mapLayersToggleContainer.id = 'mapLayersToggleContainer';
-                toggleTitleContainer.id = 'toggleTitleContainer';
-                toggleTitleContainer.className = 'layersTitle';
-                toggleTitle.id = 'toggleTitle';
-                toggleExit.id = 'toggleExit';
-                toggleOptions.id = 'toggleOptions';
-                mapLayers.id = 'mapLayers';
-                flowDetail.id = 'flowDetail';
-                flowDetail.className = 'layersTitle';
-                mapLayers.className = 'options';
-                streams.id = 'streams';
-                streams.className = 'options';
-
-                toggleTitle.innerHTML = 'Map Options';
-                flowDetail.innerHTML = 'Flow Detail';
-                mapLayersToggleContainer.style.display = 'none';
-
-                toggleExit.appendChild(exitIcon);
-                toggleTitleContainer.appendChild(toggleTitle);
-                toggleTitleContainer.appendChild(toggleExit);
-                toggleOptions.appendChild(mapLayers);
-                toggleOptions.appendChild(flowDetail);
-                toggleOptions.appendChild(streams);
-                mapLayersToggleContainer.appendChild(toggleTitleContainer);
-                mapLayersToggleContainer.appendChild(toggleOptions);
-                correctDiv.appendChild(mapLayersToggleContainer);
-
-                mapLayersToggleContainer.onclick = function(e){
-                    e.stopPropagation();
-                };
-                toggleExit.onclick = function(e){
-                    e.stopPropagation();
-
-                };
-                document.body.onclick = function(){
-                    if(mapLayersToggleContainer.style.display === 'block'){
-
-                    }
-                };
-            },
-            getIdListFromStyleLayersBasedOnTargetProperty(styleLayers, targetPropertyFromStylesheet) {
-                let layerIds = [];
-
-                styleLayers.forEach(function(layer) {
-                    if (layer[targetPropertyFromStylesheet]) {
-                        layerIds.push(layer.id);
-                    }
-                });
-                return layerIds
-            },
-            getSortedIdsForLayersOffWhenPageLoads(styleLayers, targetPropertyFromStylesheet) {
-                let layerIds = [];
-
-                styleLayers.forEach(function(layer) {
-                    if (layer[targetPropertyFromStylesheet] && layer.layout.visibility === 'none') {
-                        layerIds.push(layer.id);
-                    }
-                });
-                return layerIds;
-            },
-            populateLayerMenuGroupsAndButtons(googleAnalytics) {
-                const styleLayers =  Object.values(mapStyles.style.layers);
-                const toggleableLayerIds = this.getIdListFromStyleLayersBasedOnTargetProperty(styleLayers, 'showButtonLayerToggle');
-                const toggleableStreamsIds = this.getIdListFromStyleLayersBasedOnTargetProperty(styleLayers, 'showButtonStreamToggle');
-                const layersTurnedOffAtStart = this.getSortedIdsForLayersOffWhenPageLoads(styleLayers, 'showButtonLayerToggle');
-                const streamsTurnedOffAtStart = this.getSortedIdsForLayersOffWhenPageLoads(styleLayers, 'showButtonStreamToggle');
-
-                this.createLayerButtons(toggleableLayerIds, layersTurnedOffAtStart, 'mapLayers',  googleAnalytics);
-                this.createLayerButtons(toggleableStreamsIds, streamsTurnedOffAtStart, 'streams', googleAnalytics);
-            },
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.set({ dimension2: Date.now() });
                 this.$ga.event(eventName, action, label);
             },
-
             onMapLoaded(event) {
                 this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
                 const map = this.$store.map;
@@ -275,6 +142,7 @@
   $border: 1px solid #fff;
   $borderGray: 1px solid rgb(100, 100, 100);
 
+#temperature_viz_container {
   #overlay {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
@@ -288,85 +156,18 @@
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
   }
-
   .header-container {
     background-color: #fff;
-  }
-  /* Add a background color to the layer toggle bar */
-  #mapbox_component-layer-toggle {
-    background-color: $blue;
-    overflow: hidden;
-    display: flex;
-  }
-
-  #topNavText {
-    border-right: $border;
-    width: 110px;
-    a {
-      width: 100%;
-      font-size: 0.9em;
-      color: $color;
-      background: #00264c;
-      vertical-align: center;
-    }
-  }
-
-  #iconToggleContainer {
-    display: flex;
-    width: 120px;
-    border-left: $border;
-    a {
-      flex: 1;
-      background: #00264c;
-      margin: 0;
-      color: $color;
-    }
-
-    a.active{
-      background: #00bf26
-    }
-
-    .icon {
-      &:nth-child(2){
-        border-left: $border;
+    .usa-prose {
+      border-bottom: $borderGray;
+      display: flex;
+      h1 {
+        font-size: 1rem;
+        margin-left: 10px;
+        flex: 1;
       }
     }
   }
-
-  #layers,
-  #streams{
-    display: none;
-  }
-
-  .usa-prose {
-    border-bottom: $borderGray;
-    display: flex;
-    h1 {
-      font-size: 1rem;
-      margin-left: 10px;
-      flex: 1;
-    }
-    a{
-      margin: 0;
-      display: block;
-    }
-  }
-
-  #aboutButton{
-    background: none;
-    color: #003366;
-    width: 100px;
-    height: 100%;
-    margin: 0;
-    outline: none;
-    border: none;
-    border-left: $borderGray;
-    &:hover{
-      background: #00bf26;
-      color: #fff;
-    }
-  }
-
   #mapContainer {
     position: relative;
     height: 80vh;
@@ -374,118 +175,18 @@
     display: flex;
     flex-direction: column;
   }
+}
+
 
   @media screen and (min-width: 600px) and (min-height: 850px) {
-    #viz_container {
+    #temperature_viz_container {
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-
     #mapContainer {
       flex: 1;
       height: auto;
-    }
-  }
-</style>
-<style lang='scss'>
-  $color: #fff;
-  $blue: #4574a3;
-  $border: 1px solid rgb(200, 200, 200);
-  $background: rgba(255, 255, 255, 0.9);
-
-  #mapLayersToggleContainer {
-    background: $background;
-    border-right: $border;
-    width: 90%;
-    height: 100%;
-    position: absolute;
-    z-index: 9000;
-
-    a{
-      outline: none;
-    }
-  }
-
-  #toggleTitleContainer {
-    display: flex;
-    border-bottom: $border;
-  }
-
-  .layersTitle{
-    height: 35px;
-    padding: 0 0 0 10px;
-    line-height: 35px;
-    font-size: 1.4em;
-    background: #003366;
-    color: #fff;
-  }
-
-  #toggleTitle {
-    flex: 1;
-  }
-
-  #toggleExit {
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    border-left: $border;
-    cursor: pointer;
-
-    &:hover{
-      background: #00bf26;
-      color: #fff;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-      margin: 6px 0 0 0;
-    }
-  }
-
-  #toggleOptions {
-    min-height: 100px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-  .options {
-    display: flex;
-    flex-direction: column;
-    a {
-      padding: 10px;
-      border-bottom: $border;
-      text-decoration: none;
-      font-size: 1em;
-      color: #000;
-      background: #f5f7fb;
-      &:hover {
-        background: #00bf26;
-        color: #fff;
-        opacity: 1;
-      }
-    }
-    .active {
-      background: #003366;
-      opacity: .7;
-      color: #fff;
-    }
-
-    .unavailable {
-      background: #7f8da3;
-      opacity: .7;
-      color: #a0aec4;
-    }
-  }
-
-  @media screen and (min-width: 960px){
-    #mapLayersToggleContainer{
-      width: 25%;
-      max-width: 500px;
-      height: auto;
-      max-height: 100%;
-      overflow-y: auto;
     }
   }
 </style>

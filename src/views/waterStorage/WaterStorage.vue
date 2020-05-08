@@ -1,6 +1,6 @@
 <template>
   <div
-    id="viz_container"
+    id="temperature_viz_container"
     @click.once="clickAnywhereToCloseMapInfoBox"
   >
     <LoadingScreen
@@ -455,7 +455,7 @@
   }
 
   @media screen and (min-width: 600px) and (min-height: 850px) {
-    #viz_container {
+    #temperature_viz_container {
       flex: 1;
       display: flex;
       flex-direction: column;
