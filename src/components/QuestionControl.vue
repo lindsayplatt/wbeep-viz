@@ -7,12 +7,6 @@
     export default {
         name: "QuestionControl",
         inject: ["mapbox", "map", "actions"],
-        props: {
-            featureName: {
-                type: String,
-                required: true
-            }
-        },
         data() {
             return {
                 control: null

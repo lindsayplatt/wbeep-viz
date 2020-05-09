@@ -37,8 +37,6 @@
     },
     watch: {
         currentRouteName: function (newValue, oldValue) {
-            console.log('old ', oldValue)
-            console.log('new ', newValue)
             this.changeActiveFeatureTab(newValue);
         }
     },
