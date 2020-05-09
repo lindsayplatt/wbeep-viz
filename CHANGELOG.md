@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- base maps added for temperature prediction
 - added routing for new features, masked those features on all tiers but Test
 - change the layers menu to be zoom level sensitive
 - added Vuex to allow easy access to map object in child components
