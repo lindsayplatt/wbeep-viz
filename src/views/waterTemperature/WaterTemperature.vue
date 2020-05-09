@@ -1,7 +1,7 @@
 <template>
   <div id="temperature_viz_container">
     <LoadingScreen
-        :is-loading="isLoading"
+      :is-loading="isLoading"
     />
     <div class="header-container">
       <div class="usa-prose">
@@ -37,7 +37,7 @@
           position="top-right"
           :show-compass="false"
         />
-        <QuestionControl :feature-name="featureName"/>
+        <QuestionControl :feature-name="featureName" />
         <MglScaleControl
           position="bottom-right"
           unit="imperial"
