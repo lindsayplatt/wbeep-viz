@@ -249,12 +249,18 @@ export default {
                 'source': 'streams',
                 'source-layer': 'segsAllConus',
                 'minzoom': 0,
-                'maxzoom': 6,
+                'maxzoom': 15,
                 'layout': {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'line-color': 'rgba(148, 193, 225, 1)'
+                    'line-width': 1,
+                    'line-color': [
+                        "rgb",
+                        ["*", 5.6, ["get", "temp"]], // value for red parameter
+                        ["+", 50, ["*", 3.93, ["get", "temp"]]], // value for green parameter
+                        ["-", 168, ["*", 3.93, ["get", "temp"]]] // value for blue parameter
+                    ]
                 }
             },
             {
