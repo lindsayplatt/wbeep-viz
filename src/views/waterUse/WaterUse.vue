@@ -95,6 +95,8 @@
 
 <style scoped lang="scss">
 #water-use-container {
+  border: solid black;
+  border-width: 0 1px 1px 1px;
   display: flex;
   flex-direction: column;
   .usa-prose {
