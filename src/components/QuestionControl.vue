@@ -10,7 +10,7 @@
         data() {
             return {
                 control: null
-            };
+            }
         },
         mounted() {
             this.createCustomControl(this.runGoogleAnalytics, this.$router);
@@ -24,6 +24,7 @@
             createCustomControl(googleAnalytics, router) {
                 class customControl {
                     onAdd(map) {
+                        const self = this;
                         this.map = map;
                         this.control = document.createElement("div");
                         this.control.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
@@ -35,7 +36,7 @@
                             googleAnalytics('about', 'click', 'user went to about page');
                             e.preventDefault();
                             e.stopPropagation();
-                            router.push({ path: 'questionsandanswers' });
+                            router.push({ path: 'QuestionsAndAnswers' });
                         };
                         this.icon = document.createElement("span");
                         this.icon.innerHTML = icon({

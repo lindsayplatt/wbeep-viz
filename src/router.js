@@ -23,9 +23,9 @@ export default new Router({
         },
         {
             path: '/water-storage/questions-answers',
-            name: 'wsQuestionsAnswers',
+            name: 'WaterStorageQA',
             component: () =>
-                    import('@/views/waterStorage/WSQuestionsAnswers.vue')
+                    import('@/views/waterStorage/WaterStorageQA.vue')
         },
         {
             path: '/water-use',
@@ -35,9 +35,9 @@ export default new Router({
         },
         {
             path: '/water-use/questions-answers',
-            name: 'WUQuestionAnswers',
+            name: 'WaterUseQA',
             component: () =>
-                    import('@/views/waterUse/WUQuestionAnswers.vue')
+                    import('@/views/waterUse/WaterUseQA.vue')
         },
         {
             path: '/water-temperature',
@@ -47,9 +47,9 @@ export default new Router({
         },
         {
             path: '/water-temperature/questions-answers',
-            name: 'wtQuestionsAnswers',
+            name: 'WaterTemperatureQA',
             component: () =>
-                    import('@/views/waterTemperature/WTQuestionsAnswers.vue')
+                    import('@/views/waterTemperature/WaterTemperatureQA.vue')
         },
         {
             path: '/404',
@@ -63,5 +63,3 @@ export default new Router({
         }
     ]
 });
-
-

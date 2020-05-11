@@ -28,8 +28,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-
   export default {
     name: 'ApplicationFeatureSelection',
     computed: {
@@ -44,6 +42,7 @@
     },
     methods: {
       changeActiveFeatureTab(activeFeatureName) { // this highlights the correct application feature tab
+          if(activeFeatureName !== 'QuestionsAndAnswers') {
           const linkElements = document.querySelectorAll('.feature-link');
           linkElements.forEach(function (link) {
               link.style.backgroundColor = 'white';
@@ -56,6 +55,7 @@
           activeLink.style.borderBottomColor = '#003366';
           activeLink.style.borderWidth = '1px 1px 2px 1px';
           activeLink.style.color = 'white';
+      }
       }
     }
   }
