@@ -107,7 +107,7 @@
 }
 #waterUseVisualArea{
   flex: 1;
-  height: 79vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   #radialCharts{
@@ -124,6 +124,7 @@
     background: aqua;
     .mapContainer{
       flex: 1;
+      min-height: 550px;
     }
   }
 }
