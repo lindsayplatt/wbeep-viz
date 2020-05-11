@@ -58,7 +58,6 @@
 
 
     import MapLayers from "../../components/MapLayers";
-    import { icon } from "@fortawesome/fontawesome-svg-core";
     import QuestionControl from "../../components/QuestionControl";
 
     import {
@@ -94,7 +93,7 @@
                 container: 'map',
                 zoom: 2,
                 minZoom: 2,
-                maxZoom: 5.99,
+                maxZoom: 15,
                 center: [-95.7129, 37.0902],
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
