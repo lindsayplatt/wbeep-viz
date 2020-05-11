@@ -1,3 +1,7 @@
+// Since the Mapbox gl wants the tile request to have an array containing the URL for the tiles, we need to
+// grab the URL for the correct tier from the environment variables and prepackage the result as an array
+const streamsTileUrl = [];
+streamsTileUrl.push(process.env.VUE_APP_STREAM_TEMP_TILE_URL);
 
 export default {
     style: {
@@ -21,6 +25,12 @@ export default {
                 'minzoom': 2,
                 'maxzoom': 12,
                 'tileSize': 256
+            },
+            streams: {
+                type: 'vector',
+                'tiles': streamsTileUrl,
+                'minzoom': 0,
+                'maxzoom': 6
             }
         },
         'sprite': '',
@@ -231,6 +241,21 @@ export default {
                     'line-color': 'rgb(0,0,0)'
                 }
 
+            },
+            {
+                'id': 'streams',
+                'layerDescription': 'all streams',
+                'type': 'line',
+                'source': 'streams',
+                'source-layer': 'segsAllConus',
+                'minzoom': 0,
+                'maxzoom': 6,
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(148, 193, 225, 1)'
+                }
             },
             {
                 'filter': ['all', ['==', '$type', 'Point'],
