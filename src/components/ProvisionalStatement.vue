@@ -52,7 +52,7 @@
 <style scoped lang="scss">
   .provisional-statement {
     font-size: 0.8em;
-    margin: auto;
+    margin: 0 auto;
     padding: 0.2em;
     max-width: 70em;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
