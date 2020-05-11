@@ -21,6 +21,12 @@ export default {
                 'minzoom': 2,
                 'maxzoom': 12,
                 'tileSize': 256
+            },
+            streams: {
+                type: 'vector',
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/waterTemperature/tiles/{z}/{x}/{y}.pbf'],
+                'minzoom': 0,
+                'maxzoom': 6
             }
         },
         'sprite': '',
@@ -231,6 +237,21 @@ export default {
                     'line-color': 'rgb(0,0,0)'
                 }
 
+            },
+            {
+                'id': 'streams',
+                'layerDescription': 'all streams',
+                'type': 'line',
+                'source': 'streams',
+                'source-layer': 'segsAllConus',
+                'minzoom': 0,
+                'maxzoom': 6,
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(148, 193, 225, 1)'
+                }
             },
             {
                 'filter': ['all', ['==', '$type', 'Point'],
