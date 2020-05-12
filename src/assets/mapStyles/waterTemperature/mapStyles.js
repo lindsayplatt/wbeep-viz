@@ -267,7 +267,7 @@ export default {
                     'line-color': [
                         "step",
                         ["number", ["get", "temp"]],
-                        "#00AAE5", 0,
+                        "#00AAE5", -100,
                         "#0AA1DA", 2,
                         "#1498CF", 4,
                         "#1E8FC5", 6,
