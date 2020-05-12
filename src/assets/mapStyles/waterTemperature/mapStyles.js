@@ -253,13 +253,40 @@ export default {
                 'layout': {
                     'visibility': 'visible'
                 },
+                // 'paint': {
+                //     'line-width': 1,
+                //     'line-color': [
+                //         "rgb",
+                //         ["*", 5.6, ["get", "temp"]], // value for red parameter
+                //         ["+", 50, ["*", 3.93, ["get", "temp"]]], // value for green parameter
+                //         ["-", 168, ["*", 3.93, ["get", "temp"]]] // value for blue parameter
+                //     ]
+                // }
                 'paint': {
                     'line-width': 1,
                     'line-color': [
-                        "rgb",
-                        ["*", 5.6, ["get", "temp"]], // value for red parameter
-                        ["+", 50, ["*", 3.93, ["get", "temp"]]], // value for green parameter
-                        ["-", 168, ["*", 3.93, ["get", "temp"]]] // value for blue parameter
+                        "step",
+                        ["number", ["get", "temp"]],
+                        "#00AAE5", 0,
+                        "#0AA1DA", 2,
+                        "#1498CF", 4,
+                        "#1E8FC5", 6,
+                        "#2886BA", 8,
+                        "#327DB0", 10,
+                        "#3C74A5", 12,
+                        "#466B9A", 14,
+                        "#506290", 16,
+                        "#5A5985", 18,
+                        "#64507B", 20,
+                        "#6E4770", 22,
+                        "#783E66", 24,
+                        "#82355B", 26,
+                        "#8C2C50", 28,
+                        "#962346", 30,
+                        "#A01A3B", 32,
+                        "#AA1131", 34,
+                        "#B40826", 36,
+                        "#BF001C"
                     ]
                 }
             },

@@ -55,11 +55,8 @@
 
 <script>
     import LoadingScreen from "../../components/LoadingScreen";
-
-
     import MapLayers from "../../components/MapLayers";
     import QuestionControl from "../../components/QuestionControl";
-
     import {
         MglMap,
         MglNavigationControl,
@@ -115,9 +112,6 @@
                 process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ?
                         document.getElementById('zoom-level-div').innerHTML = 'Current Zoom Level (listed for development purposes): ' + this.currentZoom : null;
             },
-            addStreams() {
-                console.log('gonna add some streams now')
-            },
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.set({ dimension2: Date.now() });
                 this.$ga.event(eventName, action, label);
@@ -133,7 +127,6 @@
                 setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
                 map.on('zoomend', this.addZoomLevelIndicator); // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
 
-                this.addStreams();
             }
         }
     };
