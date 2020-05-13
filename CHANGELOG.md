@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- draft of wateruse animation
 - base map for water use
 - added streams to temperature map
 - base maps added for temperature prediction
