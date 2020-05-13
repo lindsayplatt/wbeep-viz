@@ -50,6 +50,22 @@
     <!--The next div contains information to show the current zoom level of the map. This will only show on the
           development version of the application. To find the code controlling this, search for 'zoom level display' -->
     <div id="zoom-level-div" />
+    <div class="color-ramp-controls">
+      <button @click="colorRampChoiceOne">
+        color ramp one
+      </button>
+      <button @click="colorRampChoiceTwo">
+        color ramp two
+      </button>
+      <button @click="colorRampChoiceThree">
+        color ramp three
+      </button>
+    </div>
+    <div class="color-ramp-controls">
+      <button @click="changeLightDarkBackground">
+        light/dark
+      </button>
+    </div>
     <div class="color-step-adjustments">
       <div>
         <input
@@ -319,7 +335,8 @@
                 maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
                 isLoading: true,
                 currentZoom: null,
-                stop1: -100,
+                isBackgroundDark: false,
+                stop1: 0,
                 stop1colorHex: '#00AAE5',
                 stop1color: {backgroundColor: '#00AAE5'},
                 stop2: 2,
@@ -382,7 +399,7 @@
             }
         },
         watch: {
-            stop1colorHex: function() {this.stop1color.backgroundColor = this.stop1colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor()); console.log('paint ' + JSON.stringify(this.changeLineColor()))},
+            stop1colorHex: function() {this.stop1color.backgroundColor = this.stop1colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
             stop2colorHex: function() {this.stop2color.backgroundColor = this.stop2colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
             stop3colorHex: function() {this.stop3color.backgroundColor = this.stop3colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
             stop4colorHex: function() {this.stop4color.backgroundColor = this.stop4colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
@@ -405,6 +422,10 @@
 
         },
         methods: {
+            changeLightDarkBackground: function() {
+                this.isBackgroundDark? this.$store.map.setPaintProperty('background', 'background-color', 'hsl(47, 26%, 88%)') : this.$store.map.setPaintProperty('background', 'background-color', 'hsl(44°, 8%, 40%)');
+                this.isBackgroundDark = !this.isBackgroundDark;
+            },
             changeLineColor: function() {
                 return [
                     "step",
@@ -430,6 +451,72 @@
                     this.stop19colorHex, 36,
                     this.stop20colorHex
                 ]
+            },
+            colorRampChoiceOne: function() {
+                this.stop1colorHex = '#00AAE5';
+                this.stop2colorHex = '#0AA1DA';
+                this.stop3colorHex = '#1498CF';
+                this.stop4colorHex = '#1E8FC5';
+                this.stop5colorHex = '#2886BA';
+                this.stop6colorHex = '#327DB0';
+                this.stop7colorHex = '#3C74A5';
+                this.stop8colorHex = '#466B9A';
+                this.stop9colorHex = '#506290';
+                this.stop10colorHex = '#5A5985';
+                this.stop11colorHex = '#64507B';
+                this.stop12colorHex = '#6E4770';
+                this.stop13colorHex = '#783E66';
+                this.stop14colorHex = '#82355B';
+                this.stop15colorHex = '#8C2C50';
+                this.stop16colorHex = '#962346';
+                this.stop17colorHex = '#A01A3B';
+                this.stop18colorHex = '#AA1131';
+                this.stop19colorHex = '#B40826';
+                this.stop20colorHex = '#BF001C';
+            },
+            colorRampChoiceTwo: function() {
+                this.stop1colorHex = '#00A9E5';
+                this.stop2colorHex = '#0089E3';
+                this.stop3colorHex = '#0069E1';
+                this.stop4colorHex = '#004ADF';
+                this.stop5colorHex = '#002BDD';
+                this.stop6colorHex = '#000CDB';
+                this.stop7colorHex = '#1000D9';
+                this.stop8colorHex = '#2E00D7';
+                this.stop9colorHex = '#4A00D5';
+                this.stop10colorHex = '#6600D3';
+                this.stop11colorHex = '#8200D1';
+                this.stop12colorHex = '#9D00CF';
+                this.stop13colorHex = '#B700CD';
+                this.stop14colorHex = '#CB00C4';
+                this.stop15colorHex = '#C900A6';
+                this.stop16colorHex = '#C70089';
+                this.stop17colorHex = '#C5006D';
+                this.stop18colorHex = '#C30051';
+                this.stop19colorHex = '#C10036';
+                this.stop20colorHex = '#BF001C';
+            },
+            colorRampChoiceThree: function() {
+                this.stop1colorHex = '#00A9E5';
+                this.stop2colorHex = '#00D1E3';
+                this.stop3colorHex = '#00E1CA';
+                this.stop4colorHex = '#00DFA0';
+                this.stop5colorHex = '#00DD77';
+                this.stop6colorHex = '#00DB4F';
+                this.stop7colorHex = '#00D927';
+                this.stop8colorHex = '#00D700';
+                this.stop9colorHex = '#25D500';
+                this.stop10colorHex = '#4AD300';
+                this.stop11colorHex = '#6FD100';
+                this.stop12colorHex = '#93CF00';
+                this.stop13colorHex = '#B6CD00';
+                this.stop14colorHex = '#CBBC00';
+                this.stop15colorHex = '#C99600';
+                this.stop16colorHex = '#C99600';
+                this.stop17colorHex = '#C54D00';
+                this.stop18colorHex = '#C32900';
+                this.stop19colorHex = '#C32900';
+                this.stop20colorHex = '#C10600';
             },
             addZoomLevelIndicator() {
                 const map = this.$store.map;
@@ -502,9 +589,14 @@
     padding: 0 1em 0 1em;
     border: 1px solid black;
   }
+  .color-ramp-controls {
+    display: flex;
+    button {
+      text-align: center;
+      flex: 1;
+    }
+  }
 }
-
-
   @media screen and (min-width: 600px) and (min-height: 850px) {
     #temperature_viz_container {
       flex: 1;
