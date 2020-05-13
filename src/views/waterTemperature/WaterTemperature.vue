@@ -25,6 +25,7 @@
         :pitch-with-rotate="false"
         :drag-rotate="false"
         :touch-zoom-rotate="false"
+        :interactive="interactive"
         :max-bounds="maxBounds"
         @load="onMapLoaded"
       >
@@ -46,6 +47,21 @@
         <MglGeolocateControl position="bottom-right" />
         <MapLayers />
       </MglMap>
+    </div>
+    <div class="zoom-in-selection-controls">
+      <div class="zoom-in-selection-title">Highlight Areas |</div>
+      <div class="zoom-in-region-subset">
+        <span>Pacific Northwest</span>
+        <button>one</button>
+        <button>two</button>
+        <button>three</button>
+      </div>
+      <div class="zoom-in-region-subset">
+        <span>Delaware Basin</span>
+        <button>one</button>
+        <button>two</button>
+        <button>three</button>
+      </div>
     </div>
     <!--The next div contains information to show the current zoom level of the map. This will only show on the
           development version of the application. To find the code controlling this, search for 'zoom level display' -->
@@ -333,6 +349,7 @@
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
                 maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
+                interactive: true,
                 isLoading: true,
                 currentZoom: null,
                 isBackgroundDark: false,
@@ -582,6 +599,32 @@
     min-height: 550px;
     display: flex;
     flex-direction: column;
+  }
+
+  .zoom-in-selection-controls {
+    display: flex;
+    color: white;
+    background-color: #003366;
+    padding-right: 0.25em;
+    .zoom-in-selection-title {
+      flex: 1;
+      font-weight: bold;
+      text-align: left;
+      padding: 0.5em;
+    }
+    .zoom-in-region-subset {
+      flex: 4;
+      align-content: center;
+      display: flex;
+      span {
+        padding: 0.5em;
+        text-align: center;
+      }
+      button {
+        margin: 2px 0 2px 0;
+        flex: 1;
+      }
+    }
   }
 
 /*  added for testing */
