@@ -25,7 +25,7 @@
         :pitch-with-rotate="false"
         :drag-rotate="false"
         :touch-zoom-rotate="false"
-        :interactive="interactive"
+        :interactive="isInteractive"
         :max-bounds="maxBounds"
         @load="onMapLoaded"
       >
@@ -49,18 +49,74 @@
       </MglMap>
     </div>
     <div class="zoom-in-selection-controls">
-      <div class="zoom-in-selection-title">Highlight Areas |</div>
+      <div class="zoom-in-selection-title">
+        Highlight Areas |
+      </div>
       <div class="zoom-in-region-subset">
         <span>Pacific Northwest</span>
-        <button>one</button>
-        <button>two</button>
-        <button>three</button>
+        <button
+          v-if="!isReturnToCenterButtonShowing && activeHighlightAreaButton!=='salmon'"
+          @click="jumpToSelectMapArea('salmon')"
+        >
+          salmon habitat
+        </button>
+        <button
+            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='salmon'"
+            @click="jumpToSelectMapArea('salmon')"
+        >
+          salmon habitat
+        </button>
+        <button
+            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='center'"
+            @click="jumpToSelectMapArea('salmon')"
+        >
+          salmon habitat
+        </button>
+        <button
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='salmon'"
+          @click="jumpToSelectMapArea('center')"
+        >
+          recenter map
+        </button>
       </div>
       <div class="zoom-in-region-subset">
         <span>Delaware Basin</span>
-        <button>one</button>
-        <button>two</button>
-        <button>three</button>
+        <button
+          v-if="!isReturnToCenterButtonShowing && activeHighlightAreaButton!=='trout'"
+          @click="jumpToSelectMapArea('trout')"
+        >
+          trout
+        </button>
+        <button
+            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='trout'"
+            @click="jumpToSelectMapArea('trout')"
+        >
+          trout
+        </button>
+        <button
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='trout'"
+          @click="jumpToSelectMapArea('center')"
+        >
+          recenter map
+        </button>
+        <button
+          v-if="!isReturnToCenterButtonShowing && activeHighlightAreaButton!=='mussels'"
+          @click="jumpToSelectMapArea('mussels')"
+        >
+          mussels
+        </button>
+        <button
+            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='mussels'"
+            @click="jumpToSelectMapArea('mussels')"
+        >
+          mussels
+        </button>
+        <button
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='mussels'"
+          @click="jumpToSelectMapArea('center')"
+        >
+          recenter map
+        </button>
       </div>
     </div>
     <!--The next div contains information to show the current zoom level of the map. This will only show on the
@@ -304,6 +360,7 @@
         :style="stop20color"
       >{{ stop20 }}</span></span>
     </div>
+    <button @click="setInteractive">interactive</button>
   </div>
 </template>
 
@@ -349,10 +406,12 @@
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
                 maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
-                interactive: true,
+                isInteractive: false,
                 isLoading: true,
                 currentZoom: null,
                 isBackgroundDark: false,
+                activeHighlightAreaButton: 'center',
+                isReturnToCenterButtonShowing: false,
                 stop1: 0,
                 stop1colorHex: '#00AAE5',
                 stop1color: {backgroundColor: '#00AAE5'},
@@ -439,6 +498,32 @@
 
         },
         methods: {
+            setInteractive() {
+              console.log('interactive before', this.isInteractive)
+                this.isInteractive = !this.isInteractive;
+                console.log('interactive after', this.isInteractive)
+            },
+            jumpToSelectMapArea(highlightType) {
+                const map = this.$store.map;
+                const mapCoordinates = {
+                    center: {coordinates: [-95.7129, 37.0902], zoomLevel: 2},
+                    salmon: {coordinates: [-124, 47], zoomLevel: 7},
+                    trout: {coordinates: [-75.76, 39.72], zoomLevel: 14},
+                    mussels: {coordinates: [-75.76, 39.72], zoomLevel: 10},
+                };
+                map.jumpTo({
+                    zoom: mapCoordinates[highlightType].zoomLevel,
+                    center: mapCoordinates[highlightType].coordinates
+                });
+
+                this.activeHighlightAreaButton = highlightType;
+                this.isReturnToCenterButtonShowing = true;
+
+                if (this.activeHighlightAreaButton === 'center') {
+                    this.activeHighlightAreaButton = 'center';
+                    this.isReturnToCenterButtonShowing = false;
+                }
+            },
             changeLightDarkBackground: function() {
                 this.isBackgroundDark? this.$store.map.setPaintProperty('background', 'background-color', 'hsl(47, 26%, 88%)') : this.$store.map.setPaintProperty('background', 'background-color', 'hsl(44°, 8%, 40%)');
                 this.isBackgroundDark = !this.isBackgroundDark;
