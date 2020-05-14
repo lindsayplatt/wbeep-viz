@@ -111,7 +111,6 @@
                 day.innerHTML = 'W2015-01-01';
                 let width = canvas.width;
                 let height = canvas.height;
-                console.log(width, height);
                 //Create a Canvas Circle from the data and push to the circleArray
                 for(let i = 0; i < this.Locations.length; i++){
                     self.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(this.Locations[i]).x, self.ProjectPoint(this.Locations[i]).y, this.Locations[i].properties['W2015-01-01']));
@@ -173,9 +172,13 @@
           GetRadius(Location, number){
             let location = Object.entries(Location.properties);
             location.shift();
-            return Math.floor(location[number][1]);
+            return Math.round(location[number][1]);
           },
           CreateAnimatingDots(){
+            //Restart the animation when the button is clicked again
+            if(this.number === 365){
+              this.number = 0;
+            }
             let canvas = document.getElementById('WaterUseCanvas');
             let ctx = canvas.getContext('2d');
             let self = this;
@@ -185,7 +188,7 @@
 
             let text = Object.entries(this.Locations[0].properties);
             text.shift();
-
+            //Update day div
             day.innerHTML = text[number][0];
             //Create a Canvas Circle from the data and push to the circleArray
             for(let i = 0; i < this.Locations.length; i++){
@@ -195,7 +198,7 @@
             for(let i = 0; i < this.circleArray.length; i++){
                 self.circleArray[i].draw();
             }
-
+            //Stop animation at the end of the year
             if(number < 364){
                 console.log(number);
                 requestAnimationFrame(self.CreateAnimatingDots)   
