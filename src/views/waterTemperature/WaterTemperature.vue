@@ -61,14 +61,14 @@
           salmon habitat
         </button>
         <button
-            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='salmon'"
-            @click="jumpToSelectMapArea('salmon')"
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='salmon'"
+          @click="jumpToSelectMapArea('salmon')"
         >
           salmon habitat
         </button>
         <button
-            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='center'"
-            @click="jumpToSelectMapArea('salmon')"
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='center'"
+          @click="jumpToSelectMapArea('salmon')"
         >
           salmon habitat
         </button>
@@ -88,8 +88,8 @@
           trout
         </button>
         <button
-            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='trout'"
-            @click="jumpToSelectMapArea('trout')"
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='trout'"
+          @click="jumpToSelectMapArea('trout')"
         >
           trout
         </button>
@@ -106,8 +106,8 @@
           mussels
         </button>
         <button
-            v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='mussels'"
-            @click="jumpToSelectMapArea('mussels')"
+          v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='mussels'"
+          @click="jumpToSelectMapArea('mussels')"
         >
           mussels
         </button>
@@ -360,7 +360,6 @@
         :style="stop20color"
       >{{ stop20 }}</span></span>
     </div>
-    <button @click="setInteractive">interactive</button>
   </div>
 </template>
 
@@ -406,7 +405,7 @@
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
                 maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]], // The coordinates needed to make a bounding box for the continental United States.
-                isInteractive: false,
+                isInteractive: true,
                 isLoading: true,
                 currentZoom: null,
                 isBackgroundDark: false,
@@ -475,41 +474,41 @@
             }
         },
         watch: {
-            stop1colorHex: function() {this.stop1color.backgroundColor = this.stop1colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop2colorHex: function() {this.stop2color.backgroundColor = this.stop2colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop3colorHex: function() {this.stop3color.backgroundColor = this.stop3colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop4colorHex: function() {this.stop4color.backgroundColor = this.stop4colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop5colorHex: function() {this.stop5color.backgroundColor = this.stop5colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop6colorHex: function() {this.stop6color.backgroundColor = this.stop6colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop7colorHex: function() {this.stop7color.backgroundColor = this.stop7colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop8colorHex: function() {this.stop8color.backgroundColor = this.stop8colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop9colorHex: function() {this.stop9color.backgroundColor = this.stop9colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop10colorHex: function() {this.stop10color.backgroundColor = this.stop10colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop11colorHex: function() {this.stop11color.backgroundColor = this.stop11colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop12colorHex: function() {this.stop12color.backgroundColor = this.stop12colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop13colorHex: function() {this.stop13color.backgroundColor = this.stop13colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop14colorHex: function() {this.stop14color.backgroundColor = this.stop14colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop15colorHex: function() {this.stop15color.backgroundColor = this.stop15colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop16colorHex: function() {this.stop16color.backgroundColor = this.stop16colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop17colorHex: function() {this.stop17color.backgroundColor = this.stop17colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop18colorHex: function() {this.stop18color.backgroundColor = this.stop18colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop19colorHex: function() {this.stop19color.backgroundColor = this.stop19colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
-            stop20colorHex: function() {this.stop20color.backgroundColor = this.stop20colorHex; this.$store.map.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop1colorHex: function() {this.stop1color.backgroundColor = this.stop1colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop2colorHex: function() {this.stop2color.backgroundColor = this.stop2colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop3colorHex: function() {this.stop3color.backgroundColor = this.stop3colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop4colorHex: function() {this.stop4color.backgroundColor = this.stop4colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop5colorHex: function() {this.stop5color.backgroundColor = this.stop5colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop6colorHex: function() {this.stop6color.backgroundColor = this.stop6colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop7colorHex: function() {this.stop7color.backgroundColor = this.stop7colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop8colorHex: function() {this.stop8color.backgroundColor = this.stop8colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop9colorHex: function() {this.stop9color.backgroundColor = this.stop9colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop10colorHex: function() {this.stop10color.backgroundColor = this.stop10colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop11colorHex: function() {this.stop11color.backgroundColor = this.stop11colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop12colorHex: function() {this.stop12color.backgroundColor = this.stop12colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop13colorHex: function() {this.stop13color.backgroundColor = this.stop13colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop14colorHex: function() {this.stop14color.backgroundColor = this.stop14colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop15colorHex: function() {this.stop15color.backgroundColor = this.stop15colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop16colorHex: function() {this.stop16color.backgroundColor = this.stop16colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop17colorHex: function() {this.stop17color.backgroundColor = this.stop17colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop18colorHex: function() {this.stop18color.backgroundColor = this.stop18colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop19colorHex: function() {this.stop19color.backgroundColor = this.stop19colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
+            stop20colorHex: function() {this.stop20color.backgroundColor = this.stop20colorHex; this.$store.temperaturePredictionMap.setPaintProperty('streams', 'line-color', this.changeLineColor());},
 
         },
         methods: {
-            setInteractive() {
-              console.log('interactive before', this.isInteractive)
-                this.isInteractive = !this.isInteractive;
-                console.log('interactive after', this.isInteractive)
-            },
             jumpToSelectMapArea(highlightType) {
-                const map = this.$store.map;
+                const map = this.$store.temperaturePredictionMap;
+                // Check if we have created a highlight layer previously, if so remove it
+                if (map.getLayer("region-highlight")) {
+                    map.removeLayer("region-highlight");
+                }
+
                 const mapCoordinates = {
                     center: {coordinates: [-95.7129, 37.0902], zoomLevel: 2},
                     salmon: {coordinates: [-124, 47], zoomLevel: 7},
-                    trout: {coordinates: [-75.76, 39.72], zoomLevel: 14},
-                    mussels: {coordinates: [-75.76, 39.72], zoomLevel: 10},
+                    trout: {coordinates: [-75.76, 39.72], zoomLevel: 8},
+                    mussels: {coordinates: [-75.76, 39.72], zoomLevel: 8},
                 };
                 map.jumpTo({
                     zoom: mapCoordinates[highlightType].zoomLevel,
@@ -523,9 +522,84 @@
                     this.activeHighlightAreaButton = 'center';
                     this.isReturnToCenterButtonShowing = false;
                 }
+                // Add highlights to show stream reaches of interest
+                if (this.activeHighlightAreaButton === 'salmon') {
+                    map.addLayer(
+                            {
+                                'id': 'region-highlight',
+                                'type': 'line',
+                                'source': 'streams',
+                                'source-layer': 'segsAllConus',
+                                'layout': { 'visibility': 'visible' },
+                                'paint': {
+                                    'line-width': [
+                                        'step',
+                                        ['get', 'temp'],
+                                        0, // line width in pixels
+                                        4.999, // upper stop, so all temps below this value will have the above width
+                                        10, // line width in pixels
+                                        10, // upper stop
+                                        0 // all remaining lines will have this width
+                                    ],
+                                    'line-color': 'rgba(255, 221, 0, 0.2)'
+                                }
+                            },
+                            'streams'
+                    );
+                }
+
+                if (this.activeHighlightAreaButton === 'trout') {
+                    map.addLayer(
+                            {
+                                'id': 'region-highlight',
+                                'type': 'line',
+                                'source': 'streams',
+                                'source-layer': 'segsAllConus',
+                                'layout': { 'visibility': 'visible' },
+                                'paint': {
+                                    'line-width': [
+                                        'step',
+                                        ['get', 'temp'],
+                                        0, // line width in pixels
+                                        4.999, // upper stop, so all temps below this value will have the above width
+                                        10, // line width in pixels
+                                        10, // upper stop
+                                        0 // all remaining lines will have this width
+                                    ],
+                                    'line-color': 'rgba(255, 0, 255, 0.2)'
+                                }
+                            },
+                            'streams'
+                    );
+                }
+
+                if (this.activeHighlightAreaButton === 'mussels') {
+                    map.addLayer(
+                            {
+                                'id': 'region-highlight',
+                                'type': 'line',
+                                'source': 'streams',
+                                'source-layer': 'segsAllConus',
+                                'layout': { 'visibility': 'visible' },
+                                'paint': {
+                                    'line-width': [
+                                        'step',
+                                        ['get', 'temp'],
+                                        0, // line width in pixels
+                                        15, // upper stop, so all temps below this value will have the above width
+                                        10, // line width in pixels
+                                        20, // upper stop
+                                        0 // all remaining lines will have this width
+                                    ],
+                                    'line-color': 'rgba(255, 221, 0, 0.2)'
+                                }
+                            },
+                            'streams'
+                    );
+                }
             },
             changeLightDarkBackground: function() {
-                this.isBackgroundDark? this.$store.map.setPaintProperty('background', 'background-color', 'hsl(47, 26%, 88%)') : this.$store.map.setPaintProperty('background', 'background-color', 'hsl(44°, 8%, 40%)');
+                this.isBackgroundDark? this.$store.temperaturePredictionMap.setPaintProperty('background', 'background-color', 'hsl(47, 26%, 88%)') : this.$store.temperaturePredictionMap.setPaintProperty('background', 'background-color', 'hsl(44°, 8%, 40%)');
                 this.isBackgroundDark = !this.isBackgroundDark;
             },
             changeLineColor: function() {
@@ -621,7 +695,7 @@
                 this.stop20colorHex = '#C10600';
             },
             addZoomLevelIndicator() {
-                const map = this.$store.map;
+                const map = this.$store.temperaturePredictionMap;
                 this.currentZoom = map.getZoom();
                 process.env.VUE_APP_ADD_ZOOM_LEVEL_DISPLAY === 'true' ?
                         document.getElementById('zoom-level-div').innerHTML = 'Current Zoom Level (listed for development purposes): ' + this.currentZoom : null;
@@ -631,8 +705,8 @@
                 this.$ga.event(eventName, action, label);
             },
             onMapLoaded(event) {
-                this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
-                const map = this.$store.map;
+                this.$store.temperaturePredictionMap = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
+                const map = this.$store.temperaturePredictionMap;
                 let googleAnalytics = this.runGoogleAnalytics; // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make a local variable and assign our GA event tracking method to that.
                 map.resize(); //This solves the mysterious whitespace by resizing the map to the correct size.
                 map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
