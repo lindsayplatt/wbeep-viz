@@ -13,7 +13,7 @@
         <h2>Radial Charts</h2>
         <button
           id="animate"
-          @click="CreateAnimatingDots()"
+          @click="CreateAnimatingLocations()"
         >
           Animate Map
         </button>
@@ -47,7 +47,6 @@
     import mapStyles from "../../assets/mapStyles/waterUse/mapStyles";
     import * as d3 from 'd3';
     import mapboxgl from "mapbox-gl";
-    import waterUseData from '../../assets/WaterUse/data/waterUse';
 
     export default {
         name: 'WaterUse',
@@ -72,10 +71,16 @@
                 hoveredHRUId: null,
                 maxBounds: [[-168.534393,-4.371744], [-19.832382,71.687625]],
                 circleArray: [],
-                Locations: waterUseData.locations.features,
+                Locations: [],
                 number: 0, // The coordinates needed to make a bounding box for the continental United States.
-                isLoading: true
+                isLoading: true,
             }
+        },
+        mounted(){
+          let self =this;
+          d3.json('https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misc/WBEEPWaterUse/wu_te_wide.json').then(function(json){
+            self.Locations = json;
+          })
         },
         methods: {
             runGoogleAnalytics(eventName, action, label) {
@@ -90,9 +95,9 @@
                 map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
                 map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
-                setTimeout(() => { this.isLoading = false; this.CreateIntialDots();}, 500);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
+                setTimeout(() => { this.isLoading = false; this.CreateIntialLocations();}, 500);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
             },
-            CreateIntialDots(){
+            CreateIntialLocations(){
                 let map = this.$store.map;
                 let self = this;
                 let canvasContainer = map.getCanvasContainer();
@@ -102,7 +107,7 @@
                     .node();
                 let ctx = canvas.getContext('2d');
                 this.FixDPI(canvas, ctx);
-                //Watch for resize and redraw canvas dots
+                //Watch for resize and redraw canvas Locations
                 window.addEventListener('resize', function(){
                   self.FixDPI(canvas, ctx);
                   self.init(canvas, ctx);
@@ -111,9 +116,10 @@
                 day.innerHTML = 'W2015-01-01';
                 let width = canvas.width;
                 let height = canvas.height;
+                let Locations = this.Locations.features;
                 //Create a Canvas Circle from the data and push to the circleArray
-                for(let i = 0; i < this.Locations.length; i++){
-                    self.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(this.Locations[i]).x, self.ProjectPoint(this.Locations[i]).y, this.Locations[i].properties['W2015-01-01']));
+                for(let i = 0; i < Locations.length; i++){
+                    self.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(Locations[i]).x, self.ProjectPoint(Locations[i]).y, Locations[i].properties['W2015-01-01']));
                 }
                 //Loop through circleArray and dtaw each individual circle
                 for(let i = 0; i < this.circleArray.length; i++){
@@ -136,9 +142,10 @@
           init(canvas, ctx){
             let self = this;
             this.circleArray = [];
+            let Locations = this.Locations.features;
             //Create a Canvas Circle from the data and push to the circleArray
-            for(let i = 0; i < this.Locations.length; i++){
-                this.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(this.Locations[i]).x, self.ProjectPoint(this.Locations[i]).y, this.Locations[i].properties['W2015-01-01']));
+            for(let i = 0; i < Locations.length; i++){
+                this.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(Locations[i]).x, self.ProjectPoint(Locations[i]).y, Locations[i].properties['W2015-01-01']));
             }
             ctx.clearRect(0,0,canvas.width, canvas.height);
             for(let i = 0; i < this.circleArray.length; i++){
@@ -174,7 +181,7 @@
             location.shift();
             return Math.round(location[number][1]);
           },
-          CreateAnimatingDots(){
+          CreateAnimatingLocations(){
             //Restart the animation when the button is clicked again
             if(this.number === 365){
               this.number = 0;
@@ -184,15 +191,16 @@
             let self = this;
             let number = this.number;
             let day = document.getElementById('day');
+            let Locations = this.Locations.features;
             this.circleArray = [];
 
-            let text = Object.entries(this.Locations[0].properties);
+            let text = Object.entries(Locations[0].properties);
             text.shift();
             //Update day div
             day.innerHTML = text[number][0];
             //Create a Canvas Circle from the data and push to the circleArray
-            for(let i = 0; i < this.Locations.length; i++){
-              self.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(this.Locations[i]).x, self.ProjectPoint(this.Locations[i]).y, self.GetRadius(this.Locations[i], number)));
+            for(let i = 0; i < Locations.length; i++){
+              self.circleArray.push(new this.Circle(canvas, ctx, self.ProjectPoint(Locations[i]).x, self.ProjectPoint(Locations[i]).y, self.GetRadius(Locations[i], number)));
             }
             ctx.clearRect(0,0, canvas.width, canvas.height);
             for(let i = 0; i < this.circleArray.length; i++){
@@ -201,7 +209,7 @@
             //Stop animation at the end of the year
             if(number < 364){
                 console.log(number);
-                requestAnimationFrame(self.CreateAnimatingDots)   
+                requestAnimationFrame(self.CreateAnimatingLocations)   
             }
             this.number++;
           },

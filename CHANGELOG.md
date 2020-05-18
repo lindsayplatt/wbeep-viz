@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- wateruse animation data moved to s3
 - draft of wateruse animation
 - base map for water use
 - added streams to temperature map
