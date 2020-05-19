@@ -10,6 +10,7 @@
       v-if="!isInternetExplorer"
       :show-new-feature-tabs="showNewFeatureTabs"
     />
+    <p>this is width</p>
     <FooterEmail v-if="!isInternetExplorer" />
     <ProvisionalStatement
       v-if="!isInternetExplorer"
