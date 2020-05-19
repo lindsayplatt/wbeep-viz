@@ -1,35 +1,46 @@
 <template>
-  <div id="application-feature-selection">
-    <div class="router-links">
-      <router-link
-        id="waterStorage"
-        class="feature-link"
-        :to="{name: 'waterStorage'}"
-      >
-        water storage
-      </router-link>
-      <router-link
-        id="waterUse"
-        class="feature-link"
-        :to="{name: 'waterUse'}"
-      >
-        water use
-      </router-link>
-      <router-link
-        id="waterTemperature"
-        class="feature-link"
-        :to="{name: 'waterTemperature'}"
-      >
-        water temperature
-      </router-link>
-    </div>
-    <hr>
+  <div class="usa-prose">
+    <h1>
+      {{ title }}{{ titleSuffix }} {{ developmentTier }}
+      <span class="router-links">
+        <router-link
+          id="waterStorage"
+          class="feature-link"
+          :to="{name: 'waterStorage'}"
+        >
+          water storage
+        </router-link>
+        <span> | </span>
+        <router-link
+          id="waterUse"
+          class="feature-link"
+          :to="{name: 'waterUse'}"
+        >
+          water use
+        </router-link>
+        <span> | </span>
+        <router-link
+          id="waterTemperature"
+          class="feature-link"
+          :to="{name: 'waterTemperature'}"
+        >
+          water temperature
+        </router-link>
+      </span>
+    </h1>
   </div>
 </template>
 
 <script>
   export default {
     name: 'ApplicationFeatureSelection',
+    data() {
+        return {
+            title: process.env.VUE_APP_TITLE,
+            titleSuffix: process.env.VUE_APP_TITLE_SUFFIX,
+            developmentTier: process.env.VUE_APP_TIER,
+        }
+    },
     computed: {
         currentRouteName: function() {
             return this.$route.name;
@@ -41,60 +52,68 @@
         }
     },
     methods: {
-      changeActiveFeatureTab(activeFeatureName) { // this highlights the correct application feature tab
+      changeActiveFeatureTab(activeFeatureName) { // this highlights the correct application feature link
           if(activeFeatureName !== 'QuestionsAndAnswers') {
-          const linkElements = document.querySelectorAll('.feature-link');
-          linkElements.forEach(function (link) {
-              link.style.backgroundColor = 'white';
-              link.style.borderBottomColor = 'black';
-              link.style.borderWidth = '1px 1px 1px 1px';
-              link.style.color = 'black';
-          });
-          const activeLink = document.getElementById(activeFeatureName);
-          activeLink.style.backgroundColor = '#003366';
-          activeLink.style.borderBottomColor = '#003366';
-          activeLink.style.borderWidth = '1px 1px 2px 1px';
-          activeLink.style.color = 'white';
-      }
+            const linkElements = document.querySelectorAll('.feature-link');
+            linkElements.forEach(function (link) {
+                link.style.borderBottom = 'none';
+            });
+            const activeLink = document.getElementById(activeFeatureName);
+            activeLink.style.borderBottom = 'thick solid white';
+        }
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-#application-feature-selection {
-  .router-links {
-    .feature-link {
-      display: inline-block;
-      padding: 0.35em 1.2em;
-      border: 1px solid black;
-      margin-top: 2px;
-      border-radius: 0.12em;
-      box-sizing: border-box;
-      text-decoration: none;
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      text-align: center;
-      color: black;
-      transition: all 0.2s;
-    }
-    .feature-link:focus {
-      outline: none;
-    }
-  }
-
-  hr {
-    position: relative;
-    top: -2px;
-    margin: 0;
-    padding: 0;
-  }
-  @media only screen and (max-width: 480px ) {
+.usa-prose {
+  h1 {
+    display: flex;
+    font-size: 0.9rem;
+    padding: 5px 5px 4px 10px;
+    border-top: white 1px solid;
+    background-color: #00264c;
+    color: white;
     .router-links {
-      display: flex;
+      margin-left: auto;
       .feature-link {
-        font-size: 0.75em;
-        flex: 1;
+        text-decoration: none;
+        color: white;
+        padding: 0 0.5em 0 0.5em;
+      }
+      .feature-link:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 950px ) {
+  .usa-prose {
+    h1 {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.8rem;
+
+      border-top: white 1px solid;
+      background-color: #00264c;
+      color: white;
+
+      .router-links {
+        display: flex;
+        margin: 1px 0 0 0;
+        background-color: white;
+        .feature-link {
+          flex: 1;
+          text-align: center;
+          color: black;
+          text-decoration: none;
+          border: 1px solid black;
+        }
+        .feature-link:focus {
+          outline: none;
+        }
       }
     }
   }
