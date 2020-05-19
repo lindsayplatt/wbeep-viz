@@ -78,9 +78,7 @@
         },
         mounted(){
           let self =this;
-          d3.json('https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misc/WBEEPWaterUse/wu_te_wide.json').then(function(json){
-            self.Locations = json;
-          })
+          
         },
         methods: {
             runGoogleAnalytics(eventName, action, label) {
@@ -88,6 +86,7 @@
                 this.$ga.event(eventName, action, label);
             },
             onMapLoaded(event) {
+                let self = this;
                 this.$store.map = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
                 const map = this.$store.map;
                 let googleAnalytics = this.runGoogleAnalytics; // We need to get the global Google Analytics (GA) plugin object 'this.$ga' into this scope, so let's make a local variable and assign our GA event tracking method to that.
@@ -95,7 +94,13 @@
                 map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
                 map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
-                setTimeout(() => { this.isLoading = false; this.CreateIntialLocations();}, 500);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
+                d3.json('https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misc/WBEEPWaterUse/wu_te_wide.json').then(function(json){
+                    self.Locations = json;
+                    setTimeout(function(){
+                      self.CreateIntialLocations();
+                      this.isLoading = false;
+                    }, 100)
+                });// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
             },
             CreateIntialLocations(){
                 let map = this.$store.map;
