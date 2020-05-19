@@ -94,10 +94,13 @@
                 map.touchZoomRotate.enable(); // Allow users to pinch to zoom on touch devices.
                 map.touchZoomRotate.disableRotation(); // Disable the rotation functionality, but keep pinch to zoom.
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
-                setTimeout(() => { this.isLoading = false; d3.json('https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misc/WBEEPWaterUse/wu_te_wide.json').then(function(json){
+                d3.json('https://maptiles-prod-website.s3-us-west-2.amazonaws.com/misc/WBEEPWaterUse/wu_te_wide.json').then(function(json){
                     self.Locations = json;
-                    self.CreateIntialLocations();
-                })}, 500);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
+                    setTimeout(function(){
+                      self.CreateIntialLocations();
+                      this.isLoading = false;
+                    }, 100)
+                });// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
             },
             CreateIntialLocations(){
                 let map = this.$store.map;
