@@ -5,18 +5,36 @@
     </h1>
     <ul>
       <li>
-        <router-link class="navbar-router-link" :to="{name: 'waterStorage'}">
-          <span id="waterStorage" class="router-link-name">{{ waterStorageName }}</span>
+        <router-link
+          class="navbar-router-link"
+          :to="{name: 'waterStorage'}"
+        >
+          <span
+            id="waterStorage"
+            class="router-link-name"
+          >{{ waterStorageName }}</span>
         </router-link>
       </li>
       <li>
-        <router-link class="navbar-router-link" :to="{name: 'waterUse'}">
-          <span id="waterUse" class="router-link-name">{{ waterUseName }}</span>
+        <router-link
+          class="navbar-router-link"
+          :to="{name: 'waterUse'}"
+        >
+          <span
+            id="waterUse"
+            class="router-link-name"
+          >{{ waterUseName }}</span>
         </router-link>
       </li>
       <li>
-        <router-link class="navbar-router-link" :to="{name: 'waterTemperature'}">
-          <span id="waterTemperature" class="router-link-name">{{ waterTemperatureName }}</span>
+        <router-link
+          class="navbar-router-link"
+          :to="{name: 'waterTemperature'}"
+        >
+          <span
+            id="waterTemperature"
+            class="router-link-name"
+          >{{ waterTemperatureName }}</span>
         </router-link>
       </li>
     </ul>
