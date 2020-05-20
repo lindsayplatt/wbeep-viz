@@ -46,7 +46,7 @@ export default {
   #infoContainer {
     min-height: 20px;
     position: relative;
-    padding: 20px 5x 0 5px;
+    padding: 20px 5px 0 5px;
     font-size: 0.9em;
     text-align: center;
     max-width: 260px;

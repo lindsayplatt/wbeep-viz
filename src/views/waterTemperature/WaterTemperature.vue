@@ -3,14 +3,6 @@
     <LoadingScreen
       :is-loading="isLoading"
     />
-    <div class="header-container">
-      <div class="usa-prose">
-        <h1>
-          {{ title }} {{ featureName }}{{ titleSuffix }} {{ developmentTier }}
-        </h1>
-      </div>
-    </div>
-
     <div id="mapContainer">
       <MglMap
         id="mapgl-water-temperature-mapbox-map"
@@ -392,10 +384,7 @@
         },
         data() {
             return {
-                title: process.env.VUE_APP_TITLE,
-                titleSuffix: process.env.VUE_APP_TITLE_SUFFIX,
                 featureName: 'Water Temperature',
-                developmentTier: process.env.VUE_APP_TIER,
                 mapStyle: mapStyles.style,
                 container: 'map',
                 zoom: 2,

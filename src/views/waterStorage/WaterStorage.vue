@@ -6,14 +6,6 @@
     <LoadingScreen
       :is-loading="isLoading"
     />
-    <div class="header-container">
-      <div class="usa-prose">
-        <h1>
-          {{ title }} {{ featureName }}{{ titleSuffix }} {{ developmentTier }}
-        </h1>
-      </div>
-    </div>
-
     <div id="mapContainer">
       <MapSubtitle
         :is-about-map-info-box-open="isAboutMapInfoBoxOpen"
@@ -415,20 +407,6 @@
   #layers,
   #streams{
     display: none;
-  }
-
-  .usa-prose {
-    border-bottom: $borderGray;
-    display: flex;
-    h1 {
-      font-size: 1rem;
-      margin-left: 10px;
-      flex: 1;
-    }
-    a{
-      margin: 0;
-      display: block;
-    }
   }
 
   #aboutButton{

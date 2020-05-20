@@ -27,8 +27,6 @@
     import ProvisionalStatement from "./components/ProvisionalStatement"
     import InternetExplorerPage from "./components/InternetExplorerPage";
 
-
-
     export default {
         name: 'App',
         components: {
@@ -108,5 +106,4 @@
     margin-left: 10px;
     padding-left: 5px;
   }
-
 </style>

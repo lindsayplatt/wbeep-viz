@@ -1,13 +1,7 @@
 <template>
   <div id="water-use-container">
     <LoadingScreen />
-    <div class="header-container">
-      <div class="usa-prose">
-        <h1>
-          {{ title }} {{ featureName }}{{ titleSuffix }} {{ developmentTier }}
-        </h1>
-      </div>
-    </div>
+
     <div id="waterUseVisualArea">
       <div id="radialCharts">
         <h2>Radial Charts</h2>
@@ -73,12 +67,12 @@
                 circleArray: [],
                 Locations: [],
                 number: 0, // The coordinates needed to make a bounding box for the continental United States.
-                isLoading: true,
+                isLoading: true
             }
         },
         mounted(){
-          let self =this;
-          
+          let self = this;
+
         },
         methods: {
             runGoogleAnalytics(eventName, action, label) {
@@ -133,7 +127,7 @@
             },
             FixDPI(canvas, ctx){
               let dpi = window.devicePixelRatio;
-              
+
               let rect = canvas.getBoundingClientRect();
 
               canvas.width = rect.width * dpi;
@@ -214,7 +208,7 @@
             //Stop animation at the end of the year
             if(number < 364){
                 console.log(number);
-                requestAnimationFrame(self.CreateAnimatingLocations)   
+                requestAnimationFrame(self.CreateAnimatingLocations)
             }
             this.number++;
           },
@@ -228,13 +222,6 @@
   border-width: 0 1px 1px 1px;
   display: flex;
   flex-direction: column;
-  .usa-prose {
-    margin-left: 10px;
-    h1 {
-      font-size: 1rem;
-      padding-top: 0.2em;
-    }
-  }
 }
 
 #waterUseVisualArea{
