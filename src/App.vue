@@ -10,7 +10,6 @@
       v-if="!isInternetExplorer"
       :show-new-feature-tabs="showNewFeatureTabs"
     />
-    <p>this is width</p>
     <FooterEmail v-if="!isInternetExplorer" />
     <ProvisionalStatement
       v-if="!isInternetExplorer"
@@ -27,8 +26,6 @@
     import FooterUSGS from './components/FooterUSGS'
     import ProvisionalStatement from "./components/ProvisionalStatement"
     import InternetExplorerPage from "./components/InternetExplorerPage";
-
-
 
     export default {
         name: 'App',
@@ -109,5 +106,4 @@
     margin-left: 10px;
     padding-left: 5px;
   }
-
 </style>

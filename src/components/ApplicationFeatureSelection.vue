@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-header">
     <h1>
-      {{ title }}{{ titleSuffix }} {{ developmentTier }} {{ window.width }}
+      {{ title }}{{ titleSuffix }} {{ developmentTier }}
     </h1>
     <ul>
       <li>
@@ -98,7 +98,9 @@
 </script>
 
 <style scoped lang="scss">
+
 .navbar-header {
+  float: none;
   display: flex;
   flex-direction: column;
   border-top: 1px solid white;
