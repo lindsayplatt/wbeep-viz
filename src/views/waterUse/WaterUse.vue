@@ -4,13 +4,7 @@
 
     <div id="waterUseVisualArea">
       <div id="radialCharts">
-        <h2>Radial Charts</h2>
-        <button
-          id="animate"
-          @click="CreateAnimatingLocations()"
-        >
-          Animate Map
-        </button>
+        <RadialCharts />
       </div>
       <div id="waterUseMap">
         <div id="day" />
@@ -39,6 +33,7 @@
     import LoadingScreen from "../../components/LoadingScreen";
     import {MglMap} from 'vue-mapbox';
     import mapStyles from "../../assets/mapStyles/waterUse/mapStyles";
+    import RadialCharts from '../../components/waterUse/RadialChart';
     import * as d3 from 'd3';
     import mapboxgl from "mapbox-gl";
 
@@ -46,6 +41,7 @@
         name: 'WaterUse',
         components: {
             LoadingScreen,
+            RadialCharts,
             MglMap
         },
         data() {
