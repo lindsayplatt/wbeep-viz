@@ -89,11 +89,9 @@
                 link.style.borderBottom = 'none';
             });
             if (this.window.width >= this.mobileVersionBelowThisScreenWidth) {
-                console.log('bigger')
                 const activeLink = document.getElementById(activeFeatureName);
                 activeLink.style.borderBottom = 'thick solid white';
             } else {
-                console.log('smaller')
                 const activeLink = document.getElementById(activeFeatureName);
                 activeLink.style.borderBottom = 'thin solid #00264c';
             }
