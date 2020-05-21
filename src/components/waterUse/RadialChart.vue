@@ -16,8 +16,8 @@ export default {
         // circle math constants (assuming that Jan 1 = top of circle and moving clockwise)
         var centroid_x = 150, centroid_y = 150,
             angle_per_day = 2*Math.PI/365,
-            inner_r = 50,
-            bar_length_max = 125,
+            inner_r = 40,
+            bar_length_max = 100,
             bar_length_min = 0;
         
         function add_bars(data) {
