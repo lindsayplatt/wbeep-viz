@@ -41,8 +41,7 @@
             window: {
                 width: 0,
                 height: 0
-            },
-            activeClass: 'active'
+            }
         }
     },
       computed: {
@@ -100,11 +99,6 @@
 </script>
 
 <style scoped lang="scss">
-
-.activeClass {
-  border-bottom: thin solid #00264c;
-}
-
 .navbar-header {
   float: none;
   display: flex;
@@ -152,9 +146,6 @@
   }
 }
 @media only screen and (min-width: 950px ) {
-  .activeClass {
-    border-bottom: thick white solid;
-  }
   .navbar-header {
     flex-direction: row;
     padding-bottom: 2px;
