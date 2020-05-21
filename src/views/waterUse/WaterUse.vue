@@ -5,6 +5,9 @@
     <div id="waterUseVisualArea">
       <div id="radialCharts">
         <RadialCharts />
+        <button id="animate" @click="CreateAnimatingLocations()" >
+          Animate Map
+        </button>
       </div>
       <div id="waterUseMap">
         <div id="day" />

@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- added initial d3 code for a radial chart for thermoelectric water use data
 - updated feature navigation styles
 - wateruse animation data moved to s3
 - draft of wateruse animation
