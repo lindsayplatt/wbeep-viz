@@ -13,10 +13,19 @@
         </a>
       </div>
       <h2>About This Map</h2>
-      <p>
+      <p v-if="currentFeature === 'waterStorage'">
         This is a <strong>demonstration map and is not for decision making</strong>. It shows the latest available daily estimates of natural water storage for approximately 110,000 regions across the lower forty-eight states.
         Map shading indicates the current natural water storage relative to historical conditions for this time of year.
       </p>
+      <div v-if="currentFeature === 'waterTemperature'">
+        <p>
+          What can stream temperature tell me about water quality?​
+        </p>
+        <p>
+          Stream temperature is one factor of overall water quality
+          due to its impact on aquatic habitat. Streams naturally have different temperatures depending on how big they are, where they are located, and the time of year. However, there are also external forces that may change a stream's temperature and negatively impact aquatic life or the usability of the stream for other purposes. Learn more about these impacts below.​
+        </p>
+      </div>
       <router-link to="/questionsandanswers">
         <button
           v-ga="$ga.commands.trackName.bind(this, 'button-subtitle', 'click', 'user went to questions and answers page')"
@@ -29,7 +38,12 @@
 </template>
 <script>
 export default {
-  name: "SubTitleModal"
+  name: "SubTitleModal",
+  data() {
+    return {
+      currentFeature: this.$route.name
+    }
+  }
 };
 </script>
 <style scoped lang="scss">

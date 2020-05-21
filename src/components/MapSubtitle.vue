@@ -2,7 +2,12 @@
   <div id="subTitleContainer">
     <div id="subtitle">
       <div id="subtitleText">
-        <p>An Indicator of Natural Water Storage</p>
+        <p v-if="currentFeature === 'waterStorage'">
+          An Indicator of Natural Water Storage
+        </p>
+        <p v-if="currentFeature === 'waterTemperature'">
+          Stream Temperature
+        </p>
       </div>
       <div id="subtitleInfoButton">
         <a
@@ -37,6 +42,11 @@ export default {
       type: Boolean,
       required: true,
       default: true
+    }
+  },
+  data() {
+    return {
+        currentFeature: this.$route.name
     }
   }
 };

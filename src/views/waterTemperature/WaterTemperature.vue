@@ -1,9 +1,17 @@
 <template>
-  <div id="temperature_viz_container">
+  <div
+    id="temperature_viz_container"
+    @click.once="clickAnywhereToCloseMapInfoBox"
+  >
     <LoadingScreen
       :is-loading="isLoading"
     />
     <div id="mapContainer">
+      <MapSubtitle
+        :is-about-map-info-box-open="isAboutMapInfoBoxOpen"
+        @clickedInfoIcon="toggleMapInfoBox()"
+        @clickedExit="toggleMapInfoBox()"
+      />
       <MglMap
         id="mapgl-water-temperature-mapbox-map"
         :container="container"
@@ -357,6 +365,7 @@
 
 <script>
     import LoadingScreen from "../../components/LoadingScreen";
+    import MapSubtitle from "../../components/MapSubtitle";
     import MapLayers from "../../components/MapLayers";
     import QuestionControl from "../../components/QuestionControl";
     import {
@@ -373,6 +382,7 @@
         name: 'WaterStorage',
         components: {
             LoadingScreen,
+            MapSubtitle,
             MglMap,
             MglNavigationControl,
             MglGeolocateControl,
@@ -397,6 +407,8 @@
                 isInteractive: true,
                 isLoading: true,
                 currentZoom: null,
+                isAboutMapInfoBoxOpen: true,
+                isFirstClick: true,
                 isBackgroundDark: false,
                 activeHighlightAreaButton: 'center',
                 isReturnToCenterButtonShowing: false,
@@ -692,6 +704,13 @@
             runGoogleAnalytics(eventName, action, label) {
                 this.$ga.set({ dimension2: Date.now() });
                 this.$ga.event(eventName, action, label);
+            },
+            toggleMapInfoBox() {
+                !this.isFirstClick ? this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen : null;
+            },
+            clickAnywhereToCloseMapInfoBox() {
+                this.isAboutMapInfoBoxOpen = !this.isAboutMapInfoBoxOpen;
+                this.isFirstClick = false;
             },
             onMapLoaded(event) {
                 this.$store.temperaturePredictionMap = event.map; // The 'event' gives us access to the map as an object but only after the map has loaded. Once we have that, we add the map object to the Vuex store
