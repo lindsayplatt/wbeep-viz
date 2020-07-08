@@ -7,8 +7,8 @@
       :is-loading="isLoading"
     />
     <div
-        v-if="developmentTier !== '-test build-'"
-        class="header-container"
+      v-if="developmentTier !== '-test build-'"
+      class="header-container"
     >
       <div class="usa-prose">
         <h1>
