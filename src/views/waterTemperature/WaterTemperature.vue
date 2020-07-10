@@ -3,7 +3,7 @@
     id="temperature_viz_container"
     @click.once="clickAnywhereToCloseMapInfoBox"
   >
-    <LoadingScreen
+    <LoadingScreenInternal
       :is-loading="isLoading"
     />
     <div id="mapContainer">
@@ -364,7 +364,7 @@
 </template>
 
 <script>
-    import LoadingScreen from "../../components/LoadingScreen";
+    import LoadingScreenInternal from "../../components/LoadingScreenInternal";
     import MapSubtitle from "../../components/MapSubtitle";
     import MapLayers from "../../components/MapLayers";
     import QuestionControl from "../../components/QuestionControl";
@@ -381,7 +381,7 @@
     export default {
         name: 'WaterStorage',
         components: {
-            LoadingScreen,
+            LoadingScreenInternal,
             MapSubtitle,
             MglMap,
             MglNavigationControl,
@@ -722,6 +722,7 @@
                 map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]); // Once map is loaded, zoom in a bit more so that the map neatly fills the screen.
                 setTimeout(() => { this.isLoading = false; }, 200);// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
                 map.on('zoomend', this.addZoomLevelIndicator); // Add the current zoom level display. The zoom level should only show in 'development' versions of the application.
+                document.body.classList.remove("stop-scrolling");
             }
         }
     };
