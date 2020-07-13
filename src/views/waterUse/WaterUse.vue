@@ -1,6 +1,6 @@
 <template>
   <div id="water-use-container">
-    <LoadingScreen />
+    <LoadingScreenInternal />
 
     <div id="waterUseVisualArea">
       <div id="radialCharts">
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import LoadingScreen from "../../components/LoadingScreen";
+    import LoadingScreenInternal from "../../components/LoadingScreenInternal";
     import {MglMap} from 'vue-mapbox';
     import mapStyles from "../../assets/mapStyles/waterUse/mapStyles";
     import RadialCharts from '../../components/waterUse/RadialChart';
@@ -46,7 +46,7 @@
     export default {
         name: 'WaterUse',
         components: {
-            LoadingScreen,
+            LoadingScreenInternal,
             RadialCharts,
             MglMap
         },
@@ -96,6 +96,7 @@
                       self.CreateIntialLocations();
                       this.isLoading = false;
                     }, 100)
+                document.body.classList.remove("stop-scrolling");
                 });// Set a timeout to make sure the fitbounds action is completely done before loading screen fades away.
             },
             CreateIntialLocations(){

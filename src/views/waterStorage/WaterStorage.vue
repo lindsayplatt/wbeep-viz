@@ -3,7 +3,7 @@
     id="temperature_viz_container"
     @click.once="clickAnywhereToCloseMapInfoBox"
   >
-    <LoadingScreen
+    <LoadingScreenInternal
       :is-loading="isLoading"
     />
     <div
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-  import LoadingScreen from "../../components/LoadingScreen";
+  import LoadingScreenInternal from "../../components/LoadingScreenInternal";
   import MapSubtitle from "../../components/MapSubtitle";
   import MapAvailableDataDate from "../../components/MapAvailableDataDate";
   import MapLegend from "../../components/MapLegend";
@@ -90,7 +90,7 @@
   export default {
       name: 'WaterStorage',
       components: {
-          LoadingScreen,
+          LoadingScreenInternal,
           MglMap,
           MapSubtitle,
           MapAvailableDataDate,
@@ -344,6 +344,7 @@
               this.createLayerMenu();
               this.populateLayerMenuGroupsAndButtons(googleAnalytics);
               this.activeHighlightOnHover();
+              document.body.classList.remove("stop-scrolling");
           }
       }
   };

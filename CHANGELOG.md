@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- adjust splash/loading screen location
+- update location of tiles for waterStorage in env files
 - added initial d3 code for a radial chart for thermoelectric water use data
 - updated feature navigation styles
 - wateruse animation data moved to s3
