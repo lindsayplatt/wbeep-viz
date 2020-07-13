@@ -32,7 +32,7 @@ export default {
 <style lang="scss">
 .loader {
   background-color: #000;
-  bottom: 85;
+  bottom: 0;
   color: white;
   display: block;
   font-size: 32px;
@@ -42,9 +42,9 @@ export default {
   position: fixed;
   right: 0;
   text-align: center;
-  top: 85;
+  top: 129px;
   z-index: 9000;
-  height: 100%;
+  height: 75%;
 }
 
 .stop-scrolling { 
