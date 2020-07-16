@@ -820,3 +820,9 @@
     }
   }
 </style>
+<style lang="scss">
+.loader {
+  top: 107px;
+  height: 100%;
+}
+</style>

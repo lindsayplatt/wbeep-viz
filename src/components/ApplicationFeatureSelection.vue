@@ -164,3 +164,9 @@
   }
 }
 </style>
+<style lang="scss">
+.loader {
+  top: 129px;
+  height: 75%;
+}
+</style>

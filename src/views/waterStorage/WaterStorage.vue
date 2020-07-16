@@ -476,6 +476,11 @@
   $border: 1px solid rgb(200, 200, 200);
   $background: rgba(255, 255, 255, 0.9);
 
+  .loader {
+    top: 127px;
+    height: 75%;
+  }
+
   #mapLayersToggleContainer {
     background: $background;
     border-right: $border;
