@@ -220,6 +220,11 @@
 </script>
 
 <style lang="scss">
+.loader {
+  top: 107px;
+  height: 100%;
+}
+
 #water-use-container {
   border: solid black;
   border-width: 0 1px 1px 1px;

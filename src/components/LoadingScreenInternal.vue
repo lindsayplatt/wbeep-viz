@@ -42,9 +42,9 @@ export default {
   position: fixed;
   right: 0;
   text-align: center;
-  top: 129px;
+  top: 0;
   z-index: 9000;
-  height: 75%;
+  height: 100%;
 }
 
 .stop-scrolling { 
