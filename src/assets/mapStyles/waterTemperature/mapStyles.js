@@ -28,9 +28,10 @@ export default {
             },
             streams: {
                 type: 'vector',
+                //'url': "http://localhost:8081/data/temptileswithdata3.json",
                 'tiles': streamsTileUrl,
                 'minzoom': 0,
-                'maxzoom': 6
+                'maxzoom': 12
             }
         },
         'sprite': '',
@@ -253,6 +254,7 @@ export default {
                 'layout': {
                     'visibility': 'visible'
                 },
+                'filter': ["all", ["has", "temp"]],
                 'paint': {
                     'line-width': 1,
                     'line-color': [
@@ -280,6 +282,30 @@ export default {
                         "#BF001C"
                     ]
                 }
+
+            },
+            {
+                'id': 'streams_interpolated',
+                'layerDescription': 'all streams',
+                'type': 'line',
+                'source': 'streams',
+                'source-layer': 'segsAllConus',
+                'minzoom': 0,
+                'maxzoom': 15,
+                'layout': {
+                    'visibility': 'none'
+                },
+                'filter': ["all", ["has", "temp"]],
+                "paint": {
+                    "line-width": 1,
+                    "line-color": [
+                        "interpolate", ["linear"], ["get", "temp"],
+                        0, "#10305d", 
+                        12.48, "#c4c1b6",
+                        27.04, "#730000"
+                    ]
+                  }
+
             },
             {
                 'filter': ['all', ['==', '$type', 'Point'],
