@@ -123,6 +123,24 @@
           development version of the application. To find the code controlling this, search for 'zoom level display' -->
     <div id="zoom-level-div" />
     <div class="color-ramp-controls">
+      <button
+        v-if="!isReturnToCenterButtonShowing && activeHighlightAreaButton!=='interp'"
+        @click="jumpToSelectMapArea('interp')"
+      >
+        interpolated ramp
+      </button>
+      <button
+        v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton!=='interp'"
+        @click="jumpToSelectMapArea('interp')"
+      >
+        interpolated ramp
+      </button>
+      <button
+        v-if="isReturnToCenterButtonShowing && activeHighlightAreaButton==='interp'"
+        @click="jumpToSelectMapArea('center')"
+      >
+        step ramp
+      </button>
       <button @click="colorRampChoiceOne">
         color ramp one
       </button>
@@ -504,13 +522,20 @@
                 if (map.getLayer("region-highlight")) {
                     map.removeLayer("region-highlight");
                 }
+                // Check if interp streams is on, and if so disable it and turn back on the step streams
+                if (map.getLayer("streams_interpolated") && highlightType=='center') {
+                    map.setLayoutProperty('streams_interpolated','visibility','none');
+                    map.setLayoutProperty('streams','visibility','visible')
+                }
 
                 const mapCoordinates = {
                     center: {coordinates: [-95.7129, 37.0902], zoomLevel: 2},
                     salmon: {coordinates: [-124, 47], zoomLevel: 7},
                     trout: {coordinates: [-75.76, 39.72], zoomLevel: 8},
                     mussels: {coordinates: [-75.76, 39.72], zoomLevel: 8},
+                    interp: {coordinates: [-95.7129, 37.0902], zoomLevel: 2},
                 };
+
                 map.jumpTo({
                     zoom: mapCoordinates[highlightType].zoomLevel,
                     center: mapCoordinates[highlightType].coordinates
@@ -598,6 +623,12 @@
                             'streams'
                     );
                 }
+                // if interp button pushed, turn on streams_interpolated to show interp color ramp
+                if (this.activeHighlightAreaButton === 'interp') {
+                  map.setLayoutProperty('streams','visibility','none');
+                  map.setLayoutProperty('streams_interpolated','visibility','visible');
+                }
+
             },
             changeLightDarkBackground: function() {
                 this.isBackgroundDark? this.$store.temperaturePredictionMap.setPaintProperty('background', 'background-color', 'hsl(47, 26%, 88%)') : this.$store.temperaturePredictionMap.setPaintProperty('background', 'background-color', 'hsl(44°, 8%, 40%)');
