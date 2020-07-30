@@ -28,7 +28,6 @@ export default {
             },
             streams: {
                 type: 'vector',
-                //'url': "http://localhost:8081/data/temptileswithdata3.json",
                 'tiles': streamsTileUrl,
                 'minzoom': 0,
                 'maxzoom': 12
