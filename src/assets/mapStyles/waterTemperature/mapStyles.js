@@ -206,7 +206,7 @@ export default {
                 'type': 'raster',
                 'source': 'hillshade',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'showButtonLayerToggle': true,
                 'showButtonStreamToggle': false,
@@ -296,12 +296,17 @@ export default {
                 },
                 'filter': ["all", ["has", "temp"]],
                 "paint": {
-                    "line-width": 1,
+                    "line-width": [
+                        "interpolate", 
+                        ["linear"], ["zoom"],
+                        4, 1,
+                        7, 5
+                    ],
                     "line-color": [
                         "interpolate", ["linear"], ["get", "temp"],
                         0, "#10305d", 
-                        12.48, "#c4c1b6",
-                        27.04, "#730000"
+                        14.08, "#c4c1b6",
+                        25.88, "#730000"
                     ]
                   }
 
