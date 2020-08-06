@@ -312,6 +312,7 @@ export default {
                     'visibility': 'none'
                 },
                 'filter': ["all", ["has", "temp"]],
+                'filter': ['==', ['typeof', ['get', 'temp']], 'number'],
                 "paint": {
                     "line-width": [
                         "interpolate", 
