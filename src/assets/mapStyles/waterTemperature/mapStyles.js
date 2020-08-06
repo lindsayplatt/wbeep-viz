@@ -84,7 +84,7 @@ export default {
                 'source-layer': 'water',
                 'type': 'fill',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'showButtonLayerToggle': false
             },
@@ -166,7 +166,7 @@ export default {
                 'source-layer': 'waterway',
                 'type': 'line',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'showButtonLayerToggle': false
             },
@@ -191,11 +191,28 @@ export default {
                 ],
                 'id': 'water',
                 'paint': {
-                    'fill-color': '#DBF3FA'
+                    'fill-color': '#CFEEFA',
+                    'fill-opacity': 0.3
                 },
                 'source': 'openmaptiles',
                 'source-layer': 'water',
                 'type': 'fill',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'filter': ['all', ['==', '$type', 'Polygon'],
+                    ['!=', 'intermittent', 1]
+                ],
+                'id': 'water-outline',
+                'paint': {
+                    'line-color': "#CFEEFA"
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'water',
+                'type': 'line',
                 'layout': {
                     'visibility': 'visible'
                 },
@@ -299,8 +316,8 @@ export default {
                     "line-width": [
                         "interpolate", 
                         ["linear"], ["zoom"],
-                        4, 1,
-                        7, 5
+                        5, 1,
+                        6, 3
                     ],
                     "line-color": [
                         "interpolate", ["linear"], ["get", "temp"],
