@@ -77,7 +77,7 @@ export default {
                 ],
                 'id': 'water_intermittent',
                 'paint': {
-                    'fill-color': 'hsl(205, 56%, 73%)',
+                    'fill-color': '#DBF3FA',
                     'fill-opacity': 0.7
                 },
                 'source': 'openmaptiles',
@@ -94,7 +94,7 @@ export default {
                 ],
                 'id': 'waterway-tunnel',
                 'paint': {
-                    'line-color': 'hsl(205, 56%, 73%)',
+                    'line-color': '#DBF3FA',
                     'line-dasharray': [3, 3],
                     'line-gap-width': {
                         'stops': [
@@ -126,7 +126,7 @@ export default {
                 ],
                 'id': 'waterway',
                 'paint': {
-                    'line-color': 'hsl(205, 56%, 73%)',
+                    'line-color': '#DBF3FA',
                     'line-opacity': 1,
                     'line-width': {
                         'base': 1.4,
@@ -151,7 +151,7 @@ export default {
                 ],
                 'id': 'waterway_intermittent',
                 'paint': {
-                    'line-color': 'hsl(205, 56%, 73%)',
+                    'line-color': '#DBF3FA',
                     'line-opacity': 1,
                     'line-width': {
                         'base': 1.4,
@@ -191,7 +191,7 @@ export default {
                 ],
                 'id': 'water',
                 'paint': {
-                    'fill-color': 'hsl(205, 56%, 73%)'
+                    'fill-color': '#DBF3FA'
                 },
                 'source': 'openmaptiles',
                 'source-layer': 'water',
