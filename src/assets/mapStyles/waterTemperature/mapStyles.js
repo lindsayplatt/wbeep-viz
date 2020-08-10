@@ -30,7 +30,7 @@ export default {
                 type: 'vector',
                 'tiles': streamsTileUrl,
                 'minzoom': 0,
-                'maxzoom': 12
+                'maxzoom': 6
             }
         },
         'sprite': '',
@@ -266,7 +266,7 @@ export default {
                 'source': 'streams',
                 'source-layer': 'segsAllConus',
                 'minzoom': 0,
-                'maxzoom': 15,
+                'maxzoom': 6,
                 'layout': {
                     'visibility': 'visible'
                 },
@@ -307,7 +307,7 @@ export default {
                 'source': 'streams',
                 'source-layer': 'segsAllConus',
                 'minzoom': 0,
-                'maxzoom': 15,
+                'maxzoom': 6,
                 'layout': {
                     'visibility': 'none'
                 },
