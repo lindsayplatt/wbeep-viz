@@ -318,7 +318,7 @@ export default {
                         "interpolate", 
                         ["linear"], ["zoom"],
                         5, 1,
-                        6, 3
+                        6, 2
                     ],
                     "line-color": [
                         "interpolate", ["linear"], ["get", "temp"],
