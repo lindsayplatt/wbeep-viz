@@ -182,11 +182,6 @@
                 if (map.getLayer("region-highlight")) {
                     map.removeLayer("region-highlight");
                 }
-                // Check if interp streams is on, and if so disable it and turn back on the step streams
-                if (map.getLayer("streams_interpolated") && highlightType=='center') {
-                    map.setLayoutProperty('streams_interpolated','visibility','none');
-                    map.setLayoutProperty('streams','visibility','visible')
-                }
 
                 const mapCoordinates = {
                     center: {coordinates: [-95.7129, 37.0902], zoomLevel: 2},
