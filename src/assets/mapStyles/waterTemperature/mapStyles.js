@@ -268,7 +268,7 @@ export default {
                 'minzoom': 0,
                 'maxzoom': 6,
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'filter': ["all", ["has", "temp"]],
                 'paint': {
@@ -309,7 +309,7 @@ export default {
                 'minzoom': 0,
                 'maxzoom': 6,
                 'layout': {
-                    'visibility': 'none'
+                    'visibility': 'visible'
                 },
                 'filter': ["all", ["has", "temp"]],
                 'filter': ['==', ['typeof', ['get', 'temp']], 'number'],
