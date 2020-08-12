@@ -122,7 +122,6 @@
     <!--The next div contains information to show the current zoom level of the map. This will only show on the
           development version of the application. To find the code controlling this, search for 'zoom level display' -->
     <div id="zoom-level-div" />
-
   </div>
 </template>
 
