@@ -223,7 +223,7 @@ export default {
                 'type': 'raster',
                 'source': 'hillshade',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'showButtonLayerToggle': true,
                 'showButtonStreamToggle': false,
@@ -256,47 +256,6 @@ export default {
                 },
                 'paint': {
                     'line-color': 'rgb(0,0,0)'
-                }
-
-            },
-            {
-                'id': 'streams',
-                'layerDescription': 'all streams',
-                'type': 'line',
-                'source': 'streams',
-                'source-layer': 'segsAllConus',
-                'minzoom': 0,
-                'maxzoom': 6,
-                'layout': {
-                    'visibility': 'none'
-                },
-                'filter': ["all", ["has", "temp"]],
-                'paint': {
-                    'line-width': 1,
-                    'line-color': [
-                        "step",
-                        ["number", ["get", "temp"]],
-                        "#00AAE5", 0,
-                        "#0AA1DA", 2,
-                        "#1498CF", 4,
-                        "#1E8FC5", 6,
-                        "#2886BA", 8,
-                        "#327DB0", 10,
-                        "#3C74A5", 12,
-                        "#466B9A", 14,
-                        "#506290", 16,
-                        "#5A5985", 18,
-                        "#64507B", 20,
-                        "#6E4770", 22,
-                        "#783E66", 24,
-                        "#82355B", 26,
-                        "#8C2C50", 28,
-                        "#962346", 30,
-                        "#A01A3B", 32,
-                        "#AA1131", 34,
-                        "#B40826", 36,
-                        "#BF001C"
-                    ]
                 }
 
             },
