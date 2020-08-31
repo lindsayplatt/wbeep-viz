@@ -73,17 +73,9 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     width: 100%;
-  }
-
-  @media screen and (min-width: 601px){
-    body{
-      height: 100vh;
-    }
-    #app{
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
   /* Styles for Custom Map Controls (the button that are within the map) */
   .mapboxgl-ctrl .icon-map-control svg {

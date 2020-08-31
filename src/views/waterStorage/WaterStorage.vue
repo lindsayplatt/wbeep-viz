@@ -451,10 +451,14 @@
 
   #mapContainer {
     position: relative;
-    height: 80vh;
+    flex: 1;
     min-height: 550px;
     display: flex;
     flex-direction: column;
+  }
+
+  #mapgl-water-storage-mapbox-map{
+    flex: 1;
   }
 
   @media screen and (min-width: 600px) and (min-height: 850px) {
@@ -462,11 +466,6 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-    }
-
-    #mapContainer {
-      flex: 1;
-      height: auto;
     }
   }
 </style>
