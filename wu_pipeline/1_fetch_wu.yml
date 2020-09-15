@@ -16,7 +16,7 @@ targets:
       - 1_fetch/out/wbd.gdb
   
   sb_dl_date:
-    command: c(I("2020-08-21"))
+    command: c(I("2020-09-11"))
   
   sbid_thermoelectric:
     command: c(I("5ee3d77682ce3bd58d7e1dcb"))

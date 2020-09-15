@@ -14,10 +14,11 @@ read_and_parse_huc10<- function(wbd_gdb_fn, layer_nm) {
 read_and_parse_wu <- function(filepath, is_irr = FALSE) {
   
   # Columns have different names between water use types
-  col_name <- ifelse(is_irr, "HUC_12", "huc12")
+  col_name <- ifelse(is_irr, "HUC_12t", "huc12") # Need the "t" column now because the data has a bad "HUC_12" column
   
   readr::read_csv(filepath) %>% 
     rename(HUC12 = !!col_name) %>% # Columns have different names between water use types
+    mutate(HUC12 = gsub("'", "", HUC12)) %>% # For irr, using the `t` column has a leading '
     mutate(HUC12 = zeroPad(HUC12, 12)) %>% # Many of the HUCs were missing leading 0s ... :(
     # Starts in wide format with a column for each day of the year. 
     tidyr::pivot_longer(cols = starts_with("W_"), names_to = "prefixdate", values_to = "wu_val") %>% 
